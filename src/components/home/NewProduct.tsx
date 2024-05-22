@@ -1,16 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { fetchProducts } from "../../services/api";
-
-interface Product {
-  id: number;
-  title: string;
-  image: string;
-  price: number;
-  rating: {
-    rate: number;
-    count: number;
-  };
-}
+import Product from "../../types/ProductTypes";
 import { FaStar, FaStarHalfAlt } from "react-icons/fa";
 
 const StarRating: React.FC<{ rate: number }> = ({ rate }) => {
@@ -54,11 +44,11 @@ const NewProduct: React.FC = () => {
         <div className="grid grid-cols-4  gap-4 ">
           {products.map((product) => (
             <div key={product.id}>
-              <div className="bg-white rounded-lg shadow-lg p-4 mb-8 h-3/4 flex justify-center items-center mx-auto">
+              <div className="bg-brand-100   rounded-lg shadow-lg p-4 mb-8 h-3/4 flex justify-center items-center mx-auto">
                 <img
                   src={product.image}
                   alt={product.title}
-                  className=" object-cover mb-4"
+                  className=" object-cover mb-4 rounded-full  "
                 />
               </div>
               <div>

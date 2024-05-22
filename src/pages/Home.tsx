@@ -1,8 +1,10 @@
 import React from "react";
-import HeroBanner from "../components/sections/HeroBanner";
-import BrandSection from "../components/sections/BrandSection";
-import NewProduct from "../components/products/NewProduct";
-import TopProduct from "../components/products/TopProduct";
+import HeroBanner from "../components/home/HeroBanner";
+import BrandSection from "../components/home/BrandSection";
+import NewProduct from "../components/home/NewProduct";
+import TopProduct from "../components/home/TopProduct";
+import CatagoryProduct from "../components/home/CatagoryProduct";
+import HappyCustomers from "../components/home/HappyCustomers";
 
 const Home: React.FC = () => {
   return (
@@ -11,6 +13,8 @@ const Home: React.FC = () => {
       <BrandSection />
       <NewProduct />
       <TopProduct />
+      <CatagoryProduct />
+      <HappyCustomers />
     </div>
   );
 };

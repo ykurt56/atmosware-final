@@ -1,16 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { fetchProducts } from "../../services/api";
+import Product from "../../types/ProductTypes";
 
-interface Product {
-  id: number;
-  title: string;
-  image: string;
-  price: number;
-  rating: {
-    rate: number;
-    count: number;
-  };
-}
 import { FaStar, FaStarHalfAlt } from "react-icons/fa";
 
 const StarRating: React.FC<{ rate: number }> = ({ rate }) => {
@@ -36,7 +27,7 @@ const TopProduct: React.FC = () => {
     const getTopProducts = async () => {
       try {
         const TopProducts = await fetchProducts();
-        setProducts(TopProducts.slice(14, 18));
+        setProducts(TopProducts.slice(16, 20));
       } catch (error) {
         console.error("Error fetching Top products:", error);
       }
@@ -54,11 +45,11 @@ const TopProduct: React.FC = () => {
         <div className="grid grid-cols-4  gap-4 ">
           {products.map((product) => (
             <div key={product.id}>
-              <div className="bg-white rounded-lg shadow-lg p-4 mb-8 h-3/4 flex justify-center items-center mx-auto">
+              <div className="bg-brand-100  rounded-lg shadow-lg p-4 mb-8 h-3/4 flex justify-center items-center mx-auto  ">
                 <img
                   src={product.image}
                   alt={product.title}
-                  className=" object-cover mb-4"
+                  className=" object-cover mb-4 rounded-full "
                 />
               </div>
               <div>
@@ -75,7 +66,7 @@ const TopProduct: React.FC = () => {
 
                 <div className="text-black font-semibold flex flex-col lg:flex-row items-start lg:items-center gap-4">
                   <h3 className="text-2xl">${product.price}</h3>
-                  {product.price >= 50 && (
+                  {product.price >= 10 && (
                     <div className="flex gap-2 text-2xl">
                       <p className="text-gray-500 line-through   ">
                         $
@@ -94,7 +85,7 @@ const TopProduct: React.FC = () => {
             </div>
           ))}
         </div>
-        <div className="flex justify-center mx-auto border-b-[1px] ">
+        <div className="flex justify-center mx-auto  ">
           <button
             onClick={() => (window.location.href = "/Top-arrivals")}
             className="bg-white text-black border px-16 py-3 rounded-full mb-8   "
