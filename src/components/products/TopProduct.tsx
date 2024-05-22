@@ -28,27 +28,27 @@ const StarRating: React.FC<{ rate: number }> = ({ rate }) => {
   return <div className="flex items-center">{stars}</div>;
 };
 
-const NewProduct: React.FC = () => {
+const TopProduct: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const discountPercentage: number = 20;
 
   useEffect(() => {
-    const getNewProducts = async () => {
+    const getTopProducts = async () => {
       try {
-        const newProducts = await fetchProducts();
-        setProducts(newProducts.slice(0, 4));
+        const TopProducts = await fetchProducts();
+        setProducts(TopProducts.slice(14, 18));
       } catch (error) {
-        console.error("Error fetching new products:", error);
+        console.error("Error fetching Top products:", error);
       }
     };
 
-    getNewProducts();
+    getTopProducts();
   }, []);
 
   return (
     <div className=" h-auto w-full ">
       <h1 className="text-5xl font-extrabold text-center py-20  ">
-        NEW ARRIVALS
+        TOP SELLING
       </h1>
       <div className="container mx-auto">
         <div className="grid grid-cols-4  gap-4 ">
@@ -74,10 +74,10 @@ const NewProduct: React.FC = () => {
                 </div>
 
                 <div className="text-black font-semibold flex flex-col lg:flex-row items-start lg:items-center gap-4">
-                  <h3 className="text-2xl ">${product.price}</h3>
+                  <h3 className="text-2xl">${product.price}</h3>
                   {product.price >= 50 && (
                     <div className="flex gap-2 text-2xl">
-                      <p className="text-gray-500 line-through">
+                      <p className="text-gray-500 line-through   ">
                         $
                         {(
                           product.price /
@@ -96,7 +96,7 @@ const NewProduct: React.FC = () => {
         </div>
         <div className="flex justify-center mx-auto border-b-[1px] ">
           <button
-            onClick={() => (window.location.href = "/new-arrivals")}
+            onClick={() => (window.location.href = "/Top-arrivals")}
             className="bg-white text-black border px-16 py-3 rounded-full mb-8   "
           >
             View All
@@ -107,4 +107,4 @@ const NewProduct: React.FC = () => {
   );
 };
 
-export default NewProduct;
+export default TopProduct;
