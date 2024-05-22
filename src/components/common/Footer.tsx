@@ -1,9 +1,26 @@
 import React from "react";
+import { BiLogoMastercard } from "react-icons/bi";
+import {
+  FaAmazonPay,
+  FaApplePay,
+  FaCcAmazonPay,
+  FaCcApplePay,
+  FaCcMastercard,
+  FaCcPaypal,
+  FaCcVisa,
+  FaFacebookF,
+  FaGithub,
+  FaGooglePay,
+  FaInstagram,
+  FaPaypal,
+  FaTwitter,
+} from "react-icons/fa";
+import { RiVisaLine } from "react-icons/ri";
 
 const Footer: React.FC = () => {
   return (
-    <footer>
-      <div className="bg-black container grid col-span-2 text-white p-10 rounded-lg mx-4 lg:mx-auto lg:left-0 lg:right-0 lg:grid-cols-2 lg:text-center">
+    <footer className=" w-full bg-gray-100 ">
+      <div className="bg-black relative bottom-24 container mt-20   grid col-span-2 text-white p-10 rounded-lg mx-4 lg:mx-auto lg:left-0 lg:right-0 lg:grid-cols-2 lg:text-center">
         <div className="lg:text-left mb-4">
           <h2 className="text-[40px] font-extrabold mb-2">
             STAY UP TO DATE ABOUT OUR LATEST OFFERS
@@ -20,33 +37,50 @@ const Footer: React.FC = () => {
           </button>
         </div>
       </div>
-      <footer className=" relative bottom-28 py-28  w-full bg-gray-100 -z-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
-            <div>
-              <h3 className="text-xl font-bold mb-4">SHOP.CO</h3>
-              <p className="text-gray-600 mb-4">
-                We have clothes that suits your style and which you're proud to
-                wear. From women to men.
-              </p>
-              <div className="flex space-x-4">
-                <a href="#" className="text-gray-500">
-                  <i className="fab fa-twitter"></i>
+      <div className="relative bottom-16">
+        <div className=" container mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-6 gap-8 ">
+            <div className="col-span-2 ">
+              <div className="max-w-xs ">
+                <h2 className="text-5xl font-extrabold mb-4">L O G O</h2>
+                <p className="text-gray-600 mb-4">
+                  We have clothes that suits your style and which you're proud
+                  to wear. From women to men.
+                </p>
+              </div>
+
+              <div className="flex space-x-4 text-xl">
+                <a
+                  href="#"
+                  className="p-2 bg-white rounded-full hover:bg-black hover:text-white"
+                >
+                  <FaTwitter />
                 </a>
-                <a href="#" className="text-gray-500">
-                  <i className="fab fa-facebook"></i>
+                <a
+                  href="#"
+                  className="p-2 bg-white rounded-full hover:bg-black hover:text-white"
+                >
+                  <FaFacebookF />
                 </a>
-                <a href="#" className="text-gray-500">
-                  <i className="fab fa-instagram"></i>
+                <a
+                  href="#"
+                  className="p-2 bg-white rounded-full hover:bg-black hover:text-white"
+                >
+                  <FaInstagram />
                 </a>
-                <a href="#" className="text-gray-500">
-                  <i className="fab fa-pinterest"></i>
+                <a
+                  href="#"
+                  className="p-2 bg-white rounded-full hover:bg-black hover:text-white"
+                >
+                  <FaGithub />
                 </a>
               </div>
             </div>
 
-            <div>
-              <h3 className="text-xl font-bold mb-4">COMPANY</h3>
+            <div className="font-light ">
+              <h3 className="text-xl font-semibold mb-4 tracking-widest">
+                COMPANY
+              </h3>
               <ul className="space-y-2">
                 <li>
                   <a href="#" className="text-gray-600">
@@ -71,8 +105,10 @@ const Footer: React.FC = () => {
               </ul>
             </div>
 
-            <div>
-              <h3 className="text-xl font-bold mb-4">HELP</h3>
+            <div className="font-light ">
+              <h3 className="text-xl font-semibold mb-4 tracking-widest">
+                HELP
+              </h3>
               <ul className="space-y-2">
                 <li>
                   <a href="#" className="text-gray-600">
@@ -97,8 +133,10 @@ const Footer: React.FC = () => {
               </ul>
             </div>
 
-            <div>
-              <h3 className="text-xl font-bold mb-4">FAQ</h3>
+            <div className="font-light ">
+              <h3 className="text-xl font-semibold mb-4 tracking-widest">
+                FAQ
+              </h3>
               <ul className="space-y-2">
                 <li>
                   <a href="#" className="text-gray-600">
@@ -123,8 +161,10 @@ const Footer: React.FC = () => {
               </ul>
             </div>
 
-            <div>
-              <h3 className="text-xl font-bold mb-4">RESOURCES</h3>
+            <div className="font-light ">
+              <h3 className="text-xl font-semibold mb-4 tracking-widest">
+                RESOURCES
+              </h3>
               <ul className="space-y-2">
                 <li>
                   <a href="#" className="text-gray-600">
@@ -151,25 +191,37 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10 border-t border-gray-200 pt-8">
-          <div className="flex flex-col sm:flex-row justify-between items-center">
-            <p className="text-gray-600">
-              &copy; 2024 SHOP.CO. All rights reserved.
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 mt-10 border-t border-gray-200 pt-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 items-center">
+            <p className="text-gray-600 text-center sm:text-left">
+              L O G O &copy; 2023 - 2024, All rights reserved.
             </p>
-            <div className="flex space-x-4 mt-4 sm:mt-0">
-              <a href="#" className="text-gray-600">
-                Privacy Policy
+            <div className="flex justify-center sm:justify-end text-4xl space-x-4 mt-4 sm:mt-0">
+              <a
+                href="#"
+                className="px-2 rounded-lg border bg-white text-blue-700"
+              >
+                <RiVisaLine />
               </a>
-              <a href="#" className="text-gray-600">
-                Terms of Service
+              <a
+                href="#"
+                className="px-2 rounded-lg border bg-white text-orange-400"
+              >
+                <BiLogoMastercard />
               </a>
-              <a href="#" className="text-gray-600">
-                Cookie Policy
+              <a href="#" className="px-2 rounded-lg border bg-white ">
+                <FaAmazonPay />
+              </a>
+              <a href="#" className="px-2 rounded-lg border bg-white">
+                <FaApplePay />
+              </a>
+              <a href="#" className="px-2 rounded-lg border bg-white">
+                <FaGooglePay />
               </a>
             </div>
           </div>
         </div>
-      </footer>
+      </div>
     </footer>
   );
 };

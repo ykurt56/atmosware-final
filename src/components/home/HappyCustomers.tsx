@@ -1,52 +1,7 @@
 import React, { useState } from "react";
 import { FaChevronLeft, FaChevronRight, FaCheckCircle } from "react-icons/fa";
 import { AiFillStar } from "react-icons/ai";
-
-interface Customer {
-  id: number;
-  name: string;
-  testimonial: string;
-  rating: number;
-  verified: boolean;
-}
-
-const customers: Customer[] = [
-  {
-    id: 1,
-    name: "Sarah M.",
-    testimonial: `"I'm blown away by the quality and style of the clothes I received from Shop.co. From casual wear to elegant dresses, every piece I've bought has exceeded my expectations."`,
-    rating: 5,
-    verified: true,
-  },
-  {
-    id: 2,
-    name: "Alex K.",
-    testimonial: `"Finding clothes that align with my personal style used to be a challenge until I discovered Shop.co. The range of options they offer is truly remarkable, catering to a variety of tastes and occasions."`,
-    rating: 5,
-    verified: true,
-  },
-  {
-    id: 3,
-    name: "James L.",
-    testimonial: `"As someone who's always on the lookout for unique fashion pieces, I'm thrilled to have stumbled upon Shop.co. The selection of clothes is not only diverse but also on-point with the latest trends."`,
-    rating: 5,
-    verified: true,
-  },
-  {
-    id: 4,
-    name: "Michael B.",
-    testimonial: `"The products are worth every penny. Great quality and service."`,
-    rating: 5,
-    verified: false,
-  },
-  {
-    id: 5,
-    name: "Jessica W.",
-    testimonial: `"Absolutely love the products. They exceeded my expectations."`,
-    rating: 5,
-    verified: true,
-  },
-];
+import customers from "../../services/Customer";
 
 const HappyCustomers: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
@@ -86,7 +41,7 @@ const HappyCustomers: React.FC = () => {
       </div>
       <div className="relative overflow-hidden">
         <div
-          className="flex transition-transform duration-500"
+          className="flex transition-transform duration-500 translate-x-6"
           style={{ transform: `translateX(-${(currentIndex * 100) / 3}%)` }}
         >
           {customers.map((customer) => (
@@ -100,7 +55,7 @@ const HappyCustomers: React.FC = () => {
                 <div className="flex  space-x-2 mb-4">
                   <h3 className="text-xl font-bold">{customer.name}</h3>
                   {customer.verified && (
-                    <FaCheckCircle className="text-green-500" />
+                    <FaCheckCircle className="text-green-500 mt-2" />
                   )}
                 </div>
                 <p className="text-lg text-gray-600">{customer.testimonial}</p>
