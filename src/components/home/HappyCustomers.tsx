@@ -19,12 +19,10 @@ const HappyCustomers: React.FC = () => {
   };
 
   return (
-    <div className="container mx-auto py-20">
-      <div className="flex justify-between items-center mb-8">
-        <h1 className="text-3xl md:text-5xl font-extrabold">
-          Our Happy Customers
-        </h1>
-        <div className="flex space-x-2">
+    <div className="container mx-auto py-8 md:py-20">
+      <div className="flex justify-between items-center mb-4 md:mb-8">
+        <h1 className="text-2xl md:text-4xl font-black">Our Happy Customers</h1>
+        <div className=" flex text-base space-x-2">
           <button
             className="bg-gray-800 text-white rounded-full p-2 hover:bg-gray-700"
             onClick={handlePrev}
@@ -41,24 +39,31 @@ const HappyCustomers: React.FC = () => {
       </div>
       <div className="relative overflow-hidden">
         <div
-          className="flex transition-transform duration-500 translate-x-6"
-          style={{ transform: `translateX(-${(currentIndex * 100) / 3}%)` }}
+          className="flex transition-transform duration-500"
+          style={{
+            transform: `translateX(-${
+              (currentIndex * 100) / (customers.length - 2)
+            }%)`,
+          }}
         >
           {customers.map((customer) => (
-            <div key={customer.id} className="flex-shrink-0 w-1/3 px-4">
-              <div className="bg-white rounded-xl border p-6 h-full">
-                <div className="flex  space-x-1 mb-4">
+            <div
+              key={customer.id}
+              className="flex-shrink-0 w-full md:w-1/3 px-4"
+            >
+              <div className="bg-white rounded-xl border p-6 h-full mb-4 md:mb-0">
+                <div className="flex items-center space-x-1 mb-2">
                   {Array.from({ length: customer.rating }).map((_, index) => (
                     <AiFillStar key={index} className="text-yellow-500" />
                   ))}
                 </div>
-                <div className="flex  space-x-2 mb-4">
-                  <h3 className="text-xl font-bold">{customer.name}</h3>
-                  {customer.verified && (
-                    <FaCheckCircle className="text-green-500 mt-2" />
-                  )}
-                </div>
-                <p className="text-lg text-gray-600">{customer.testimonial}</p>
+                <h3 className="text-lg font-bold">{customer.name}</h3>
+                {customer.verified && (
+                  <FaCheckCircle className="text-green-500 mt-1" />
+                )}
+                <p className="text-sm text-gray-600 mt-2">
+                  {customer.testimonial}
+                </p>
               </div>
             </div>
           ))}

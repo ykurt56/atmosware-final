@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { fetchProducts } from "../../services/api";
 import Product from "../../types/ProductTypes";
-
 import { FaStar, FaStarHalfAlt } from "react-icons/fa";
 
 const StarRating: React.FC<{ rate: number }> = ({ rate }) => {
@@ -21,15 +20,15 @@ const StarRating: React.FC<{ rate: number }> = ({ rate }) => {
 
 const TopProduct: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
-  const discountPercentage: number = 20;
+  const discountPercentage: number = 10;
 
   useEffect(() => {
     const getTopProducts = async () => {
       try {
-        const TopProducts = await fetchProducts();
-        setProducts(TopProducts.slice(16, 20));
+        const topProducts = await fetchProducts();
+        setProducts(topProducts.slice(16, 20));
       } catch (error) {
-        console.error("Error fetching Top products:", error);
+        console.error("Error fetching Top Selling products:", error);
       }
     };
 
@@ -37,45 +36,38 @@ const TopProduct: React.FC = () => {
   }, []);
 
   return (
-    <div className=" h-auto w-full ">
-      <h1 className="text-5xl font-extrabold text-center py-20  ">
-        TOP SELLING
-      </h1>
+    <div className="h-auto w-full">
+      <h1 className="text-5xl font-extrabold text-center py-20">TOP SELLING</h1>
       <div className="container mx-auto">
-        <div className="grid grid-cols-4  gap-4 ">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {products.map((product) => (
             <div key={product.id}>
-              <div className="bg-brand-100  rounded-lg shadow-lg p-4 mb-8 h-3/4 flex justify-center items-center mx-auto  ">
+              <div className="h-60  bg-brand-100 rounded-lg shadow-lg p-4 mb-8 md:h-3/4 flex justify-center items-center mx-auto">
                 <img
                   src={product.image}
                   alt={product.title}
-                  className=" object-cover mb-4 rounded-full "
+                  className="object-cover mb-4 rounded-full  h-full"
                 />
               </div>
               <div>
-                <h2 className="text-xl font-bold mb-2 line-clamp-1">
+                <h2 className="md:text-xl font-bold mb-2 line-clamp-1">
                   {product.title}
                 </h2>
-                <div className="flex items-center gap-2 ">
+                <div className="flex items-center gap-2">
                   <StarRating rate={product.rating.rate} />
                   <p className="">{product.rating.rate}</p>
-                  <p className="text-gray-600  ">
+                  <p className=" hidden md:block text-gray-600">
                     {product.rating.count} reviews
                   </p>
                 </div>
-
-                <div className="text-black font-semibold flex flex-col lg:flex-row items-start lg:items-center gap-4">
-                  <h3 className="text-2xl">${product.price}</h3>
+                <div className="  text-black font-semibold flex  flex-row  lg:items-center gap-4">
+                  <h3 className=" md:text-2xl">${product.price}</h3>
                   {product.price >= 10 && (
-                    <div className="flex gap-2 text-2xl">
-                      <p className="text-gray-500 line-through   ">
-                        $
-                        {(
-                          product.price /
-                          (1 - discountPercentage / 100)
-                        ).toFixed(2)}
+                    <div className=" block md:flex gap-2 md:text-xl   lg:text-2xl">
+                      <p className="text-gray-500 line-through ">
+                        ${(product.price * 1.1).toFixed(2)}
                       </p>
-                      <div className="flex items-center justify-center bg-red-100 rounded-full px-3 text-red-600 text-xs ">
+                      <div className=" items-center justify-center bg-red-100 rounded-full px-3 text-red-600 md:text-lg">
                         %{discountPercentage}
                       </div>
                     </div>
@@ -85,10 +77,10 @@ const TopProduct: React.FC = () => {
             </div>
           ))}
         </div>
-        <div className="flex justify-center mx-auto  ">
+        <div className="flex py-5 justify-center mx-auto border-b-[1px]">
           <button
-            onClick={() => (window.location.href = "/Top-arrivals")}
-            className="bg-white text-black border px-16 py-3 rounded-full mb-8   "
+            onClick={() => (window.location.href = "/top-arrivals")}
+            className="bg-white text-black border px-16 py-3 rounded-full mb-8"
           >
             View All
           </button>

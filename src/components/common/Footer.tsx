@@ -3,45 +3,61 @@ import { BiLogoMastercard } from "react-icons/bi";
 import {
   FaAmazonPay,
   FaApplePay,
-  FaCcAmazonPay,
-  FaCcApplePay,
-  FaCcMastercard,
-  FaCcPaypal,
-  FaCcVisa,
   FaFacebookF,
   FaGithub,
   FaGooglePay,
   FaInstagram,
-  FaPaypal,
   FaTwitter,
 } from "react-icons/fa";
-import { RiVisaLine } from "react-icons/ri";
+import { RiMailCheckLine, RiVisaLine } from "react-icons/ri";
+import { useFormik } from "formik";
 
 const Footer: React.FC = () => {
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+    },
+    onSubmit: (values) => {
+      console.log(values);
+    },
+  });
   return (
     <footer className=" w-full bg-gray-100 ">
-      <div className="bg-black relative bottom-24 container mt-20   grid col-span-2 text-white p-10 rounded-lg mx-4 lg:mx-auto lg:left-0 lg:right-0 lg:grid-cols-2 lg:text-center">
+      <div className="bg-black relative bottom-24 container mt-20 mx-auto  grid col-span-2 text-white p-10 rounded-lg  lg:mx-auto lg:left-0 lg:right-0 lg:grid-cols-2 lg:text-center">
         <div className="lg:text-left mb-4">
           <h2 className="text-[40px] font-extrabold mb-2">
             STAY UP TO DATE ABOUT OUR LATEST OFFERS
           </h2>
         </div>
-        <div className="lg:text-right flex flex-col items-end gap-4">
-          <input
-            type="email"
-            placeholder="Enter your email address"
-            className="p-4 rounded-full text-black sm:mb-0 w-[349px]"
-          />
-          <button className="bg-white text-black px-6 py-4 rounded-full w-[349px]">
+        <form
+          onSubmit={formik.handleSubmit}
+          className="lg:text-right flex flex-col items-end gap-4 justify-center"
+        >
+          <div className="relative md:w-auto w-full">
+            <input
+              type="email"
+              name="email"
+              placeholder="Enter your email address"
+              value={formik.values.email}
+              onChange={formik.handleChange}
+              className="p-4 pl-12 rounded-full text-black sm:mb-0 w-full lg:w-[349px]"
+            />
+            <RiMailCheckLine className="absolute text-xl top-1/2 left-4 transform -translate-y-1/2 text-black" />
+          </div>
+
+          <button
+            type="submit"
+            className="bg-white text-black px-6 py-4 rounded-full w-full lg:w-[349px]"
+          >
             Subscribe to Newsletter
           </button>
-        </div>
+        </form>
       </div>
-      <div className="relative bottom-16">
+      <div className="relative bottom-16 ">
         <div className=" container mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-6 gap-8 ">
+          <div className="grid grid-cols-1 lg:grid-cols-6 gap-8 ">
             <div className="col-span-2 ">
-              <div className="max-w-xs ">
+              <div className="max-w-xs mx-auto  ">
                 <h2 className="text-5xl font-extrabold mb-4">L O G O</h2>
                 <p className="text-gray-600 mb-4">
                   We have clothes that suits your style and which you're proud
@@ -49,7 +65,7 @@ const Footer: React.FC = () => {
                 </p>
               </div>
 
-              <div className="flex space-x-4 text-xl">
+              <div className="flex space-x-4 text-xl   justify-center">
                 <a
                   href="#"
                   className="p-2 bg-white rounded-full hover:bg-black hover:text-white"
@@ -77,8 +93,8 @@ const Footer: React.FC = () => {
               </div>
             </div>
 
-            <div className="font-light ">
-              <h3 className="text-xl font-semibold mb-4 tracking-widest">
+            <div className="font-light   ">
+              <h3 className="text-xl font-semibold mb-4 tracking-widest ">
                 COMPANY
               </h3>
               <ul className="space-y-2">
