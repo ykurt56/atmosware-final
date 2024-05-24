@@ -22,7 +22,7 @@ const Footer: React.FC = () => {
     },
   });
   return (
-    <footer className=" w-full bg-gray-100 ">
+    <footer className=" w-full bg-gray-100 mt-52 ">
       <div className="bg-black relative bottom-24 container mt-20 mx-auto  grid col-span-2 text-white p-10 rounded-lg  lg:mx-auto lg:left-0 lg:right-0 lg:grid-cols-2 lg:text-center">
         <div className="lg:text-left mb-4">
           <h2 className="text-[40px] font-extrabold mb-2">
