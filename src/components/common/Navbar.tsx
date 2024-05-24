@@ -74,14 +74,20 @@ const Navbar: React.FC = () => {
                 </div>
                 {isOpen && (
                   <ul className="absolute bg-white mt-1 p-2 rounded shadow-md">
-                    <li>Category 1</li>
-                    <li>Category 1</li>
-                    <li>Category 1</li>
+                    <Link to={"/men"}>
+                      <li>Men</li>
+                    </Link>
+                    <Link to={"/woman"}>
+                      <li>Woman</li>
+                    </Link>
+                    <Link to={"/jewelry"}>
+                      <li>Jewelry</li>
+                    </Link>
                   </ul>
                 )}
               </div>
 
-              <Link to="/sales" className="mx-2">
+              <Link to="/products" className="mx-2">
                 On Sale
               </Link>
               <Link to="/new-arrivals" className="mx-2">
@@ -137,9 +143,15 @@ const Navbar: React.FC = () => {
                   </div>
                   {isOpen && (
                     <ul className="absolute bg-white mt-1 p-2 rounded shadow-md">
-                      <li>Category 1</li>
-                      <li>Category 2</li>
-                      <li>Category 3</li>
+                      <Link to={"/men"}>
+                        <li>Men</li>
+                      </Link>
+                      <Link to={"/woman"}>
+                        <li>Woman</li>
+                      </Link>
+                      <Link to={"/jewelry"}>
+                        <li>Jewelry</li>
+                      </Link>
                     </ul>
                   )}
                 </div>

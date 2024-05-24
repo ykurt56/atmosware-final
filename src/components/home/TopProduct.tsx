@@ -1,22 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { fetchProducts } from "../../services/api";
+import { getProducts } from "../../services/api";
 import Product from "../../types/ProductTypes";
-import { FaStar, FaStarHalfAlt } from "react-icons/fa";
-
-const StarRating: React.FC<{ rate: number }> = ({ rate }) => {
-  const stars = [];
-  for (let i = 1; i <= 5; i++) {
-    if (i <= rate) {
-      stars.push(<FaStar key={i} className="text-yellow-500" />);
-    } else if (i - rate < 1) {
-      stars.push(<FaStarHalfAlt key={i} className="text-yellow-500" />);
-    } else {
-      stars.push(<FaStar key={i} className="text-gray-300" />);
-    }
-  }
-
-  return <div className="flex items-center">{stars}</div>;
-};
+import StarRating from "../common/StarRating";
 
 const TopProduct: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -25,7 +10,7 @@ const TopProduct: React.FC = () => {
   useEffect(() => {
     const getTopProducts = async () => {
       try {
-        const topProducts = await fetchProducts();
+        const topProducts = await getProducts();
         setProducts(topProducts.slice(16, 20));
       } catch (error) {
         console.error("Error fetching Top Selling products:", error);
