@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://fakestoreapi.com",
+  baseURL: "http://localhost:3001",
 });
 
 export const getProduct = async (id: number) => {
@@ -13,7 +13,13 @@ export const getProduct = async (id: number) => {
     throw error; // Hata durumunda hatayı yeniden fırlat
   }
 };
+
 export const getProducts = async () => {
-  const response = await api.get("/products");
-  return response.data;
+  try {
+    const response = await api.get("/products");
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching products:", error);
+    throw error;
+  }
 };

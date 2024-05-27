@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import ProductTypes from "../types/ProductTypes";
 import StarRating from "../components/common/StarRating";
 import ColorButtons from "../components/products/ColorButtons";
+import DetailFooterbar from "../components/ProductDetail/DetailFooterbar";
 
 interface ProductDetailProps {
   products: ProductTypes[];
@@ -97,9 +98,9 @@ const ProductDetailPage: React.FC<ProductDetailProps> = ({ products }) => {
             <span className="text-2xl font-semibold text-red-600">
               ${product.price}
             </span>
-            <span className="ml-2 text-xl text-gray-500 line-through">
+            {/* <span className="ml-2 text-xl text-gray-500 line-through">
               ${product.price}
-            </span>
+            </span> */}
             <span className="ml-2 text-xl text-green-600"></span>
           </div>
           <p className="text-gray-700 my-4 border-b-2 pb-2">
@@ -147,6 +148,7 @@ const ProductDetailPage: React.FC<ProductDetailProps> = ({ products }) => {
           </div>
         </div>
       </div>
+      <DetailFooterbar product={product} />
     </div>
   );
 };

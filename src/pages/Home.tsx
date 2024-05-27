@@ -4,7 +4,7 @@ import BrandSection from "../components/home/BrandSection";
 import NewProduct from "../components/home/NewProduct";
 import TopProduct from "../components/home/TopProduct";
 import CatagoryProduct from "../components/home/CatagoryProduct";
-import HappyCustomers from "../components/home/HappyCustomers";
+import HappyCustomers from "../components/common/HappyCustomers";
 
 const Home: React.FC = () => {
   return (

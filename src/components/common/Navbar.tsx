@@ -119,12 +119,12 @@ const Navbar: React.FC = () => {
               />
             </form>
             <div className="ml-4 flex items-center">
-              <div className="mr-4">
+              <Link to="/cart" className="mr-4">
                 <FiShoppingCart className="text-2xl" />
-              </div>
-              <div className="mr-4">
+              </Link>
+              <Link to="/login" className="mr-4">
                 <VscAccount className="text-2xl" />
-              </div>
+              </Link>
             </div>
           </div>
         </div>

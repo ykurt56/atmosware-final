@@ -1,5 +1,5 @@
 interface ProductTypes {
-  id: number | string;
+  id: number;
   title: string;
   category: string;
   price: number;

@@ -1,10 +1,10 @@
 import React from "react";
+import Login from "../components/auth/Login";
 
 const LoginPage: React.FC = () => {
   return (
-    <div>
-      <h1>Giriş Yap</h1>
-      {/* Giriş formu bileşeni buraya eklenebilir */}
+    <div className="container mx-auto">
+      <Login />
     </div>
   );
 };

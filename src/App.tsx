@@ -10,6 +10,7 @@ import LoginPage from "./pages/LoginPage";
 import ProductDetailPage from "./pages/ProductDetailPage";
 import { getProducts } from "./services/api"; // api dosyanızdan getProducts fonksiyonunu import edin
 import ProductTypes from "./types/ProductTypes";
+import NewProduct from "./components/home/NewProduct";
 
 const App: React.FC = () => {
   const [products, setProducts] = useState<ProductTypes[]>([]);
@@ -41,8 +42,9 @@ const App: React.FC = () => {
           />
           <Route path="/products" element={<Products />} />
           <Route path="/cart" element={<CartPage />} />
-          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/signup" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/new-arrivals" element={<NewProduct />} />
         </Routes>
         <Footer />
       </div>

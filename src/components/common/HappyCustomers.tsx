@@ -57,10 +57,12 @@ const HappyCustomers: React.FC = () => {
                     <AiFillStar key={index} className="text-yellow-500" />
                   ))}
                 </div>
-                <h3 className="text-lg font-bold">{customer.name}</h3>
-                {customer.verified && (
-                  <FaCheckCircle className="text-green-500 mt-1" />
-                )}
+                <div className="flex items-center space-x-2">
+                  <h3 className="text-lg font-bold">{customer.name}</h3>
+                  {customer.verified && (
+                    <FaCheckCircle className="text-green-500 " />
+                  )}
+                </div>
                 <p className="text-sm text-gray-600 mt-2">
                   {customer.testimonial}
                 </p>
