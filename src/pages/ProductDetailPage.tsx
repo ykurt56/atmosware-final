@@ -1,93 +1,153 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import ProductTypes from "../types/ProductTypes";
 import StarRating from "../components/common/StarRating";
+import ColorButtons from "../components/products/ColorButtons";
 
 interface ProductDetailProps {
-  products: ProductTypes[]; // products prop'unu tanımlayın
+  products: ProductTypes[];
 }
 
 const ProductDetailPage: React.FC<ProductDetailProps> = ({ products }) => {
-  const { id } = useParams<{ id?: string }>(); // URL'den ürün ID'sini al
+  const { id } = useParams<{ id?: string }>();
+  const [quantity, setQuantity] = useState(1);
 
-  // ID'nin tanımlı olup olmadığını kontrol et
   if (!id) {
     return <div>No product ID specified</div>;
   }
 
-  // ID'ye göre ürünü bul
-  const product = products.find((product) => product.id === parseInt(id, 10)); // parseInt fonksiyonuna ikinci bir argüman olarak taban ekleyin
+  const product = products.find((product) => product.id === parseInt(id, 10));
 
-  // Ürün bulunamazsa
   if (!product) {
     return <div>Product not found</div>;
   }
 
+  const handleQuantityChange = (operation: string) => {
+    setQuantity((prevQuantity) => {
+      if (operation === "increment") {
+        return prevQuantity + 1;
+      } else if (operation === "decrement" && prevQuantity > 1) {
+        return prevQuantity - 1;
+      }
+      return prevQuantity;
+    });
+  };
+
   return (
-    <div className="container mx-auto w-full">
-      <div className="grid grid-cols-2  gap-10">
-        <div className="flex" key={product.id}>
-          <div className="flex flex-col max-w-60">
-            <div className="h-60  bg-brand-100 rounded-lg shadow-lg p-4 mb-8 md:h-3/4 flex justify-center items-center mx-auto">
-              <img
-                src={product.image}
-                alt={product.title}
-                className="object-cover mb-4   h-full"
-              />
-            </div>
+    <div className="bg-white">
+      <div className="container mx-auto flex">
+        <div className="w-1/2 mx-10">
+          <div className="flex gap-4">
+            <div className="flex flex-col ">
+              <button
+                key={product.id}
+                className="w-28 bg-brand-100 rounded-lg shadow-lg p-4 mb-4 focus:border focus:border-black"
+              >
+                <img
+                  src={product.image}
+                  alt={`Product thumbnail ${product.image}`}
+                  className="w-28"
+                />
+              </button>
 
-            <div className="h-60  bg-brand-100 rounded-lg shadow-lg p-4 mb-8 md:h-3/4 flex justify-center items-center mx-auto">
-              <img
-                src={product.image}
-                alt={product.title}
-                className="object-cover mb-4   h-full"
-              />
-            </div>
+              <button
+                key={product.id}
+                className="w-28 bg-brand-100 rounded-lg shadow-lg p-4 mb-4 focus:border focus:border-black"
+              >
+                <img
+                  src={product.image}
+                  alt={`Product thumbnail ${product.image}`}
+                  className="w-28"
+                />
+              </button>
 
-            <div className="h-60  bg-brand-100 rounded-lg shadow-lg p-4 mb-8 md:h-3/4 flex justify-center items-center mx-auto">
-              <img
-                src={product.image}
-                alt={product.title}
-                className="object-cover mb-4   h-full"
-              />
+              <button
+                key={product.id}
+                className="w-28 bg-brand-100 rounded-lg shadow-lg p-4 mb-4 focus:border focus:border-black"
+              >
+                <img
+                  src={product.image}
+                  alt={`Product thumbnail ${product.image}`}
+                  className="w-28"
+                />
+              </button>
             </div>
-          </div>
-          <div className="w-1/2 h-96">
-            <div className="h-60   bg-brand-100 rounded-lg shadow-lg p-4 mb-8 md:h-3/4 flex justify-center items-center mx-5">
-              <img
-                src={product.image}
-                alt={product.title}
-                className="object-cover mb-4   h-full"
-              />
+            <div className="mx-10 w-full justify-center items-center ">
+              <div className="w-full">
+                <img
+                  src={product.image}
+                  alt="Product main"
+                  className="rounded-lg"
+                />
+              </div>
             </div>
           </div>
         </div>
 
-        <div>
-          <h2 className="md:text-xl font-bold mb-2 line-clamp-1">
-            {product.title}
-          </h2>
-          <div className="flex items-center gap-2">
+        <div className="w-1/2 mx-10">
+          <h1 className="text-4xl font-black">{product.title}</h1>
+          <div className="flex items-center my-4">
             <StarRating rate={product.rating.rate} />
-            <p className="">{product.rating.rate}</p>
-            <p className=" hidden md:block text-gray-600">
-              {product.rating.count} reviews
-            </p>
+            <span className="ml-2 text-gray-500">{product.rating.rate}</span>
+            <span className="ml-2 text-gray-500">
+              ({product.rating.count} reviews)
+            </span>
           </div>
-          <div className="  text-black font-semibold flex  flex-row  lg:items-center gap-4">
-            <h3 className=" md:text-2xl">${product.price}</h3>
-            {product.price >= 50 && 5 <= product.price && (
-              <div className="block md:flex gap-2 md:text-xl lg:text-2xl">
-                <p className="text-gray-500 line-through">
-                  ${(product.price * 1.2).toFixed(2)}
-                </p>
-              </div>
-            )}
+          <div className="my-4 pb-3 border-b-2 ">
+            <span className="text-2xl font-semibold text-red-600">
+              ${product.price}
+            </span>
+            <span className="ml-2 text-xl text-gray-500 line-through">
+              ${product.price}
+            </span>
+            <span className="ml-2 text-xl text-green-600"></span>
+          </div>
+          <p className="text-gray-700 my-4 border-b-2 pb-2">
+            {product.description}
+          </p>
+          <div className="my-4 pb-3 border-b-2">
+            <div className="flex space-x-2">
+              <ColorButtons />
+            </div>
+          </div>
+          <div className="my-4 pb-3 border-b-2">
+            <label className="block text-gray-700">Choose Size</label>
+            <div className="flex space-x-2">
+              {["Small", "Medium", "Large", "X-Large"].map((size, index) => (
+                <button
+                  key={index}
+                  className={`py-2 px-4 border ${
+                    size === "Large" ? "border-black" : "border-gray-300"
+                  }`}
+                >
+                  {size}
+                </button>
+              ))}
+            </div>
+          </div>
+          <div className="my-4 flex items-center ">
+            <button
+              className="py-2 px-4 bg-gray-200 text-gray-700 rounded-l-full "
+              onClick={() => handleQuantityChange("decrement")}
+            >
+              -
+            </button>
+            <span className="py-2 px-4 bg-gray-200 text-gray-700 ">
+              {quantity}
+            </span>
+            <button
+              className="py-2 px-4 bg-gray-200 text-gray-700 rounded-r-full "
+              onClick={() => handleQuantityChange("increment")}
+            >
+              +
+            </button>
+            <button className="ml-4 py-2 px-4 bg-black text-white  w-full rounded-full">
+              Add to Cart
+            </button>
           </div>
         </div>
       </div>
     </div>
   );
 };
-
 export default ProductDetailPage;
