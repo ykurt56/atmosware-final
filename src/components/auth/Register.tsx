@@ -11,7 +11,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { registerUser } from "../../services/api";
 import { object, string } from "zod";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const userSchema = object({
   name: string()
@@ -68,7 +68,7 @@ const Register: React.FC = () => {
     setShowConfirmPassword(!showConfirmPassword);
   };
   return (
-    <div className="flex items-center justify-center h-screen bg-brand-100">
+    <div className="flex items-center justify-center ">
       <Formik initialValues={initialValues} onSubmit={onSubmit}>
         {({ isSubmitting }) => (
           <Form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-full max-w-md">
@@ -176,9 +176,9 @@ const Register: React.FC = () => {
               />
             </div>
 
-            <div className="flex items-center justify-between">
+            <div className="items-center justify-between">
               <button
-                className={`bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ${
+                className={`bg-black hover:bg-brand-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full ${
                   isSubmitting ? "opacity-50 cursor-not-allowed" : ""
                 }`}
                 type="submit"
@@ -186,6 +186,17 @@ const Register: React.FC = () => {
               >
                 {isSubmitting ? "Kayıt Olunuyor..." : "Kayıt Ol"}
               </button>
+              <div>
+                <h3 className="text-center">
+                  Zaten kayıtlı mısınız ? {""}
+                  <Link
+                    className="inline-block align-baseline font-bold text-sm text-blue-600 hover:text-blue-800"
+                    to="/login"
+                  >
+                    <b> Giriş Yap </b>
+                  </Link>
+                </h3>
+              </div>
             </div>
           </Form>
         )}

@@ -138,7 +138,9 @@ const Navbar: React.FC = () => {
                   <button onClick={handleLogout}>
                     <RiLogoutCircleLine className="text-2xl" />
                   </button>
-                  <span className="ml-2 w-max">{username} </span>
+                  <span className=" text-sm ml-2 max-w-sm lg:w-max ">
+                    {username}{" "}
+                  </span>
                 </div>
               ) : (
                 <div className="flex items-center">
