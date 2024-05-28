@@ -1,6 +1,26 @@
 import React from "react";
 import { Formik, Field, Form, FormikHelpers, ErrorMessage } from "formik";
-import { FaUserAlt, FaEnvelope, FaLock, FaLockOpen } from "react-icons/fa";
+import {
+  FaUserAlt,
+  FaEnvelope,
+  FaLock,
+  FaEye,
+  FaEyeSlash,
+} from "react-icons/fa";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { registerUser } from "../../services/api";
+import { object, string } from "zod";
+import { useNavigate } from "react-router-dom";
+
+const userSchema = object({
+  name: string()
+    .min(3, "İsim en az 3 karakter olmalıdır")
+    .max(50, "İsim en fazla 50 karakter olmalıdır"),
+  email: string().email("Geçerli bir email adresi girin"),
+  password: string().min(8, "Şifre en az 8 karakter olmalıdır"),
+  confirmPassword: string(),
+});
 
 interface RegisterFormValues {
   name: string;
@@ -17,55 +37,39 @@ const Register: React.FC = () => {
     confirmPassword: "",
   };
 
-  const validate = (values: RegisterFormValues) => {
-    const errors: Partial<RegisterFormValues> = {};
+  const navigate = useNavigate();
 
-    if (!values.name) {
-      errors.name = "İsim alanı zorunludur";
-    } else if (values.name.length < 3) {
-      errors.name = "İsim en az 3 karakter olmalıdır";
-    } else if (values.name.length > 50) {
-      errors.name = "İsim en fazla 50 karakter olmalıdır";
-    }
-
-    if (!values.email) {
-      errors.email = "Email alanı zorunludur";
-    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
-      errors.email = "Geçerli bir email adresi girin";
-    }
-
-    if (!values.password) {
-      errors.password = "Şifre alanı zorunludur";
-    } else if (values.password.length < 8) {
-      errors.password = "Şifre en az 8 karakter olmalıdır";
-    }
-
-    if (!values.confirmPassword) {
-      errors.confirmPassword = "Şifre onay alanı zorunludur";
-    } else if (values.confirmPassword !== values.password) {
-      errors.confirmPassword = "Şifreler eşleşmiyor";
-    }
-
-    return errors;
-  };
-
-  const onSubmit = (
+  const onSubmit = async (
     values: RegisterFormValues,
     { setSubmitting }: FormikHelpers<RegisterFormValues>
   ) => {
-    setTimeout(() => {
-      alert(JSON.stringify(values, null, 2));
+    try {
+      userSchema.parse(values);
+      await registerUser(values);
+      toast.success("Kayıt başarıyla tamamlandı!");
+      navigate("/login"); // Başarılı kayıt sonrası login sayfasına yönlendirme
+      localStorage.setItem("Name", values.name);
+    } catch (error) {
+      console.error("Kullanıcı kaydedilirken bir hata oluştu:", error);
+      toast.error("Kayıt sırasında bir hata oluştu.");
+    } finally {
       setSubmitting(false);
-    }, 400);
+    }
   };
 
+  const [showPassword, setShowPassword] = React.useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = React.useState(false);
+
+  const toggleShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const toggleShowConfirmPassword = () => {
+    setShowConfirmPassword(!showConfirmPassword);
+  };
   return (
     <div className="flex items-center justify-center h-screen bg-brand-100">
-      <Formik
-        initialValues={initialValues}
-        validate={validate}
-        onSubmit={onSubmit}
-      >
+      <Formik initialValues={initialValues} onSubmit={onSubmit}>
         {({ isSubmitting }) => (
           <Form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-full max-w-md">
             <div className="mb-4">
@@ -83,9 +87,11 @@ const Register: React.FC = () => {
                 type="text"
                 placeholder="İsim"
               />
-              <div className="text-red-500">
-                <ErrorMessage name="name" />
-              </div>
+              <ErrorMessage
+                name="name"
+                component="div"
+                className="text-red-500 mt-1"
+              />
             </div>
 
             <div className="mb-4">
@@ -103,9 +109,11 @@ const Register: React.FC = () => {
                 type="email"
                 placeholder="Email"
               />
-              <div className="text-red-500">
-                <ErrorMessage name="email" />
-              </div>
+              <ErrorMessage
+                name="email"
+                component="div"
+                className="text-red-500 mt-1"
+              />
             </div>
 
             <div className="mb-4">
@@ -116,16 +124,26 @@ const Register: React.FC = () => {
                 <FaLock className="inline-block mr-2" />
                 Şifre
               </label>
-              <Field
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                id="password"
-                name="password"
-                type="password"
-                placeholder="******************"
-              />
-              <div className="text-red-500">
-                <ErrorMessage name="password" />
+              <div className="relative">
+                <Field
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                  id="password"
+                  name="password"
+                  type={showPassword ? "text" : "password"}
+                  placeholder="******************"
+                />
+                <span
+                  className="absolute right-0 top-0 mr-3 mt-3 cursor-pointer"
+                  onClick={toggleShowPassword}
+                >
+                  {showPassword ? <FaEyeSlash /> : <FaEye />}
+                </span>
               </div>
+              <ErrorMessage
+                name="password"
+                component="div"
+                className="text-red-500 mt-1"
+              />
             </div>
 
             <div className="mb-6">
@@ -133,33 +151,46 @@ const Register: React.FC = () => {
                 className="block text-gray-700 font-bold mb-2"
                 htmlFor="confirmPassword"
               >
-                <FaLockOpen className="inline-block mr-2" />
+                <FaLock className="inline-block mr-2" />
                 Şifre Onay
               </label>
-              <Field
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                id="confirmPassword"
-                name="confirmPassword"
-                type="password"
-                placeholder="******************"
-              />
-              <div className="text-red-500">
-                <ErrorMessage name="confirmPassword" />
+              <div className="relative">
+                <Field
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                  id="confirmPassword"
+                  name="confirmPassword"
+                  type={showConfirmPassword ? "text" : "password"}
+                  placeholder="******************"
+                />
+                <span
+                  className="absolute right-0 top-0 mr-3 mt-3 cursor-pointer"
+                  onClick={toggleShowConfirmPassword}
+                >
+                  {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
+                </span>
               </div>
+              <ErrorMessage
+                name="confirmPassword"
+                component="div"
+                className="text-red-500 mt-1"
+              />
             </div>
 
             <div className="flex items-center justify-between">
               <button
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                className={`bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ${
+                  isSubmitting ? "opacity-50 cursor-not-allowed" : ""
+                }`}
                 type="submit"
                 disabled={isSubmitting}
               >
-                Kayıt Ol
+                {isSubmitting ? "Kayıt Olunuyor..." : "Kayıt Ol"}
               </button>
             </div>
           </Form>
         )}
       </Formik>
+      <ToastContainer />
     </div>
   );
 };

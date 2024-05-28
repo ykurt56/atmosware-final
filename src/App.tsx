@@ -11,6 +11,7 @@ import ProductDetailPage from "./pages/ProductDetailPage";
 import { getProducts } from "./services/api"; // api dosyanızdan getProducts fonksiyonunu import edin
 import ProductTypes from "./types/ProductTypes";
 import NewProduct from "./components/home/NewProduct";
+import Filters from "./components/products/Filters";
 
 const App: React.FC = () => {
   const [products, setProducts] = useState<ProductTypes[]>([]);
@@ -45,6 +46,7 @@ const App: React.FC = () => {
           <Route path="/signup" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/new-arrivals" element={<NewProduct />} />
+          <Route path="/category/:category?" Component={Filters} />
         </Routes>
         <Footer />
       </div>

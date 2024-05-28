@@ -1,37 +1,52 @@
-import React from "react";
+import React, { useState } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import { FaEnvelope, FaLock } from "react-icons/fa";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { loginUser } from "../../services/api";
+import { useNavigate } from "react-router-dom";
+
+interface FormValues {
+  email: string;
+  password: string;
+}
 
 const Login: React.FC = () => {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const navigate = useNavigate();
+
+  const handleLogin = async (values: FormValues) => {
+    setIsLoading(true);
+    try {
+      const user = await loginUser(values.email, values.password);
+      toast.success(`Başarıyla giriş yaptınız, hoş geldiniz ${user.email}!`);
+      localStorage.setItem("isLoggedIn", "true");
+      navigate("/");
+      window.location.reload();
+      // Giriş başarılı olduğunda doğrudan ana sayfaya yönlendir
+    } catch (error: any) {
+      toast.error(error.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div className="flex items-center justify-center h-screen bg-brand-100">
-      <div></div>
       <Formik
         initialValues={{ email: "", password: "" }}
-        validate={(values) => {
-          const errors: { [key: string]: string } = {};
-
-          if (!values.email) {
-            errors.email = "Email alanı zorunludur";
-          } else if (
-            !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-          ) {
-            errors.email = "Geçerli bir email adresi girin";
-          }
-
-          if (!values.password) {
-            errors.password = "Şifre alanı zorunludur";
-          } else if (values.password.length < 8) {
-            errors.password = "Şifre en az 8 karakter olmalıdır";
-          }
-
-          return errors;
+        onSubmit={(values) => {
+          handleLogin(values);
         }}
-        onSubmit={(values, { setSubmitting }) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-          }, 400);
+        validate={(values) => {
+          const errors: Partial<FormValues> = {};
+          if (!values.email) {
+            errors.email = "Email alanı boş bırakılamaz";
+          }
+          if (!values.password) {
+            errors.password = "Şifre alanı boş bırakılamaz";
+          }
+          return errors;
         }}
       >
         {({ isSubmitting }) => (
@@ -82,16 +97,21 @@ const Login: React.FC = () => {
 
             <div className="flex items-center justify-between">
               <button
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ${
+                  isSubmitting || isLoading
+                    ? "opacity-50 cursor-not-allowed"
+                    : ""
+                }`}
                 type="submit"
-                disabled={isSubmitting}
+                disabled={isSubmitting || isLoading}
               >
-                Giriş Yap
+                {isLoading ? "Giriş Yapılıyor..." : "Giriş Yap"}
               </button>
             </div>
           </Form>
         )}
       </Formik>
+      <ToastContainer />
     </div>
   );
 };

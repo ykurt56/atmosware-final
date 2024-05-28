@@ -5,21 +5,26 @@ import { Formik, Form } from "formik";
 import ColorButtons from "./ColorButtons";
 import Products from "./Category"; // Products bileşenini ekledik
 import { getProducts } from "../../services/api";
-
-interface FiltersProps {}
+import { useParams, useNavigate } from "react-router-dom";
+import ProductTypes from "../../types/ProductTypes";
 
 interface PriceValues {
   price: number;
 }
 
-const Filters: React.FC<FiltersProps> = () => {
+const Filters: React.FC = () => {
   const [showFilters, setShowFilters] = useState(true);
-  const [category, setCategory] = useState<string | null>(null);
-  const [products, setProducts] = useState<any[]>([]);
+  const [products, setProducts] = useState<ProductTypes[]>([]);
+  const { category } = useParams<{ category: string }>();
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchProducts();
   }, []);
+
+  useEffect(() => {
+    fetchProducts();
+  }, [category]);
 
   const fetchProducts = async () => {
     try {
@@ -31,7 +36,7 @@ const Filters: React.FC<FiltersProps> = () => {
   };
 
   const handleCategorySelect = (category: string) => {
-    setCategory(category);
+    navigate(`/category/${category}`);
   };
 
   const filteredProducts = category

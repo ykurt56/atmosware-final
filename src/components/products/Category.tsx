@@ -46,9 +46,12 @@ const Category: React.FC<ProductsProps> = ({ products }) => {
       <h1 className="text-5xl font-extrabold text-center py-5">Products</h1>
       <div className="container mx-auto">
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-          {currentProducts.map((product) => (
-            <div key={product.id}>
-              <Link to={`/products/${product.id}`}>
+          {currentProducts.map((product, index) => (
+            <div>
+              <Link
+                to={`/products/${product.id}`}
+                key={`${product.id}-${index}`}
+              >
                 <div className="h-60 bg-brand-100 rounded-lg shadow-lg p-4 mb-8 md:h-3/4 flex justify-center items-center mx-auto">
                   <img
                     src={product.image}

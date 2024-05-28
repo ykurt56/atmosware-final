@@ -6,6 +6,7 @@ import { IoSearch } from "react-icons/io5";
 import { FiShoppingCart } from "react-icons/fi";
 import { VscAccount } from "react-icons/vsc";
 import { useFormik } from "formik";
+import { RiLoginCircleLine, RiLogoutCircleLine } from "react-icons/ri";
 
 interface FormValues {
   search: string;
@@ -24,8 +25,18 @@ const Navbar: React.FC = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const username = localStorage.getItem("Name")?.toUpperCase();
+
   const toggleSearch = () => {
     setIsSearchOpen(!isSearchOpen);
+  };
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(
+    localStorage.getItem("isLoggedIn") === "true"
+  );
+  const handleLogout = () => {
+    localStorage.removeItem("isLoggedIn"); // Oturumu kaldır
+    setIsLoggedIn(false);
+    window.location.reload(); // Sayfayı yenile
   };
   const formik = useFormik<FormValues>({
     initialValues: {
@@ -122,9 +133,20 @@ const Navbar: React.FC = () => {
               <Link to="/cart" className="mr-4">
                 <FiShoppingCart className="text-2xl" />
               </Link>
-              <Link to="/login" className="mr-4">
-                <VscAccount className="text-2xl" />
-              </Link>
+              {localStorage.getItem("isLoggedIn") ? (
+                <div className="flex items-center">
+                  <button onClick={handleLogout}>
+                    <RiLogoutCircleLine className="text-2xl" />
+                  </button>
+                  <span className="ml-2 w-max">{username} </span>
+                </div>
+              ) : (
+                <div className="flex items-center">
+                  <Link to="/login" className="mr-4">
+                    <RiLoginCircleLine className="text-2xl" />
+                  </Link>
+                </div>
+              )}
             </div>
           </div>
         </div>
