@@ -4,7 +4,7 @@ const api = axios.create({
   baseURL: "http://localhost:3001",
 });
 
-export const getCartItem = async () => {
+export const getCartItem = async (user_id: string | null) => {
   try {
     const response = await api.get("/cart");
     return response.data;
@@ -14,10 +14,15 @@ export const getCartItem = async () => {
   }
 };
 
-export const addToCart = async (product: any, quantity: number) => {
+export const addToCart = async (
+  product: any,
+  quantity: number,
+  user_id: string | null
+) => {
   try {
     // ID'yi string olarak dönüştür
     const cartItem = {
+      user_id,
       id: product.id.toString(),
       name: product.title,
       size: product.size,

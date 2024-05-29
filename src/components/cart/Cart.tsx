@@ -24,8 +24,9 @@ const Cart: React.FC = () => {
 
   useEffect(() => {
     const fetchCartItems = async () => {
+      const user_id = localStorage.getItem("user_ID");
       try {
-        const initialCartItems = await getCartItem();
+        const initialCartItems = await getCartItem(user_id);
         setCartItems(initialCartItems);
       } catch (error) {
         console.error("Error fetching cart items:", error);

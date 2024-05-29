@@ -35,6 +35,8 @@ const Navbar: React.FC = () => {
   );
   const handleLogout = () => {
     localStorage.removeItem("isLoggedIn"); // Oturumu kaldır
+    localStorage.removeItem("User_ID"); // Oturumu kaldır
+
     setIsLoggedIn(false);
     window.location.reload(); // Sayfayı yenile
   };

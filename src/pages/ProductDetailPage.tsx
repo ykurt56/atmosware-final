@@ -40,15 +40,19 @@ const ProductDetailPage: React.FC<ProductDetailProps> = ({ products }) => {
     });
   };
   const handleAddToCart = async () => {
+    const user_id: string | null = localStorage.getItem("User_ID");
+
     try {
-      const cartItems = await getCartItem();
+      const cartItems = await getCartItem(user_id);
       const existingItemIndex = cartItems.findIndex(
         (item: any) => item.id == product.id // Eşleşen ürünleri kontrol et
       );
 
       if (existingItemIndex === -1) {
-        // Eğer eşleşen ürün yoksa, yeni ürün olarak ekle
-        await addToCart(product, quantity);
+        const user_id: string | null = localStorage.getItem("User_ID");
+        await addToCart(product, quantity, user_id);
+        console.log(user_id);
+
         toast.success("Product added to cart successfully!");
       } else {
         const existingItem = cartItems[existingItemIndex];
