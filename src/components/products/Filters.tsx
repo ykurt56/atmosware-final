@@ -4,7 +4,7 @@ import { VscSettings } from "react-icons/vsc";
 import { Formik, Form } from "formik";
 import ColorButtons from "./ColorButtons";
 import Products from "./Category"; // Products bileşenini ekledik
-import { getProducts } from "../../services/api";
+import { getProducts } from "../../services/productApi";
 import { useParams, useNavigate } from "react-router-dom";
 import ProductTypes from "../../types/ProductTypes";
 

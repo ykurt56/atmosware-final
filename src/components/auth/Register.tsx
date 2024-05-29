@@ -9,7 +9,7 @@ import {
 } from "react-icons/fa";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { registerUser } from "../../services/api";
+import { registerUser } from "../../services/userApi";
 import { object, string } from "zod";
 import { Link, useNavigate } from "react-router-dom";
 

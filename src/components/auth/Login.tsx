@@ -3,7 +3,7 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import { FaEnvelope, FaLock } from "react-icons/fa";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { loginUser } from "../../services/api";
+import { loginUser } from "../../services/userApi";
 import { useNavigate } from "react-router-dom";
 
 interface FormValues {

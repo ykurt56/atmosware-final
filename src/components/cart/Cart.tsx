@@ -1,11 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CartItem from "./CartItem";
 import OrderSummary from "./OrderSummary";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import {
+  getCartItem,
+  deleteCartItem,
+  updateCartItemQuantity,
+} from "../../services/cartApi";
 
 interface CartItem {
-  id: number;
+  id: string;
   name: string;
   size: string;
   color: string;
@@ -14,49 +19,55 @@ interface CartItem {
   quantity: number;
 }
 
-const initialCartItems: CartItem[] = [
-  {
-    id: 1,
-    name: "Gradient Graphic T-shirt",
-    size: "Large",
-    color: "White",
-    price: 145,
-    image: "https://via.placeholder.com/100",
-    quantity: 1,
-  },
-  {
-    id: 2,
-    name: "Checkered Shirt",
-    size: "Medium",
-    color: "Red",
-    price: 180,
-    image: "https://via.placeholder.com/100",
-    quantity: 1,
-  },
-  {
-    id: 3,
-    name: "Skinny Fit Jeans",
-    size: "Large",
-    color: "Blue",
-    price: 240,
-    image: "https://via.placeholder.com/100",
-    quantity: 1,
-  },
-];
-
 const Cart: React.FC = () => {
-  const [cartItems, setCartItems] = useState<CartItem[]>(initialCartItems);
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
-  const handleRemoveItem = (id: number) => {
-    setCartItems(cartItems.filter((item) => item.id !== id));
+  useEffect(() => {
+    const fetchCartItems = async () => {
+      try {
+        const initialCartItems = await getCartItem();
+        setCartItems(initialCartItems);
+      } catch (error) {
+        console.error("Error fetching cart items:", error);
+      }
+    };
+
+    fetchCartItems();
+  }, []); // Sadece bir kere çalıştır
+
+  const handleRemoveItem = async (id: string) => {
+    try {
+      await deleteCartItem(id);
+      setCartItems(cartItems.filter((item) => item.id !== id));
+      toast.success("Item removed from cart");
+    } catch (error) {
+      console.error("Error removing item from cart:", error);
+      toast.error("Failed to remove item from cart");
+    }
   };
+  console.log(cartItems);
+  const handleQuantityChange = async (id: string, quantity: number) => {
+    try {
+      // Yerel durumu güncelle
+      setCartItems(
+        cartItems.map((item) =>
+          item.id === id ? { ...item, quantity: Math.max(1, quantity) } : item
+        )
+      );
 
-  const handleQuantityChange = (id: number, quantity: number) => {
-    setCartItems(
-      cartItems.map((item) =>
-        item.id === id ? { ...item, quantity: Math.max(1, quantity) } : item
-      )
-    );
+      // API üzerindeki veriyi güncelle
+      await updateCartItemQuantity(
+        id,
+        Math.max(1, quantity),
+        cartItems.find((item) => item.id === id)
+      );
+
+      // Bildirim göster
+      // toast.success("Quantity updated successfully");
+    } catch (error) {
+      console.error("Error updating quantity:", error);
+      // toast.error("Failed to update quantity");
+    }
   };
 
   const handleApplyPromoCode = (code: string) => {
@@ -85,8 +96,10 @@ const Cart: React.FC = () => {
               price={item.price}
               image={item.image}
               quantity={item.quantity}
-              onRemove={handleRemoveItem}
-              onQuantityChange={handleQuantityChange}
+              onQuantityChange={(id, quantity) =>
+                handleQuantityChange(id, quantity)
+              }
+              onRemove={(id) => handleRemoveItem(id)}
             />
           ))}
         </div>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getProducts } from "../../services/api";
+import { getProducts } from "../../services/productApi";
 import Product from "../../types/ProductTypes";
 import StarRating from "../common/StarRating";
 import { Link } from "react-router-dom";

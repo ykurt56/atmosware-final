@@ -4,13 +4,19 @@ import ProductTypes from "../types/ProductTypes";
 import StarRating from "../components/common/StarRating";
 import ColorButtons from "../components/products/ColorButtons";
 import DetailFooterbar from "../components/ProductDetail/DetailFooterbar";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import {
+  addToCart,
+  getCartItem,
+  updateCartItemQuantity,
+} from "../services/cartApi";
 interface ProductDetailProps {
   products: ProductTypes[];
 }
 
 const ProductDetailPage: React.FC<ProductDetailProps> = ({ products }) => {
-  const { id } = useParams<{ id?: string }>();
+  const { id } = useParams<{ id: string }>();
   const [quantity, setQuantity] = useState(1);
 
   if (!id) {
@@ -33,59 +39,47 @@ const ProductDetailPage: React.FC<ProductDetailProps> = ({ products }) => {
       return prevQuantity;
     });
   };
+  const handleAddToCart = async () => {
+    try {
+      const cartItems = await getCartItem();
+      const existingItemIndex = cartItems.findIndex(
+        (item: any) => item.id == product.id // Eşleşen ürünleri kontrol et
+      );
+
+      if (existingItemIndex === -1) {
+        // Eğer eşleşen ürün yoksa, yeni ürün olarak ekle
+        await addToCart(product, quantity);
+        toast.success("Product added to cart successfully!");
+      } else {
+        const existingItem = cartItems[existingItemIndex];
+        const updatedQuantity = existingItem.quantity + quantity;
+        await updateCartItemQuantity(
+          existingItem.id,
+          updatedQuantity,
+          existingItem
+        ); // Güncellenmiş öğe verilerini gönder
+        toast.success("Product quantity updated in cart successfully!");
+      }
+    } catch (error) {
+      toast.error("Failed to add/update product in cart");
+    }
+  };
 
   return (
     <div className="bg-white">
-      <div className="container mx-auto flex">
-        <div className="w-1/2 mx-10">
-          <div className="flex gap-4">
-            <div className="flex flex-col ">
-              <button
-                key={product.id}
-                className="w-28 bg-brand-100 rounded-lg shadow-lg p-4 mb-4 focus:border focus:border-black"
-              >
-                <img
-                  src={product.image}
-                  alt={`Product thumbnail ${product.image}`}
-                  className="w-28"
-                />
-              </button>
-
-              <button
-                key={product.id}
-                className="w-28 bg-brand-100 rounded-lg shadow-lg p-4 mb-4 focus:border focus:border-black"
-              >
-                <img
-                  src={product.image}
-                  alt={`Product thumbnail ${product.image}`}
-                  className="w-28"
-                />
-              </button>
-
-              <button
-                key={product.id}
-                className="w-28 bg-brand-100 rounded-lg shadow-lg p-4 mb-4 focus:border focus:border-black"
-              >
-                <img
-                  src={product.image}
-                  alt={`Product thumbnail ${product.image}`}
-                  className="w-28"
-                />
-              </button>
-            </div>
-            <div className="mx-10 w-full justify-center items-center ">
-              <div className="w-full">
-                <img
-                  src={product.image}
-                  alt="Product main"
-                  className="rounded-lg"
-                />
-              </div>
-            </div>
+      <ToastContainer />
+      <div className=" mx-auto grid grid-cols-1 md:grid-cols-2">
+        <div className=" mx-10">
+          <div className="p-10">
+            <img
+              src={product.image}
+              alt="Product main"
+              className="w-80 sm:w-96 md:w-96 lg:w-96 xl:w-96 2xl:w-96 mx-auto "
+            />
           </div>
         </div>
 
-        <div className="w-1/2 mx-10">
+        <div className=" mx-10">
           <h1 className="text-4xl font-black">{product.title}</h1>
           <div className="flex items-center my-4">
             <StarRating rate={product.rating.rate} />
@@ -94,13 +88,10 @@ const ProductDetailPage: React.FC<ProductDetailProps> = ({ products }) => {
               ({product.rating.count} reviews)
             </span>
           </div>
-          <div className="my-4 pb-3 border-b-2 ">
+          <div className="my-4 pb-3 border-b-2">
             <span className="text-2xl font-semibold text-red-600">
               ${product.price}
             </span>
-            {/* <span className="ml-2 text-xl text-gray-500 line-through">
-              ${product.price}
-            </span> */}
             <span className="ml-2 text-xl text-green-600"></span>
           </div>
           <p className="text-gray-700 my-4 border-b-2 pb-2">
@@ -117,7 +108,7 @@ const ProductDetailPage: React.FC<ProductDetailProps> = ({ products }) => {
               {["Small", "Medium", "Large", "X-Large"].map((size, index) => (
                 <button
                   key={index}
-                  className={`py-2 px-4 border ${
+                  className={`py-2 px-2 border ${
                     size === "Large" ? "border-black" : "border-gray-300"
                   }`}
                 >
@@ -126,23 +117,26 @@ const ProductDetailPage: React.FC<ProductDetailProps> = ({ products }) => {
               ))}
             </div>
           </div>
-          <div className="my-4 flex items-center ">
+          <div className="my-4 flex items-center">
             <button
-              className="py-2 px-4 bg-gray-200 text-gray-700 rounded-l-full "
+              className="py-2 px-4 bg-gray-200 text-gray-700 rounded-l-full"
               onClick={() => handleQuantityChange("decrement")}
             >
               -
             </button>
-            <span className="py-2 px-4 bg-gray-200 text-gray-700 ">
+            <span className="py-2 px-4 bg-gray-200 text-gray-700">
               {quantity}
             </span>
             <button
-              className="py-2 px-4 bg-gray-200 text-gray-700 rounded-r-full "
+              className="py-2 px-4 bg-gray-200 text-gray-700 rounded-r-full"
               onClick={() => handleQuantityChange("increment")}
             >
               +
             </button>
-            <button className="ml-4 py-2 px-4 bg-black text-white  w-full rounded-full">
+            <button
+              className="ml-4 py-2 px-4 bg-black text-white w-full rounded-full"
+              onClick={handleAddToCart}
+            >
               Add to Cart
             </button>
           </div>
@@ -152,4 +146,5 @@ const ProductDetailPage: React.FC<ProductDetailProps> = ({ products }) => {
     </div>
   );
 };
+
 export default ProductDetailPage;

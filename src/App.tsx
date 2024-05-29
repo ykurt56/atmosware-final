@@ -8,7 +8,7 @@ import CartPage from "./pages/CartPage";
 import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
 import ProductDetailPage from "./pages/ProductDetailPage";
-import { getProducts } from "./services/api"; // api dosyanızdan getProducts fonksiyonunu import edin
+import { getProducts } from "./services/productApi"; // api dosyanızdan getProducts fonksiyonunu import edin
 import ProductTypes from "./types/ProductTypes";
 import NewProduct from "./components/home/NewProduct";
 import Filters from "./components/products/Filters";

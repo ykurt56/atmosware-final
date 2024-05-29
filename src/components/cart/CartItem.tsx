@@ -2,15 +2,15 @@ import React from "react";
 import { FaTrashAlt, FaMinus, FaPlus } from "react-icons/fa";
 
 interface CartItemProps {
-  id: number;
+  id: string;
   name: string;
   size: string;
   color: string;
   price: number;
   image: string;
   quantity: number;
-  onRemove: (id: number) => void;
-  onQuantityChange: (id: number, quantity: number) => void;
+  onRemove: (id: string) => void;
+  onQuantityChange: (id: string, quantity: number) => void;
 }
 
 const CartItem: React.FC<CartItemProps> = ({
@@ -31,7 +31,8 @@ const CartItem: React.FC<CartItemProps> = ({
         <h2 className="text-lg font-bold">{name}</h2>
         <p className="text-gray-600">Size: {size}</p>
         <p className="text-gray-600">Color: {color}</p>
-        <p className="text-xl font-bold mt-2">${price}</p>
+        <p className="text-xl font-bold mt-2">${price * quantity}</p>{" "}
+        {/* Toplam fiyatı hesapla */}
       </div>
       <div className="flex items-center">
         <button
