@@ -24,7 +24,8 @@ const Cart: React.FC = () => {
 
   useEffect(() => {
     const fetchCartItems = async () => {
-      const user_id = localStorage.getItem("user_ID");
+      const user_id: string = localStorage.getItem("User_ID") || ""; // Varsayılan değer atama
+      console.log(user_id);
       try {
         const initialCartItems = await getCartItem(user_id);
         setCartItems(initialCartItems);

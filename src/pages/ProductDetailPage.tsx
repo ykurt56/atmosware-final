@@ -40,7 +40,8 @@ const ProductDetailPage: React.FC<ProductDetailProps> = ({ products }) => {
     });
   };
   const handleAddToCart = async () => {
-    const user_id: string | null = localStorage.getItem("User_ID");
+    const user_id: string = localStorage.getItem("User_ID") || ""; // Varsayılan değer atama
+    console.log(user_id);
 
     try {
       const cartItems = await getCartItem(user_id);
@@ -49,7 +50,7 @@ const ProductDetailPage: React.FC<ProductDetailProps> = ({ products }) => {
       );
 
       if (existingItemIndex === -1) {
-        const user_id: string | null = localStorage.getItem("User_ID");
+        const user_id: string = localStorage.getItem("User_ID") || ""; // Varsayılan değer atama
         await addToCart(product, quantity, user_id);
         console.log(user_id);
 

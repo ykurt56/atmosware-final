@@ -4,20 +4,23 @@ const api = axios.create({
   baseURL: "http://localhost:3001",
 });
 
-export const getCartItem = async (user_id: string | null) => {
-  try {
-    const response = await api.get("/cart");
-    return response.data;
-  } catch (error) {
-    console.error("Error fetching product:", error);
-    throw error; // Hata durumunda hatayı yeniden fırlat
+export const getCartItem = async (user_id: string) => {
+  if (!user_id) {
+  } else {
+    try {
+      const response = await api.get(`/cart?user_id=${user_id}`);
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching product:", error);
+      throw error; // Hata durumunda hatayı yeniden fırlat
+    }
   }
 };
 
 export const addToCart = async (
   product: any,
   quantity: number,
-  user_id: string | null
+  user_id: string
 ) => {
   try {
     // ID'yi string olarak dönüştür
