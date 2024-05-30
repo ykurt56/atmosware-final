@@ -6,7 +6,6 @@ import TopProduct from "../components/home/TopProduct";
 import CatagoryProduct from "../components/home/CatagoryProduct";
 import HappyCustomers from "../components/common/HappyCustomers";
 import { Link } from "react-router-dom";
-import { DiVim } from "react-icons/di";
 
 const Home: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(

@@ -3,7 +3,6 @@ import { getProducts } from "../../services/productApi";
 import Product from "../../types/ProductTypes";
 import StarRating from "../common/StarRating";
 import { Link } from "react-router-dom";
-import { set } from "zod";
 
 const TopProduct: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);

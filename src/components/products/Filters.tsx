@@ -7,6 +7,8 @@ import Products from "./Products"; // Products bileşenini ekledik
 import { getProducts } from "../../services/productApi";
 import { useParams, useNavigate } from "react-router-dom";
 import ProductTypes from "../../types/ProductTypes";
+import SortAZ from "./Sort";
+import Size from "./Size";
 
 interface PriceValues {
   price: number;
@@ -134,42 +136,9 @@ const Filters: React.FC = () => {
               </div>
             </div>
 
-            <div className="flex flex-col">
-              <div className="mb-4 container mx-auto">
-                <div className="flex justify-between">
-                  <h3 className="text-xl font-bold mb-4">Size</h3>
-                  <MdOutlineChevronRight />
-                </div>
-                <div className="flex flex-col gap-4">
-                  <div className="flex gap-4">
-                    <button className="px-8 py-2 text-sm  rounded-full bg-gray-300 focus:bg-black focus:text-white">
-                      XX-Small
-                    </button>
-                    <button className="px-8 py-2 text-sm rounded-full bg-gray-300 focus:bg-black focus:text-white">
-                      X-Small
-                    </button>
-                  </div>
-                  <div className="flex gap-4">
-                    <button className="px-8 py-2 text-sm rounded-full bg-gray-300 focus:bg-black focus:text-white">
-                      Small
-                    </button>
-                    <button className="px-8 py-2 text-sm rounded-full bg-gray-300 focus:bg-black focus:text-white">
-                      Medium
-                    </button>
-                  </div>
-                  <div className="flex gap-4">
-                    <button className="px-8 py-2 text-sm rounded-full bg-gray-300 focus:bg-black focus:text-white">
-                      Large
-                    </button>
-                    <button className="px-8 py-2 text-sm rounded-full bg-gray-300 focus:bg-black focus:text-white">
-                      X-Large
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
+            <Size />
             <ColorButtons />
+            <SortAZ />
 
             <div className="flex justify-center">
               <button className="bg-gray-800 text-white rounded-full p-2 hover:bg-gray-700 w-full">
