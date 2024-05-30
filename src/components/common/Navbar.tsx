@@ -7,6 +7,7 @@ import { FiShoppingCart } from "react-icons/fi";
 import { VscAccount } from "react-icons/vsc";
 import { useFormik } from "formik";
 import { RiLoginCircleLine, RiLogoutCircleLine } from "react-icons/ri";
+import { LiaCartArrowDownSolid } from "react-icons/lia";
 
 interface FormValues {
   search: string;
@@ -16,6 +17,7 @@ const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
+  const [isUserDropdownOpen, setIsUserDropdownOpen] = useState<boolean>(false);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -25,7 +27,7 @@ const Navbar: React.FC = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const username = localStorage.getItem("Name")?.toUpperCase();
+  const username = localStorage.getItem("userName")?.toUpperCase();
 
   const toggleSearch = () => {
     setIsSearchOpen(!isSearchOpen);
@@ -36,6 +38,7 @@ const Navbar: React.FC = () => {
   const handleLogout = () => {
     localStorage.removeItem("isLoggedIn"); // Oturumu kaldır
     localStorage.removeItem("User_ID"); // Oturumu kaldır
+    localStorage.removeItem("userName");
 
     setIsLoggedIn(false);
     window.location.reload(); // Sayfayı yenile
@@ -77,37 +80,17 @@ const Navbar: React.FC = () => {
             </div>
 
             <div className="md:block hidden ">
-              <div className="relative inline-block ">
-                <div
-                  className="flex items-center cursor-pointer"
-                  onClick={toggleMenu}
-                >
-                  <button className=" focus:outline-none">Shop</button>
-                  <MdKeyboardArrowDown className="mx-2" />
-                </div>
-                {isOpen && (
-                  <ul className="absolute bg-white mt-1 p-2 rounded shadow-md">
-                    <Link to={"/men"}>
-                      <li>Men</li>
-                    </Link>
-                    <Link to={"/woman"}>
-                      <li>Woman</li>
-                    </Link>
-                    <Link to={"/jewelry"}>
-                      <li>Jewelry</li>
-                    </Link>
-                  </ul>
-                )}
-              </div>
-
               <Link to="/products" className="mx-2">
                 On Sale
               </Link>
-              <Link to="/new-arrivals" className="mx-2">
-                New Arrivals
+              <Link to="/category/men's%20clothing" className="mx-2">
+                Men
               </Link>
-              <Link to="/brands" className="mx-2">
-                Brands
+              <Link to="/category/women's%20clothing" className="mx-2">
+                Women
+              </Link>
+              <Link to="/category/jewelery" className="mx-2">
+                Jewelery
               </Link>
             </div>
           </div>
@@ -132,22 +115,45 @@ const Navbar: React.FC = () => {
               />
             </form>
             <div className="ml-4 flex items-center">
-              <Link to="/cart" className="mr-4">
-                <FiShoppingCart className="text-2xl" />
-              </Link>
               {localStorage.getItem("isLoggedIn") ? (
                 <div className="flex items-center">
-                  <button onClick={handleLogout}>
-                    <RiLogoutCircleLine className="text-2xl" />
-                  </button>
-                  <span className=" text-sm ml-2 max-w-sm lg:w-max ">
-                    {username}{" "}
-                  </span>
+                  <Link to="/cart" className="mr-4">
+                    <FiShoppingCart className="text-2xl" />
+                  </Link>
+
+                  <div className="flex items-center">
+                    <button
+                      onClick={() => setIsUserDropdownOpen(!isUserDropdownOpen)}
+                    >
+                      <VscAccount className="text-2xl" />
+                    </button>
+                    {isUserDropdownOpen && (
+                      <div className=" absolute mt-28 z-20 bg-white shadow-md rounded p-4">
+                        <span className=" text-sm  max-w-sm lg:w-max ">
+                          {username}{" "}
+                        </span>
+                        <button
+                          className="flex items-center"
+                          onClick={handleLogout}
+                        >
+                          <p className=" text-sm mr-2  max-w-sm lg:w-max ">
+                            Logout
+                          </p>
+                          <RiLogoutCircleLine className="text-2xl" />
+                        </button>
+                      </div>
+                    )}
+                  </div>
                 </div>
               ) : (
                 <div className="flex items-center">
-                  <Link to="/login" className="mr-4">
+                  <Link to="/login" className="mr-4 flex">
+                    <p className=" text-sm mr-1 w-max">Login </p>
                     <RiLoginCircleLine className="text-2xl" />
+                  </Link>
+                  <Link to="/signup" className="flex ">
+                    <p className=" text-sm mr-1 w-max ">Register</p>
+                    <LiaCartArrowDownSolid className="text-2xl wm" />
                   </Link>
                 </div>
               )}

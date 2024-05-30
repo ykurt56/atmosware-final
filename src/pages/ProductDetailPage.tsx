@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import ProductTypes from "../types/ProductTypes";
 import StarRating from "../components/common/StarRating";
-import ColorButtons from "../components/products/ColorButtons";
 import DetailFooterbar from "../components/ProductDetail/DetailFooterbar";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -23,7 +22,7 @@ const ProductDetailPage: React.FC<ProductDetailProps> = ({ products }) => {
     return <div>No product ID specified</div>;
   }
 
-  const product = products.find((product) => product.id === parseInt(id, 10));
+  const product = products.find((product) => product.id === id);
 
   if (!product) {
     return <div>Product not found</div>;
@@ -102,11 +101,7 @@ const ProductDetailPage: React.FC<ProductDetailProps> = ({ products }) => {
           <p className="text-gray-700 my-4 border-b-2 pb-2">
             {product.description}
           </p>
-          <div className="my-4 pb-3 border-b-2">
-            <div className="flex space-x-2">
-              <ColorButtons />
-            </div>
-          </div>
+
           <div className="my-4 pb-3 border-b-2">
             <label className="block text-gray-700">Choose Size</label>
             <div className="flex space-x-2">

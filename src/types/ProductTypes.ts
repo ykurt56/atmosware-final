@@ -1,10 +1,15 @@
 interface ProductTypes {
-  id: number;
+  id: string;
   title: string;
   category: string;
   price: number;
   color: string;
-  size: string;
+  sizes: object;
+  S: number;
+  M: number;
+  L: number;
+  XL: number;
+  stock: number;
   image: string;
   description: string;
   rating: {

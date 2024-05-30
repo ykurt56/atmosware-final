@@ -12,6 +12,7 @@ import { getProducts } from "./services/productApi"; // api dosyanızdan getProd
 import ProductTypes from "./types/ProductTypes";
 import NewProduct from "./components/home/NewProduct";
 import Filters from "./components/products/Filters";
+import Admin from "./admin/pages/admin";
 
 const App: React.FC = () => {
   const [products, setProducts] = useState<ProductTypes[]>([]);
@@ -47,6 +48,7 @@ const App: React.FC = () => {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/new-arrivals" element={<NewProduct />} />
           <Route path="/category/:category?" Component={Filters} />
+          <Route path="admin" element={<Admin />} />
         </Routes>
         <Footer />
       </div>

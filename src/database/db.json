@@ -17,243 +17,421 @@
   ],
   "products": [
     {
-      "id": 1,
+      "id": "1",
       "title": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
-      "price": 109.95,
+      "price": 130,
       "description": "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
       "category": "men's clothing",
       "image": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+      "stock": 42,
+      "sizes": {
+        "S": 10,
+        "M": 12,
+        "L": 10,
+        "XL": 10
+      },
       "rating": {
         "rate": 3.9,
         "count": 120
       }
     },
     {
-      "id": 2,
+      "id": "2",
       "title": "Mens Casual Premium Slim Fit T-Shirts ",
       "price": 22.3,
       "description": "Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fashion wear and diehard baseball fans. The Henley style round neckline includes a three-button placket.",
       "category": "men's clothing",
       "image": "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg",
+      "stock": 40,
+      "sizes": {
+        "S": 10,
+        "M": 10,
+        "L": 10,
+        "XL": 10
+      },
       "rating": {
         "rate": 4.1,
         "count": 259
       }
     },
     {
-      "id": 3,
+      "id": "3",
       "title": "Mens Cotton Jacket",
       "price": 55.99,
       "description": "great outerwear jackets for Spring/Autumn/Winter, suitable for many occasions, such as working, hiking, camping, mountain/rock climbing, cycling, traveling or other outdoors. Good gift choice for you or your family member. A warm hearted love to Father, husband or son in this thanksgiving or Christmas Day.",
       "category": "men's clothing",
       "image": "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg",
+      "stock": 40,
+      "sizes": {
+        "S": 10,
+        "M": 10,
+        "L": 10,
+        "XL": 10
+      },
       "rating": {
         "rate": 4.7,
         "count": 500
       }
     },
     {
-      "id": 4,
+      "id": "4",
       "title": "Mens Casual Slim Fit",
       "price": 15.99,
       "description": "The color could be slightly different between on the screen and in practice. / Please note that body builds vary by person, therefore, detailed size information should be reviewed below on the product description.",
       "category": "men's clothing",
       "image": "https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg",
+      "stock": 40,
+      "sizes": {
+        "S": 10,
+        "M": 10,
+        "L": 10,
+        "XL": 10
+      },
       "rating": {
         "rate": 2.1,
         "count": 430
       }
     },
     {
-      "id": 5,
-      "title": "John Hardy Women's Legends Naga Gold & Silver Dragon Station Chain Bracelet",
-      "price": 695,
-      "description": "From our Legends Collection, the Naga was inspired by the mythical water dragon that protects the ocean's pearl. Wear facing inward to be bestowed with love and abundance, or outward for protection.",
-      "category": "jewelery",
-      "image": "https://fakestoreapi.com/img/71pWzhdJNwL._AC_UL640_QL65_ML3_.jpg",
-      "rating": {
-        "rate": 4.6,
-        "count": 400
-      }
-    },
-    {
-      "id": 6,
-      "title": "Solid Gold Petite Micropave ",
+      "id": "6",
+      "title": "Silver Men's Ring Besiktas",
       "price": 168,
-      "description": "Satisfaction Guaranteed. Return or exchange any order within 30 days.Designed and sold by Hafeez Center in the United States. Satisfaction Guaranteed. Return or exchange any order within 30 days.",
+      "description": "Do not keep your silver jewelry in closed, stuffy environments for too long.\nKeep your jewelry away from chemicals such as acidic compounds, bleach, acetone, etc.\nDishwashing liquid, hand creams, silver remove your jewelry from its natural and shiny appearance.\nHair sprays and cosmetics can damage your silver jewelry.\nRemove your accessories before swimming, as\nthey will cause dulling due to the chemicals contained in the sea and pool waters.",
       "category": "jewelery",
-      "image": "https://fakestoreapi.com/img/61sbMiUnoGL._AC_UL640_QL65_ML3_.jpg",
+      "image": "https://productimages.hepsiburada.net/s/777/1500/110000695481148.jpg",
+      "stock": 40,
+      "sizes": {
+        "S": 10,
+        "M": 10,
+        "L": 10,
+        "XL": 10
+      },
       "rating": {
         "rate": 3.9,
         "count": 70
       }
     },
     {
-      "id": 7,
-      "title": "White Gold Plated Princess",
-      "price": 9.99,
-      "description": "Classic Created Wedding Engagement Solitaire Diamond Promise Ring for Her. Gifts to spoil your love more for Engagement, Wedding, Anniversary, Valentine's Day...",
+      "id": "8",
+      "title": "Silver Men's Ring Fenerbahçe",
+      "price": 168,
+      "description": "Do not keep your silver jewelry in closed, stuffy environments for too long.\nKeep your jewelry away from chemicals such as acidic compounds, bleach, acetone, etc.\nDishwashing liquid, hand creams, silver remove your jewelry from its natural and shiny appearance.\nHair sprays and cosmetics can damage your silver jewelry.\nRemove your accessories before swimming, as\nthey will cause dulling due to the chemicals contained in the sea and pool waters.",
       "category": "jewelery",
-      "image": "https://fakestoreapi.com/img/71YAIFU48IL._AC_UL640_QL65_ML3_.jpg",
-      "rating": {
-        "rate": 3,
-        "count": 400
-      }
-    },
-    {
-      "id": 8,
-      "title": "Pierced Owl Rose Gold Plated Stainless Steel Double",
-      "price": 10.99,
-      "description": "Rose Gold Plated Double Flared Tunnel Plug Earrings. Made of 316L Stainless Steel",
-      "category": "jewelery",
-      "image": "https://fakestoreapi.com/img/51UDEzMJVpL._AC_UL640_QL65_ML3_.jpg",
+      "image": "https://productimages.hepsiburada.net/s/777/1500/110000695483145.jpg",
+      "stock": 40,
+      "sizes": {
+        "S": 10,
+        "M": 10,
+        "L": 10,
+        "XL": 10
+      },
       "rating": {
         "rate": 1.9,
         "count": 100
       }
     },
     {
-      "id": 9,
-      "title": "WD 2TB Elements Portable External Hard Drive - USB 3.0 ",
-      "price": 64,
-      "description": "USB 3.0 and USB 2.0 Compatibility Fast data transfers Improve PC Performance High Capacity; Compatibility Formatted NTFS for Windows 10, Windows 8.1, Windows 7; Reformatting may be required for other operating systems; Compatibility may vary depending on user’s hardware configuration and operating system",
-      "category": "electronics",
-      "image": "https://fakestoreapi.com/img/61IBBVJvSDL._AC_SY879_.jpg",
-      "rating": {
-        "rate": 3.3,
-        "count": 203
-      }
-    },
-    {
-      "id": 10,
-      "title": "SanDisk SSD PLUS 1TB Internal SSD - SATA III 6 Gb/s",
-      "price": 109,
-      "description": "Easy upgrade for faster boot up, shutdown, application load and response (As compared to 5400 RPM SATA 2.5” hard drive; Based on published specifications and internal benchmarking tests using PCMark vantage scores) Boosts burst write performance, making it ideal for typical PC workloads The perfect balance of performance and reliability Read/write speeds of up to 535MB/s/450MB/s (Based on internal testing; Performance may vary depending upon drive capacity, host device, OS and application.)",
-      "category": "electronics",
-      "image": "https://fakestoreapi.com/img/61U7T1koQqL._AC_SX679_.jpg",
-      "rating": {
-        "rate": 2.9,
-        "count": 470
-      }
-    },
-    {
-      "id": 11,
-      "title": "Silicon Power 256GB SSD 3D NAND A55 SLC Cache Performance Boost SATA III 2.5",
-      "price": 109,
-      "description": "3D NAND flash are applied to deliver high transfer speeds Remarkable transfer speeds that enable faster bootup and improved overall system performance. The advanced SLC Cache Technology allows performance boost and longer lifespan 7mm slim design suitable for Ultrabooks and Ultra-slim notebooks. Supports TRIM command, Garbage Collection technology, RAID, and ECC (Error Checking & Correction) to provide the optimized performance and enhanced reliability.",
-      "category": "electronics",
-      "image": "https://fakestoreapi.com/img/71kWymZ+c+L._AC_SX679_.jpg",
-      "rating": {
-        "rate": 4.8,
-        "count": 319
-      }
-    },
-    {
-      "id": 12,
-      "title": "WD 4TB Gaming Drive Works with Playstation 4 Portable External Hard Drive",
-      "price": 114,
-      "description": "Expand your PS4 gaming experience, Play anywhere Fast and easy, setup Sleek design with high capacity, 3-year manufacturer's limited warranty",
-      "category": "electronics",
-      "image": "https://fakestoreapi.com/img/61mtL65D4cL._AC_SX679_.jpg",
-      "rating": {
-        "rate": 4.8,
-        "count": 400
-      }
-    },
-    {
-      "id": 13,
-      "title": "Acer SB220Q bi 21.5 inches Full HD (1920 x 1080) IPS Ultra-Thin",
-      "price": 599,
-      "description": "21. 5 inches Full HD (1920 x 1080) widescreen IPS display And Radeon free Sync technology. No compatibility for VESA Mount Refresh Rate: 75Hz - Using HDMI port Zero-frame design | ultra-thin | 4ms response time | IPS panel Aspect ratio - 16: 9. Color Supported - 16. 7 million colors. Brightness - 250 nit Tilt angle -5 degree to 15 degree. Horizontal viewing angle-178 degree. Vertical viewing angle-178 degree 75 hertz",
-      "category": "electronics",
-      "image": "https://fakestoreapi.com/img/81QpkIctqPL._AC_SX679_.jpg",
-      "rating": {
-        "rate": 2.9,
-        "count": 250
-      }
-    },
-    {
-      "id": 14,
-      "title": "Samsung 49-Inch CHG90 144Hz Curved Gaming Monitor (LC49HG90DMNXZA) – Super Ultrawide Screen QLED ",
-      "price": 999.99,
-      "description": "49 INCH SUPER ULTRAWIDE 32:9 CURVED GAMING MONITOR with dual 27 inch screen side by side QUANTUM DOT (QLED) TECHNOLOGY, HDR support and factory calibration provides stunningly realistic and accurate color and contrast 144HZ HIGH REFRESH RATE and 1ms ultra fast response time work to eliminate motion blur, ghosting, and reduce input lag",
-      "category": "electronics",
-      "image": "https://fakestoreapi.com/img/81Zt42ioCgL._AC_SX679_.jpg",
-      "rating": {
-        "rate": 2.2,
-        "count": 140
-      }
-    },
-    {
-      "id": 15,
+      "id": "15",
       "title": "BIYLACLESEN Women's 3-in-1 Snowboard Jacket Winter Coats",
       "price": 56.99,
       "description": "Note:The Jackets is US standard size, Please choose size as your usual wear Material: 100% Polyester; Detachable Liner Fabric: Warm Fleece. Detachable Functional Liner: Skin Friendly, Lightweigt and Warm.Stand Collar Liner jacket, keep you warm in cold weather. Zippered Pockets: 2 Zippered Hand Pockets, 2 Zippered Pockets on Chest (enough to keep cards or keys)and 1 Hidden Pocket Inside.Zippered Hand Pockets and Hidden Pocket keep your things secure. Humanized Design: Adjustable and Detachable Hood and Adjustable cuff to prevent the wind and water,for a comfortable fit. 3 in 1 Detachable Design provide more convenience, you can separate the coat and inner as needed, or wear it together. It is suitable for different season and help you adapt to different climates",
       "category": "women's clothing",
       "image": "https://fakestoreapi.com/img/51Y5NI-I5jL._AC_UX679_.jpg",
+      "stock": 40,
+      "sizes": {
+        "S": 10,
+        "M": 10,
+        "L": 10,
+        "XL": 10
+      },
       "rating": {
         "rate": 2.6,
         "count": 235
       }
     },
     {
-      "id": 16,
+      "id": "16",
       "title": "Lock and Love Women's Removable Hooded Faux Leather Moto Biker Jacket",
       "price": 29.95,
       "description": "100% POLYURETHANE(shell) 100% POLYESTER(lining) 75% POLYESTER 25% COTTON (SWEATER), Faux leather material for style and comfort / 2 pockets of front, 2-For-One Hooded denim style faux leather jacket, Button detail on waist / Detail stitching at sides, HAND WASH ONLY / DO NOT BLEACH / LINE DRY / DO NOT IRON",
       "category": "women's clothing",
       "image": "https://fakestoreapi.com/img/81XH0e8fefL._AC_UY879_.jpg",
+      "stock": 40,
+      "sizes": {
+        "S": 10,
+        "M": 10,
+        "L": 10,
+        "XL": 10
+      },
       "rating": {
         "rate": 2.9,
         "count": 340
       }
     },
     {
-      "id": 17,
+      "id": "17",
       "title": "Rain Jacket Women Windbreaker Striped Climbing Raincoats",
       "price": 39.99,
       "description": "Lightweight perfet for trip or casual wear---Long sleeve with hooded, adjustable drawstring waist design. Button and zipper front closure raincoat, fully stripes Lined and The Raincoat has 2 side pockets are a good size to hold all kinds of things, it covers the hips, and the hood is generous but doesn't overdo it.Attached Cotton Lined Hood with Adjustable Drawstrings give it a real styled look.",
       "category": "women's clothing",
       "image": "https://fakestoreapi.com/img/71HblAHs5xL._AC_UY879_-2.jpg",
+      "stock": 40,
+      "sizes": {
+        "S": 10,
+        "M": 10,
+        "L": 10,
+        "XL": 10
+      },
       "rating": {
         "rate": 3.8,
         "count": 679
       }
     },
     {
-      "id": 18,
+      "id": "18",
       "title": "MBJ Women's Solid Short Sleeve Boat Neck V ",
       "price": 9.85,
       "description": "95% RAYON 5% SPANDEX, Made in USA or Imported, Do Not Bleach, Lightweight fabric with great stretch for comfort, Ribbed on sleeves and neckline / Double stitching on bottom hem",
       "category": "women's clothing",
       "image": "https://fakestoreapi.com/img/71z3kpMAYsL._AC_UY879_.jpg",
+      "stock": 40,
+      "sizes": {
+        "S": 10,
+        "M": 10,
+        "L": 10,
+        "XL": 10
+      },
       "rating": {
         "rate": 4.7,
         "count": 130
       }
     },
     {
-      "id": 19,
+      "id": "19",
       "title": "Opna Women's Short Sleeve Moisture",
       "price": 7.95,
       "description": "100% Polyester, Machine wash, 100% cationic polyester interlock, Machine Wash & Pre Shrunk for a Great Fit, Lightweight, roomy and highly breathable with moisture wicking fabric which helps to keep moisture away, Soft Lightweight Fabric with comfortable V-neck collar and a slimmer fit, delivers a sleek, more feminine silhouette and Added Comfort",
       "category": "women's clothing",
       "image": "https://fakestoreapi.com/img/51eg55uWmdL._AC_UX679_.jpg",
+      "stock": 40,
+      "sizes": {
+        "S": 10,
+        "M": 10,
+        "L": 10,
+        "XL": 10
+      },
       "rating": {
         "rate": 4.5,
         "count": 146
       }
     },
     {
-      "id": 20,
+      "id": "20",
       "title": "DANVOUY Womens T Shirt Casual Cotton Short",
       "price": 12.99,
       "description": "95%Cotton,5%Spandex, Features: Casual, Short Sleeve, Letter Print,V-Neck,Fashion Tees, The fabric is soft and has some stretch., Occasion: Casual/Office/Beach/School/Home/Street. Season: Spring,Summer,Autumn,Winter.",
       "category": "women's clothing",
       "image": "https://fakestoreapi.com/img/61pHAEJ4NML._AC_UX679_.jpg",
+      "stock": 40,
+      "sizes": {
+        "S": 10,
+        "M": 10,
+        "L": 10,
+        "XL": 10
+      },
       "rating": {
         "rate": 3.6,
         "count": 145
+      }
+    },
+    {
+      "id": "e360",
+      "title": "Men's White 100% Cotton Slim Fit Narrow Cut Crew Neck T-Shirt",
+      "price": 125,
+      "description": "100% Cotton, Plain White, Crew Neck, Slim Fit, Short Sleeve, No Pocket, 4 Seasons, AC&CO / Altınyıldız Classics Slim Fit Crew Neck Short Sleeve Cotton T-Shirt, Model Measurements: Height: 1.89 cm, Weight: 80 Kg, Product Size: L, Product Code: 4A4800000001BYZ. Washing Instruction: Machine wash water temperature should not exceed 30 degrees. Dry Cleaning Chemicals Except Trichlorethylene Are Used. Bleach Cannot Be Used. Cannot be dried in the dryer. It should be ironed at low temperature.",
+      "category": "men's clothing",
+      "image": "https://cdn.dsmcdn.com/mnresize/1200/1800/ty1230/product/media/images/prod/PIM/20240328/14/90c429d0-9376-494b-b0dd-5757c4e948f6/1_org_zoom.jpg",
+      "stock": 70,
+      "sizes": {
+        "S": 10,
+        "M": 20,
+        "L": 30,
+        "XL": 10
+      },
+      "rating": {
+        "rate": 0,
+        "count": 0
+      }
+    },
+    {
+      "id": "e0a7",
+      "title": "Men's Slim Fit Slim Fit Cotton Soft Texture Breathable Fabric Curl Collar",
+      "price": 99,
+      "description": "%55 polyester %45 pump",
+      "category": "men's clothing",
+      "image": "https://cdn.dsmcdn.com/mnresize/1200/1800/ty1270/product/media/images/prod/SPM/PIM/20240422/08/3a4c5730-1195-35d7-9b26-9cd078ec11d1/1_org_zoom.jpg",
+      "stock": 40,
+      "sizes": {
+        "S": 10,
+        "M": 10,
+        "L": 10,
+        "XL": 10
+      },
+      "rating": {
+        "rate": 4,
+        "count": 98
+      }
+    },
+    {
+      "id": "1815",
+      "title": "Men's Black 100% Cotton Zippered Regular Fit Polo Collar T-shirt E001034",
+      "price": 150,
+      "description": "Short sleeves, Branding embroidery on the chest, 100% Cotton, Breathable, Cool, Lightweight, Standard Fit Normal Fit Standard cut, Zippered Polo Neck T-Shirt; In studio shots, colors may vary due to light differences; It is an online private collection product; Model Height: 190 cm Bust: 100 cm Waist: 84 cm Hips: 96 cm;Sample Size: M;100% Cotton;",
+      "category": "men's clothing",
+      "image": "https://cdn.dsmcdn.com/ty1314/product/media/images/prod/QC/20240513/20/61a1ccff-af17-3c26-81f5-4536212d08d0/1_org_zoom.jpg",
+      "stock": 40,
+      "sizes": {
+        "S": 10,
+        "M": 10,
+        "L": 10,
+        "XL": 10
+      },
+      "rating": {
+        "rate": 2.8,
+        "count": 22
+      }
+    },
+    {
+      "id": "c72a",
+      "title": "Men's White 100% Cotton Zippered Regular Fit Polo Collar T-shirt E001034",
+      "price": 155,
+      "description": "Short sleeves, Branding embroidery on the chest, 100% Cotton, Breathable, Cool, Lightweight, Standard Fit Normal Fit Standard cut, Zippered Polo Neck T-Shirt; In studio shots, colors may vary due to light differences; It is an online private collection product; Model Height: 188 cm Bust: 98 cm Waist: 82 cm Hips: 96 cm;Sample Size: M;100% Cotton; ",
+      "category": "men's clothing",
+      "image": "https://cdn.dsmcdn.com/mnresize/1200/1800/ty1316/product/media/images/prod/QC/20240513/20/ec9a6625-00a3-3571-85a7-cc8eadbddbe8/1_org_zoom.jpg",
+      "stock": 40,
+      "sizes": {
+        "S": 10,
+        "M": 10,
+        "L": 10,
+        "XL": 10
+      },
+      "rating": {
+        "rate": 1.3,
+        "count": 168
+      }
+    },
+    {
+      "id": "e61d",
+      "title": "IVONNE Women's White T-Shirt",
+      "price": 77,
+      "description": "IVONNE Women's White T-Shirt\n",
+      "category": "women's clothing",
+      "image": "https://cdn.dsmcdn.com/mnresize/1200/1800/ty1334/product/media/images/prod/QC/20240527/13/67a5f4a5-ec27-3abc-b290-c8b954a67d77/1_org_zoom.jpg",
+      "stock": 40,
+      "sizes": {
+        "S": 10,
+        "M": 10,
+        "L": 10,
+        "XL": 10
+      },
+      "rating": {
+        "rate": 3.8,
+        "count": 146
+      }
+    },
+    {
+      "id": "124a",
+      "title": "Women Striped Short Sleeve T-shirt",
+      "price": 54,
+      "description": "Model height: 172 cm.Model size: Basic t-shirt with short sleeves and a bicycle collar.100% cottonIRONING AT 150ºC - TETRACHLOROETHYLENE DRY CLEANING - GENTLE WASHING IN THE MACHINE AT 30ºC - NO BLEACH - ROLLER WASHING AT LOW SPEED",
+      "category": "women's clothing",
+      "image": "https://cdn.dsmcdn.com/mnresize/1200/1800/ty980/product/media/images/20230807/11/400885573/516247830/2/2_org_zoom.jpg",
+      "stock": 40,
+      "sizes": {
+        "S": 10,
+        "M": 10,
+        "L": 10,
+        "XL": 10
+      },
+      "rating": {
+        "rate": 1.7,
+        "count": 89
+      }
+    },
+    {
+      "id": "213e",
+      "title": "Woman Short Sleeve Basic T-shirt",
+      "price": 88,
+      "description": "IRONING AT 110ºC - DRY CLEANING CANNOT BE DONE - DELICATE WASHING IN THE MACHINE AT 30ºC - BLEACH IS NOT USED - ROLLER CLEANING IS NOT POSSIBLE",
+      "category": "women's clothing",
+      "image": "https://cdn.dsmcdn.com/mnresize/1200/1800/ty946/product/media/images/20230609/9/383778051/966298848/1/1_org_zoom.jpg",
+      "stock": 40,
+      "sizes": {
+        "S": 10,
+        "M": 10,
+        "L": 10,
+        "XL": 10
+      },
+      "rating": {
+        "rate": 4.6,
+        "count": 63
+      }
+    },
+    {
+      "id": "97fb",
+      "title": "Men's Silver Ring Galatasaray",
+      "price": 168,
+      "description": "Do not keep your silver jewelry in closed, stuffy environments for too long. Keep your jewelry away from chemicals such as acidic compounds, bleach, acetone, etc. Dishwashing liquid, hand creams, silver remove your jewelry from its natural and shiny appearance. Hair sprays and cosmetics can damage your silver jewelry. Remove your accessories before swimming, as they will cause dulling due to the chemicals contained in the sea and pool waters.",
+      "category": "jewelery",
+      "image": "https://productimages.hepsiburada.net/s/777/1500/110000695483724.jpg",
+      "stock": 40,
+      "sizes": {
+        "S": 10,
+        "M": 10,
+        "L": 10,
+        "XL": 10
+      },
+      "rating": {
+        "rate": 3.9,
+        "count": 245
+      }
+    },
+    {
+      "id": "4fa0",
+      "title": "3 Carat Diamond Model Silver Solitaire Ring WSR113",
+      "price": 222,
+      "description": "3 Carat Diamond Model Silver Solitaire Ring WSR113",
+      "category": "jewelery",
+      "image": "https://productimages.hepsiburada.net/s/777/1500/110000631325117.jpg",
+      "stock": 40,
+      "sizes": {
+        "S": 10,
+        "M": 10,
+        "L": 10,
+        "XL": 10
+      },
+      "rating": {
+        "rate": 4.3,
+        "count": 172
+      }
+    },
+    {
+      "id": "bfcb",
+      "title": "Baguette Stone Women's Silver Ring",
+      "price": 250,
+      "description": "Metal: 925 Sterling Silver; Stone Type: Baguette; Our products are sent with stylish and high quality design boxes; We recommend that the products be kept in their own boxes when you are not using them.",
+      "category": "jewelery",
+      "image": "https://productimages.hepsiburada.net/s/321/1500/110000315648951.jpg",
+      "stock": 40,
+      "sizes": {
+        "S": 10,
+        "M": 10,
+        "L": 10,
+        "XL": 10
+      },
+      "rating": {
+        "rate": 3.7,
+        "count": 20
       }
     }
   ],
@@ -297,30 +475,6 @@
   "cart": [
     {
       "id": "2",
-      "user_id": "52ce",
-      "name": "Mens Casual Premium Slim Fit T-Shirts ",
-      "price": 22.3,
-      "image": "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg",
-      "quantity": 1
-    },
-    {
-      "id": "3",
-      "user_id": "52ce",
-      "name": "Mens Cotton Jacket",
-      "price": 55.99,
-      "image": "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg",
-      "quantity": 1
-    },
-    {
-      "id": "4",
-      "user_id": "52ce",
-      "name": "Mens Casual Slim Fit",
-      "price": 15.99,
-      "image": "https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg",
-      "quantity": 1
-    },
-    {
-      "id": "2",
       "user_id": "71bb",
       "name": "Mens Casual Premium Slim Fit T-Shirts ",
       "price": 22.3,
@@ -334,6 +488,14 @@
       "price": 9.99,
       "image": "https://fakestoreapi.com/img/71YAIFU48IL._AC_UL640_QL65_ML3_.jpg",
       "quantity": 2
+    },
+    {
+      "id": "1815",
+      "user_id": "52ce",
+      "name": "Men's Black 100% Cotton Zippered Regular Fit Polo Collar T-shirt E001034",
+      "price": 150,
+      "image": "https://cdn.dsmcdn.com/ty1314/product/media/images/prod/QC/20240513/20/61a1ccff-af17-3c26-81f5-4536212d08d0/1_org_zoom.jpg",
+      "quantity": 1
     }
   ]
 }

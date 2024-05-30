@@ -3,16 +3,18 @@ import { getProducts } from "../../services/productApi";
 import Product from "../../types/ProductTypes";
 import StarRating from "../common/StarRating";
 import { Link } from "react-router-dom";
+import { set } from "zod";
 
 const TopProduct: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const discountPercentage: number = 10;
+  const [showMore, setShowMore] = useState<boolean>(true);
 
   useEffect(() => {
     const getTopProducts = async () => {
       try {
         const topProducts = await getProducts();
-        setProducts(topProducts.slice(16, 20));
+        setProducts(topProducts.slice(12, 16));
       } catch (error) {
         console.error("Error fetching Top Selling products:", error);
       }
@@ -21,11 +23,21 @@ const TopProduct: React.FC = () => {
     getTopProducts();
   }, []);
 
+  const getMoreTopProducts = async () => {
+    try {
+      const topProducts = await getProducts();
+      setProducts(topProducts.slice(12, topProducts.length - 1));
+    } catch (error) {
+      console.error("Error fetching Top Selling products:", error);
+    }
+    setShowMore(false);
+  };
+
   return (
     <div className="h-auto w-full">
       <h1 className="text-5xl font-extrabold text-center py-20">TOP SELLING</h1>
       <div className="container mx-auto">
-        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mb-11">
           {products.map((product) => (
             <Link to={`/products/${product.id}`} key={product.id}>
               <div>
@@ -65,14 +77,16 @@ const TopProduct: React.FC = () => {
             </Link>
           ))}
         </div>
-        <div className="flex py-5 justify-center mx-auto border-b-[1px]">
-          <button
-            onClick={() => (window.location.href = "/top-arrivals")}
-            className="bg-white text-black border px-16 py-3 rounded-full mb-8"
-          >
-            View All
-          </button>
-        </div>
+        {showMore && (
+          <div className="flex py-5 justify-center mx-auto border-b-[1px]">
+            <button
+              onClick={getMoreTopProducts}
+              className="bg-white text-black border px-16 py-3 rounded-full mb-8"
+            >
+              View All
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

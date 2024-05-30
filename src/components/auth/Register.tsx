@@ -48,7 +48,6 @@ const Register: React.FC = () => {
       await registerUser(values);
       toast.success("Kayıt başarıyla tamamlandı!");
       navigate("/login"); // Başarılı kayıt sonrası login sayfasına yönlendirme
-      localStorage.setItem("Name", values.name);
     } catch (error) {
       console.error("Kullanıcı kaydedilirken bir hata oluştu:", error);
       toast.error("Kayıt sırasında bir hata oluştu.");

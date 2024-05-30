@@ -7,12 +7,13 @@ import { Link } from "react-router-dom";
 const NewProduct: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const discountPercentage: number = 20;
+  const [showMore, setShowMore] = useState<boolean>(true);
 
   useEffect(() => {
     const getNewProducts = async () => {
       try {
         const newProducts = await getProducts();
-        setProducts(newProducts.slice(0, 4));
+        setProducts(newProducts.slice(15, 19));
       } catch (error) {
         console.error("Error fetching new products:", error);
       }
@@ -20,6 +21,17 @@ const NewProduct: React.FC = () => {
 
     getNewProducts();
   }, []);
+
+  const getMoreNewProducts = async () => {
+    try {
+      const newProducts = await getProducts();
+      setProducts(newProducts.slice(15, newProducts.length - 1));
+
+      setShowMore(false);
+    } catch (error) {
+      console.error("Error fetching new products:", error);
+    }
+  };
 
   return (
     <div className="h-auto w-full">
@@ -67,14 +79,16 @@ const NewProduct: React.FC = () => {
             </Link>
           ))}
         </div>
-        <div className="flex py-5 justify-center mx-auto border-b-[1px]">
-          <button
-            onClick={() => (window.location.href = "/new-arrivals")}
-            className="bg-white text-black border px-16 py-3 rounded-full mb-8"
-          >
-            View All
-          </button>
-        </div>
+        {showMore && (
+          <div className="flex py-5 justify-center mx-auto border-b-[1px]">
+            <button
+              onClick={getMoreNewProducts}
+              className="bg-white text-black border px-16 py-3 rounded-full mb-8"
+            >
+              View All
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

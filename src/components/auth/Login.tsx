@@ -22,6 +22,7 @@ const Login: React.FC = () => {
       toast.success(`Başarıyla giriş yaptınız, hoş geldiniz ${user.email}!`);
       localStorage.setItem("isLoggedIn", "true");
       localStorage.setItem("User_ID", user.id);
+      localStorage.setItem("userName", user.name);
       navigate("/");
       window.location.reload();
       // Giriş başarılı olduğunda doğrudan ana sayfaya yönlendir
