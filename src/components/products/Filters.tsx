@@ -3,7 +3,7 @@ import { MdOutlineChevronRight } from "react-icons/md";
 import { VscSettings } from "react-icons/vsc";
 import { Formik, Form } from "formik";
 import ColorButtons from "./ColorButtons";
-import Products from "./Category"; // Products bileşenini ekledik
+import Products from "./Products"; // Products bileşenini ekledik
 import { getProducts } from "../../services/productApi";
 import { useParams, useNavigate } from "react-router-dom";
 import ProductTypes from "../../types/ProductTypes";
