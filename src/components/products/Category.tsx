@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import StarRating from "../common/StarRating";
 import ProductTypes from "../../types/ProductTypes";
 import { Link } from "react-router-dom";
+import { Formik, Form, Field } from "formik";
 
 interface ProductsProps {
   products: ProductTypes[];
@@ -10,11 +11,17 @@ interface ProductsProps {
 const Category: React.FC<ProductsProps> = ({ products }) => {
   const productsPerPage = 12; // Sayfa başına görüntülenecek ürün sayısı
   const [currentPage, setCurrentPage] = useState(1); // Geçerli sayfa numarası
+  const [searchTerm, setSearchTerm] = useState(""); // Arama terimi
 
   // Geçerli sayfadaki ürünleri hesapla
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = products.slice(
+  const filteredProducts = products.filter((product) =>
+    product.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+  const totalFilteredProducts = filteredProducts.length;
+  const totalFilteredPages = Math.ceil(totalFilteredProducts / productsPerPage);
+  const currentProducts = filteredProducts.slice(
     indexOfFirstProduct,
     indexOfLastProduct
   );
@@ -36,7 +43,7 @@ const Category: React.FC<ProductsProps> = ({ products }) => {
 
   // Sonraki sayfa
   const nextPage = () => {
-    if (currentPage < Math.ceil(products.length / productsPerPage)) {
+    if (currentPage < totalFilteredPages) {
       setCurrentPage(currentPage + 1);
     }
   };
@@ -44,14 +51,34 @@ const Category: React.FC<ProductsProps> = ({ products }) => {
   return (
     <div className="h-auto w-full">
       <h1 className="text-5xl font-extrabold text-center py-5">Products</h1>
+      <Formik
+        initialValues={{ search: "" }}
+        onSubmit={(values, actions) => {
+          setSearchTerm(values.search);
+          setCurrentPage(1); // Arama yapıldığında ilk sayfaya dön
+          actions.setSubmitting(false);
+        }}
+      >
+        {() => (
+          <Form>
+            <Field
+              className="w-full border border-gray-400 rounded-md p-2 mb-5"
+              type="text"
+              name="searchs"
+              placeholder="Search"
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                setSearchTerm(e.target.value);
+                setCurrentPage(1); // Arama yapılırken ilk sayfaya dön
+              }}
+            />
+          </Form>
+        )}
+      </Formik>
       <div className="container mx-auto">
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {currentProducts.map((product, index) => (
-            <div>
-              <Link
-                to={`/products/${product.id}`}
-                key={`${product.id}-${index}`}
-              >
+            <div key={`${product.id}-${index}`}>
+              <Link to={`/products/${product.id}`}>
                 <div className="h-60 bg-brand-100 rounded-lg shadow-lg p-4 mb-8 md:h-3/4 flex justify-center items-center mx-auto">
                   <img
                     src={product.image}
@@ -87,26 +114,21 @@ const Category: React.FC<ProductsProps> = ({ products }) => {
           >
             Previous
           </button>
-          {Array.from(
-            { length: Math.ceil(products.length / productsPerPage) },
-            (_, i) => (
-              <button
-                key={i + 1}
-                onClick={() => paginate(i + 1)}
-                className={`mx-1 px-3 py-1 bg-gray-200 text-gray-700 rounded-md ${
-                  currentPage === i + 1 ? "bg-gray-400" : ""
-                }`}
-              >
-                {i + 1}
-              </button>
-            )
-          )}
+          {Array.from({ length: totalFilteredPages }, (_, i) => (
+            <button
+              key={i + 1}
+              onClick={() => paginate(i + 1)}
+              className={`mx-1 px-3 py-1 bg-gray-200 text-gray-700 rounded-md ${
+                currentPage === i + 1 ? "bg-gray-400" : ""
+              }`}
+            >
+              {i + 1}
+            </button>
+          ))}
           <button
             onClick={nextPage}
             className="mx-1 px-3 py-1 bg-gray-200 text-gray-700 rounded-md"
-            disabled={
-              currentPage === Math.ceil(products.length / productsPerPage)
-            }
+            disabled={currentPage === totalFilteredPages}
           >
             Next
           </button>
