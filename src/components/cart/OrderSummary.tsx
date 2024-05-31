@@ -7,6 +7,7 @@ interface OrderSummaryProps {
   deliveryFee: number;
   total: number;
   onApplyPromoCode: (code: string) => void;
+  onBuyProducts: () => void;
 }
 
 const OrderSummary: React.FC<OrderSummaryProps> = ({
@@ -15,12 +16,17 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({
   deliveryFee,
   total,
   onApplyPromoCode,
+  onBuyProducts,
 }) => {
   const [promoCode, setPromoCode] = useState("");
 
   const handleApplyPromoCode = () => {
     onApplyPromoCode(promoCode);
     setPromoCode("Promo Code Applied");
+  };
+
+  const handleBuyProducts = () => {
+    onBuyProducts();
   };
 
   return (
@@ -60,9 +66,12 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({
           Apply
         </button>
       </div>
-      <button className="bg-black text-white w-full py-3 rounded-lg font-bold flex items-center justify-center">
+      <button
+        className="bg-black text-white w-full py-3 rounded-lg font-bold flex items-center justify-center"
+        onClick={handleBuyProducts}
+      >
         <FaCheck className="mr-2" />
-        Go to Checkout
+        Buy products
       </button>
     </div>
   );

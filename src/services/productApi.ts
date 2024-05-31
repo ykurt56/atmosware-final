@@ -33,3 +33,13 @@ export const getProductSize = async (id: string) => {
     throw error; // Hata durumunda hatayı yeniden fırlat
   }
 };
+
+export const updateProduct = async (id: string, updatedProduct: any) => {
+  try {
+    const response = await api.put(`/products/${id}`, updatedProduct);
+    return response.data;
+  } catch (error) {
+    console.error("Error updating product:", error);
+    throw error;
+  }
+};

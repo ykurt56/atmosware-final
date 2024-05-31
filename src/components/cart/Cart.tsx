@@ -8,6 +8,7 @@ import {
   deleteCartItem,
   updateCartItemQuantity,
 } from "../../services/cartApi";
+import { getProduct, updateProduct } from "../../services/productApi";
 
 interface CartItem {
   id: string;
@@ -76,6 +77,52 @@ const Cart: React.FC = () => {
     toast.success(`Promo code applied: ${code}`);
   };
 
+  const handleBuyProducts = async () => {
+    try {
+      toast.success("Ürünler başarıyla satın alındı");
+
+      // Sepetteki her ürün için
+      for (const item of cartItems) {
+        // Ürünü getir
+        const product = await getProduct(item.id);
+
+        // Ürünün boyutunu güncelle
+        if (product.sizes && product.sizes[item.size]) {
+          // Ürün miktarı yeterli mi kontrol et
+          if (product.sizes[item.size] >= item.quantity) {
+            product.sizes[item.size] -= item.quantity;
+            product.stock -= item.quantity;
+            // Ürünü güncelle
+            await updateProduct(item.id, product);
+          } else {
+            // Sepette yeterli miktarda ürün yoksa hata göster ve işlemi durdur
+            toast.error("Yeterli stok bulunamadı: " + item.name);
+            return;
+          }
+        } else {
+          // Ürün boyutu mevcut değilse veya yetersizse hata göster ve işlemi durdur
+          toast.error("Ürün bilgileri eksik veya hatalı: " + item.name);
+          return;
+        }
+
+        // Sepetteki ürünü sil
+        await deleteCartItem(item.id);
+      }
+
+      // Sepeti boşalt
+      setCartItems([]);
+      // Başarılı satın alma mesajı göster
+      toast.success("Tüm ürünler başarıyla satın alındı!");
+    } catch (error) {
+      // Hata durumunda işlemi durdur ve hatayı konsola yazdır
+      console.error("Satın alma işlemi sırasında hata oluştu:", error);
+      // Kullanıcıya hata mesajı göster
+      toast.error(
+        "Satın alma işlemi sırasında bir hata oluştu, lütfen tekrar deneyin."
+      );
+    }
+  };
+
   const subtotal = cartItems.reduce(
     (sum, item) => sum + item.price * item.quantity,
     0
@@ -111,6 +158,7 @@ const Cart: React.FC = () => {
           deliveryFee={deliveryFee}
           total={total}
           onApplyPromoCode={handleApplyPromoCode}
+          onBuyProducts={handleBuyProducts}
         />
       </div>
       <ToastContainer />
