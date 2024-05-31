@@ -15,11 +15,11 @@ import { Link, useNavigate } from "react-router-dom";
 
 const userSchema = object({
   name: string()
-    .min(3, "İsim en az 3 karakter olmalıdır")
-    .max(50, "İsim en fazla 50 karakter olmalıdır"),
-  email: string().email("Geçerli bir email adresi girin"),
-  password: string().min(8, "Şifre en az 8 karakter olmalıdır"),
-  confirmPassword: string(),
+    .min(3, "Name must be at least 3 characters")
+    .max(50, "Name can be at most 50 characters"),
+  email: string().email("Please enter a valid email address"),
+  password: string().min(8, "Password must be at least 8 characters"),
+  confirmPassword: string().min(8, "Password must be at least 8 characters"),
 });
 
 interface RegisterFormValues {
@@ -46,11 +46,11 @@ const Register: React.FC = () => {
     try {
       userSchema.parse(values);
       await registerUser(values);
-      toast.success("Kayıt başarıyla tamamlandı!");
-      navigate("/login"); // Başarılı kayıt sonrası login sayfasına yönlendirme
+      toast.success("Registration completed successfully!");
+      navigate("/login"); // Redirect to login page after successful registration
     } catch (error) {
-      console.error("Kullanıcı kaydedilirken bir hata oluştu:", error);
-      toast.error("Kayıt sırasında bir hata oluştu.");
+      console.error("An error occurred while registering the user:", error);
+      toast.error("An error occurred during registration.");
     } finally {
       setSubmitting(false);
     }
@@ -66,25 +66,26 @@ const Register: React.FC = () => {
   const toggleShowConfirmPassword = () => {
     setShowConfirmPassword(!showConfirmPassword);
   };
+
   return (
     <div className="flex items-center justify-center ">
       <Formik initialValues={initialValues} onSubmit={onSubmit}>
         {({ isSubmitting }) => (
-          <Form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-full max-w-md">
+          <Form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4  max-w-xl sm:w-full w-max">
             <div className="mb-4">
               <label
                 className="block text-gray-700 font-bold mb-2"
                 htmlFor="name"
               >
                 <FaUserAlt className="inline-block mr-2" />
-                İsim
+                Name
               </label>
               <Field
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 id="name"
                 name="name"
                 type="text"
-                placeholder="İsim"
+                placeholder="Name"
               />
               <ErrorMessage
                 name="name"
@@ -121,7 +122,7 @@ const Register: React.FC = () => {
                 htmlFor="password"
               >
                 <FaLock className="inline-block mr-2" />
-                Şifre
+                Password
               </label>
               <div className="relative">
                 <Field
@@ -151,7 +152,7 @@ const Register: React.FC = () => {
                 htmlFor="confirmPassword"
               >
                 <FaLock className="inline-block mr-2" />
-                Şifre Onay
+                Confirm Password
               </label>
               <div className="relative">
                 <Field
@@ -183,16 +184,16 @@ const Register: React.FC = () => {
                 type="submit"
                 disabled={isSubmitting}
               >
-                {isSubmitting ? "Kayıt Olunuyor..." : "Kayıt Ol"}
+                {isSubmitting ? "Registering..." : "Register"}
               </button>
               <div>
-                <h3 className="text-center">
-                  Zaten kayıtlı mısınız ? {""}
+                <h3 className="text-center pt-3">
+                  Already registered? {""}
                   <Link
                     className="inline-block align-baseline font-bold text-sm text-blue-600 hover:text-blue-800"
                     to="/login"
                   >
-                    <b> Giriş Yap </b>
+                    <b> Sign In </b>
                   </Link>
                 </h3>
               </div>

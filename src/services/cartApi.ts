@@ -20,7 +20,8 @@ export const getCartItem = async (user_id: string) => {
 export const addToCart = async (
   product: any,
   quantity: number,
-  user_id: string
+  user_id: string,
+  selectedSize: string
 ) => {
   try {
     // ID'yi string olarak dönüştür
@@ -28,8 +29,7 @@ export const addToCart = async (
       user_id,
       id: product.id.toString(),
       name: product.title,
-      size: product.size,
-      color: product.color,
+      size: selectedSize,
       price: product.price,
       image: product.image,
       quantity,

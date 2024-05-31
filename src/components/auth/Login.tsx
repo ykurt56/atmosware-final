@@ -4,7 +4,7 @@ import { FaEnvelope, FaLock } from "react-icons/fa";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { loginUser } from "../../services/userApi";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 interface FormValues {
   email: string;
@@ -19,13 +19,12 @@ const Login: React.FC = () => {
     setIsLoading(true);
     try {
       const user = await loginUser(values.email, values.password);
-      toast.success(`Başarıyla giriş yaptınız, hoş geldiniz ${user.email}!`);
+      toast.success(`You have successfully logged in, welcome ${user.email}!`);
       localStorage.setItem("isLoggedIn", "true");
       localStorage.setItem("User_ID", user.id);
       localStorage.setItem("userName", user.name);
       navigate("/");
       window.location.reload();
-      // Giriş başarılı olduğunda doğrudan ana sayfaya yönlendir
     } catch (error: any) {
       toast.error(error.message);
     } finally {
@@ -34,7 +33,7 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen bg-brand-100">
+    <div className=" flex items-center justify-center  ">
       <Formik
         initialValues={{ email: "", password: "" }}
         onSubmit={(values) => {
@@ -43,16 +42,16 @@ const Login: React.FC = () => {
         validate={(values) => {
           const errors: Partial<FormValues> = {};
           if (!values.email) {
-            errors.email = "Email alanı boş bırakılamaz";
+            errors.email = "Email field cannot be empty";
           }
           if (!values.password) {
-            errors.password = "Şifre alanı boş bırakılamaz";
+            errors.password = "Password field cannot be empty";
           }
           return errors;
         }}
       >
         {({ isSubmitting }) => (
-          <Form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-full max-w-md">
+          <Form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 lg:w-full max-w-md">
             <div className="mb-4">
               <label
                 className="block text-gray-700 font-bold mb-2"
@@ -81,7 +80,7 @@ const Login: React.FC = () => {
                 htmlFor="password"
               >
                 <FaLock className="inline-block mr-2" />
-                Şifre
+                Password
               </label>
               <Field
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
@@ -99,7 +98,7 @@ const Login: React.FC = () => {
 
             <div className="flex items-center justify-between">
               <button
-                className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ${
+                className={`bg-black hover:bg-brand-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full ${
                   isSubmitting || isLoading
                     ? "opacity-50 cursor-not-allowed"
                     : ""
@@ -107,8 +106,19 @@ const Login: React.FC = () => {
                 type="submit"
                 disabled={isSubmitting || isLoading}
               >
-                {isLoading ? "Giriş Yapılıyor..." : "Giriş Yap"}
+                {isLoading ? "Logging in..." : "Log In"}
               </button>
+            </div>
+            <div>
+              <h3 className="text-center pt-3">
+                Are you not registered?{" "}
+                <Link
+                  className="inline-block align-baseline font-bold text-sm text-blue-600 hover:text-blue-800"
+                  to="/signup"
+                >
+                  <b> Sign Up </b>
+                </Link>
+              </h3>
             </div>
           </Form>
         )}

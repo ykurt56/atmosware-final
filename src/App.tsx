@@ -16,6 +16,9 @@ import Admin from "./admin/pages/admin";
 
 const App: React.FC = () => {
   const [products, setProducts] = useState<ProductTypes[]>([]);
+  const [isLoggedIn, setLoggedIn] = useState<boolean>(
+    localStorage.getItem("isLoggedIn") === "true"
+  );
 
   useEffect(() => {
     // Ürünleri API'den al
@@ -35,21 +38,30 @@ const App: React.FC = () => {
     <Router>
       <div className="App">
         <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          {/* Ürünlerin bulunduğu products dizisini ProductDetailPage bileşenine iletiyoruz */}
-          <Route
-            path="/products/:id"
-            element={<ProductDetailPage products={products} />}
-          />
-          <Route path="/products" element={<Products />} />
-          <Route path="/cart" element={<CartPage />} />
-          <Route path="/signup" element={<RegisterPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/new-arrivals" element={<NewProduct />} />
-          <Route path="/category/:category?" Component={Filters} />
-          <Route path="admin" element={<Admin />} />
-        </Routes>
+        {!isLoggedIn && (
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="*" element={<Home />} />
+            <Route path="/signup" element={<RegisterPage />} />
+            <Route path="/login" element={<LoginPage />} />
+          </Routes>
+        )}
+        {isLoggedIn && (
+          <Routes>
+            <Route path="/" element={<Home />} />
+            {/* Ürünlerin bulunduğu products dizisini ProductDetailPage bileşenine iletiyoruz */}
+            <Route
+              path="/products/:id"
+              element={<ProductDetailPage products={products} />}
+            />
+            <Route path="/products" element={<Products />} />
+            <Route path="/cart" element={<CartPage />} />
+            <Route path="/new-arrivals" element={<NewProduct />} />
+            <Route path="/category/:category?" Component={Filters} />
+            <Route path="admin" element={<Admin />} />
+          </Routes>
+        )}
+
         <Footer />
       </div>
     </Router>

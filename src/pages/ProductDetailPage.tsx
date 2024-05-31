@@ -17,6 +17,7 @@ interface ProductDetailProps {
 const ProductDetailPage: React.FC<ProductDetailProps> = ({ products }) => {
   const { id } = useParams<{ id: string }>();
   const [quantity, setQuantity] = useState(1);
+  const [selectedSize, setSelectedSize] = useState<any>(null); // Seçilen boyutu tutacak state
 
   if (!id) {
     return <div>No product ID specified</div>;
@@ -41,16 +42,18 @@ const ProductDetailPage: React.FC<ProductDetailProps> = ({ products }) => {
   const handleAddToCart = async () => {
     const user_id: string = localStorage.getItem("User_ID") || ""; // Varsayılan değer atama
     console.log(user_id);
-
     try {
       const cartItems = await getCartItem(user_id);
       const existingItemIndex = cartItems.findIndex(
         (item: any) => item.id == product.id // Eşleşen ürünleri kontrol et
       );
-
+      if (selectedSize === null) {
+        toast.error("Please select a size");
+        return;
+      }
       if (existingItemIndex === -1) {
         const user_id: string = localStorage.getItem("User_ID") || ""; // Varsayılan değer atama
-        await addToCart(product, quantity, user_id);
+        await addToCart(product, quantity, user_id, selectedSize);
         console.log(user_id);
 
         toast.success("Product added to cart successfully!");
@@ -68,7 +71,10 @@ const ProductDetailPage: React.FC<ProductDetailProps> = ({ products }) => {
       toast.error("Failed to add/update product in cart");
     }
   };
-
+  const handleSizeSelection = (size: any) => {
+    setSelectedSize(size); // Seçilen boyutu güncelle
+    // Başka işlemler de gerçekleştirilebilir
+  };
   return (
     <div className="bg-white">
       <ToastContainer />
@@ -105,16 +111,22 @@ const ProductDetailPage: React.FC<ProductDetailProps> = ({ products }) => {
           <div className="my-4 pb-3 border-b-2">
             <label className="block text-gray-700">Choose Size</label>
             <div className="flex space-x-2">
-              {["Small", "Medium", "Large", "X-Large"].map((size, index) => (
-                <button
-                  key={index}
-                  className={`py-2 px-2 border ${
-                    size === "Large" ? "border-black" : "border-gray-300"
-                  }`}
-                >
-                  {size}
-                </button>
-              ))}
+              {product.sizes &&
+                Object.entries(product.sizes).map(([size, value], index) => (
+                  <div>
+                    <button
+                      key={index}
+                      className={`py-2 px-2 border ${
+                        size === selectedSize
+                          ? "border-black"
+                          : "border-gray-300"
+                      }`}
+                      onClick={() => handleSizeSelection(size)}
+                    >
+                      {size} <p className="text-xs ">({value})</p>
+                    </button>
+                  </div>
+                ))}
             </div>
           </div>
           <div className="my-4 flex items-center">

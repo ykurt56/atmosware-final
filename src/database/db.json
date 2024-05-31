@@ -474,28 +474,12 @@
   ],
   "cart": [
     {
-      "id": "2",
-      "user_id": "71bb",
-      "name": "Mens Casual Premium Slim Fit T-Shirts ",
-      "price": 22.3,
-      "image": "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg",
-      "quantity": 1
-    },
-    {
       "id": "7",
       "user_id": "71bb",
       "name": "White Gold Plated Princess",
       "price": 9.99,
       "image": "https://fakestoreapi.com/img/71YAIFU48IL._AC_UL640_QL65_ML3_.jpg",
       "quantity": 2
-    },
-    {
-      "id": "1815",
-      "user_id": "52ce",
-      "name": "Men's Black 100% Cotton Zippered Regular Fit Polo Collar T-shirt E001034",
-      "price": 150,
-      "image": "https://cdn.dsmcdn.com/ty1314/product/media/images/prod/QC/20240513/20/61a1ccff-af17-3c26-81f5-4536212d08d0/1_org_zoom.jpg",
-      "quantity": 1
     }
   ]
 }

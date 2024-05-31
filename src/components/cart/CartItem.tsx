@@ -17,7 +17,6 @@ const CartItem: React.FC<CartItemProps> = ({
   id,
   name,
   size,
-  color,
   price,
   image,
   quantity,
@@ -30,7 +29,6 @@ const CartItem: React.FC<CartItemProps> = ({
       <div className="ml-4 flex-1">
         <h2 className="text-lg font-bold">{name}</h2>
         <p className="text-gray-600">Size: {size}</p>
-        <p className="text-gray-600">Color: {color}</p>
         <p className="text-xl font-bold mt-2">${price * quantity}</p>{" "}
         {/* Toplam fiyatı hesapla */}
       </div>
