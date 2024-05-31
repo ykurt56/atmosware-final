@@ -42,7 +42,6 @@ const Home: React.FC = () => {
               </div>
             </div>
             <div className="blur-sm mt-6">
-              <NewProduct />
               <TopProduct />
             </div>
           </div>

@@ -3,11 +3,11 @@ import { MdOutlineChevronRight } from "react-icons/md";
 import { VscSettings } from "react-icons/vsc";
 import { Formik, Form } from "formik";
 import ColorButtons from "./ColorButtons";
-import Products from "./Products"; // Products bileşenini ekledik
+import Products from "./Products";
 import { getProducts } from "../../services/productApi";
 import { useParams, useNavigate } from "react-router-dom";
 import ProductTypes from "../../types/ProductTypes";
-import SortAZ from "./Sort";
+import Sort from "./Sort";
 import Size from "./Size";
 
 interface PriceValues {
@@ -17,12 +17,9 @@ interface PriceValues {
 const Filters: React.FC = () => {
   const [showFilters, setShowFilters] = useState(true);
   const [products, setProducts] = useState<ProductTypes[]>([]);
+  const [filteredProducts, setFilteredProducts] = useState<ProductTypes[]>([]);
   const { category } = useParams<{ category: string }>();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    fetchProducts();
-  }, []);
 
   useEffect(() => {
     fetchProducts();
@@ -32,22 +29,50 @@ const Filters: React.FC = () => {
     try {
       const fetchedProducts = await getProducts();
       setProducts(fetchedProducts);
+      setFilteredProducts(fetchedProducts); // İlk başta tüm ürünleri filtreli ürünlere eşitle
     } catch (error) {
       console.error("Error fetching products:", error);
     }
+  };
+
+  const handleSortPrice = (order: string) => {
+    const sortedProducts = [...filteredProducts].sort((a, b) => {
+      if (order === "asc") {
+        return a.price - b.price; // Artan sıralama
+      } else if (order === "desc") {
+        return b.price - a.price; // Azalan sıralama
+      }
+      return 0;
+    });
+    setFilteredProducts(sortedProducts); // Filtrelenmiş ürünleri güncelle
+  };
+
+  const handleSortAz = (order: string) => {
+    const sortedProducts = [...filteredProducts].sort((a, b) => {
+      if (order === "asc") {
+        return a.title.localeCompare(b.title); // Artan sıralama
+      } else if (order === "desc") {
+        return b.title.localeCompare(a.title); // Azalan sıralama
+      }
+      return 0;
+    });
+    setFilteredProducts(sortedProducts); // Filtrelenmiş ürünleri güncelle
   };
 
   const handleCategorySelect = (category: string) => {
     navigate(`/category/${category}`);
   };
 
-  const filteredProducts = category
-    ? products.filter((product) => product.category === category)
-    : products;
+  useEffect(() => {
+    const newFilteredProducts = category
+      ? products.filter((product) => product.category === category)
+      : products;
+    setFilteredProducts(newFilteredProducts);
+  }, [category, products]);
 
   return (
     <div className="container mx-auto flex">
-      <div className="p-4 border rounded-lg container w-72 mb-36 ">
+      <div className="p-4 border rounded-lg container w-72 mb-36">
         <div className="flex items-center justify-between mb-4 border-b-2">
           <h3 className="text-xl font-bold mb-4">Filters</h3>
           <button
@@ -98,7 +123,7 @@ const Filters: React.FC = () => {
               </div>
             </div>
 
-            <div className="flex flex-col  border-b-2 mb-4">
+            <div className="flex flex-col border-b-2 mb-4">
               <div className="mb-4 container mx-auto">
                 <div className="flex justify-between">
                   <h3 className="text-xl font-bold mb-4">Price</h3>
@@ -135,10 +160,10 @@ const Filters: React.FC = () => {
                 </Formik>
               </div>
             </div>
+            <Sort onSortPrice={handleSortPrice} onSortAZ={handleSortAz} />
 
             <Size />
             <ColorButtons />
-            <SortAZ />
 
             <div className="flex justify-center">
               <button className="bg-gray-800 text-white rounded-full p-2 hover:bg-gray-700 w-full">

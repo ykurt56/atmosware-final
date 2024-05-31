@@ -79,7 +79,7 @@ const Category: React.FC<ProductsProps> = ({ products }) => {
           {currentProducts.map((product, index) => (
             <div key={`${product.id}-${index}`}>
               <Link to={`/products/${product.id}`}>
-                <div className="h-60 bg-brand-100 rounded-lg shadow-lg p-4 mb-8 md:h-3/4 flex justify-center items-center mx-auto">
+                <div className="h-60 bg-brand-100 rounded-lg shadow-lg p-4 mt-4 md:h-3/4 flex justify-center items-center mx-auto">
                   <img
                     src={product.image}
                     alt={product.title}
@@ -97,7 +97,7 @@ const Category: React.FC<ProductsProps> = ({ products }) => {
                       {product.rating.count} reviews
                     </p>
                   </div>
-                  <div className="text-black font-semibold flex flex-row lg:items-center gap-4">
+                  <div className="text-black font-semibold flex flex-row lg:items-center gap-4 mb-8">
                     <h3 className="md:text-2xl">${product.price}</h3>
                   </div>
                 </div>
