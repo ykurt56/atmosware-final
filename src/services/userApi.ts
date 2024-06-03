@@ -28,3 +28,13 @@ export const loginUser = async (email: string, password: string) => {
     throw new Error("Giriş yapılırken bir hata oluştu.");
   }
 };
+
+export const getUsers = async () => {
+  try {
+    const response = await api.get("/users");
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching users:", error);
+    throw error;
+  }
+};

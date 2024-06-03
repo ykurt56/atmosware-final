@@ -480,6 +480,15 @@
       "price": 9.99,
       "image": "https://fakestoreapi.com/img/71YAIFU48IL._AC_UL640_QL65_ML3_.jpg",
       "quantity": 2
+    },
+    {
+      "id": "6",
+      "user_id": "52ce",
+      "name": "Silver Men's Ring Besiktas",
+      "size": "M",
+      "price": 168,
+      "image": "https://productimages.hepsiburada.net/s/777/1500/110000695481148.jpg",
+      "quantity": 1
     }
   ]
 }
