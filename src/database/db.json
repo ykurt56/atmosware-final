@@ -1,6 +1,13 @@
 {
   "users": [
     {
+      "id": "admin",
+      "name": "admin",
+      "email": "admin@admin.com",
+      "password": "admin",
+      "confirmPassword": "admin"
+    },
+    {
       "id": "52ce",
       "name": "yusuf kurt",
       "email": "yusufkurt5256@gmail.com",
@@ -99,10 +106,10 @@
       "description": "Do not keep your silver jewelry in closed, stuffy environments for too long.\nKeep your jewelry away from chemicals such as acidic compounds, bleach, acetone, etc.\nDishwashing liquid, hand creams, silver remove your jewelry from its natural and shiny appearance.\nHair sprays and cosmetics can damage your silver jewelry.\nRemove your accessories before swimming, as\nthey will cause dulling due to the chemicals contained in the sea and pool waters.",
       "category": "jewelery",
       "image": "https://productimages.hepsiburada.net/s/777/1500/110000695481148.jpg",
-      "stock": 40,
+      "stock": 36,
       "sizes": {
         "S": 10,
-        "M": 10,
+        "M": 6,
         "L": 10,
         "XL": 10
       },
@@ -480,15 +487,7 @@
       "price": 9.99,
       "image": "https://fakestoreapi.com/img/71YAIFU48IL._AC_UL640_QL65_ML3_.jpg",
       "quantity": 2
-    },
-    {
-      "id": "6",
-      "user_id": "52ce",
-      "name": "Silver Men's Ring Besiktas",
-      "size": "M",
-      "price": 168,
-      "image": "https://productimages.hepsiburada.net/s/777/1500/110000695481148.jpg",
-      "quantity": 1
     }
-  ]
+  ],
+  "Order": []
 }

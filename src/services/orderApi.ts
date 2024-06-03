@@ -22,3 +22,13 @@ export const getOrders = async () => {
     throw error;
   }
 };
+
+export const deleteOrder = async (orderId: number) => {
+  try {
+    const response = await api.delete(`/Order/${orderId}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error deleting order:", error);
+    throw error;
+  }
+};

@@ -10,6 +10,7 @@ import {
   getCartItem,
   updateCartItemQuantity,
 } from "../services/cartApi";
+import RandomProducts from "../components/ProductDetail/RandomProducts";
 interface ProductDetailProps {
   products: ProductTypes[];
 }
@@ -155,6 +156,7 @@ const ProductDetailPage: React.FC<ProductDetailProps> = ({ products }) => {
         </div>
       </div>
       <DetailFooterbar product={product} />
+      <RandomProducts />
     </div>
   );
 };
