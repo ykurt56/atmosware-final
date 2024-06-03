@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Header from "./Header";
 import { MdClose, MdKeyboardArrowDown, MdMenu } from "react-icons/md";
@@ -8,9 +8,13 @@ import { VscAccount } from "react-icons/vsc";
 import { useFormik } from "formik";
 import { RiLoginCircleLine, RiLogoutCircleLine } from "react-icons/ri";
 import { LiaCartArrowDownSolid } from "react-icons/lia";
+import { getProducts } from "../../services/productApi";
+import SearchResultsList from "../navbar/SearchResultsList";
+import ProductTypes from "../../types/ProductTypes";
 
 interface FormValues {
   search: string;
+  searchweb: string;
 }
 
 const Navbar: React.FC = () => {
@@ -18,6 +22,7 @@ const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
   const [isUserDropdownOpen, setIsUserDropdownOpen] = useState<boolean>(false);
+  const [searchResults, setSearchResults] = useState<any[]>([]);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -43,15 +48,39 @@ const Navbar: React.FC = () => {
     setIsLoggedIn(false);
     window.location.reload(); // Sayfayı yenile
   };
+
   const formik = useFormik<FormValues>({
     initialValues: {
       search: "", // Arama değeri
+      searchweb: "",
     },
-    onSubmit: (values) => {
-      console.log("Form submitted with values:", values);
-      // Burada arama işlemlerini gerçekleştirebilirsiniz
+    onSubmit: async (values) => {
+      try {
+        console.log("Form submitted with values:", values);
+        const products = await getProducts(); // Tüm ürünleri al
+        const search = (values.search || values.searchweb || "").toLowerCase();
+
+        if (search === "" || search === " " || search === null) {
+          setSearchResults([]);
+          return;
+        }
+        const filteredProducts = products.filter((product: ProductTypes) =>
+          product.title.toLowerCase().includes(search)
+        );
+
+        setSearchResults(filteredProducts); // Arama sonuçlarını güncelle
+
+        // İşleme göre ekran güncellemelerini yapabilirsin
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
     },
   });
+
+  // useEffect ile form submit olduğunda arama işlemlerini gerçekleştir
+  useEffect(() => {
+    formik.handleSubmit();
+  }, []); // Boş dependency array, sadece bir kere çalıştırılmasını sağlar
   return (
     <div>
       <Header />
@@ -120,10 +149,15 @@ const Navbar: React.FC = () => {
                   type="text"
                   placeholder="Search for products..."
                   className="p-2 pl-10 border border-gray-300 rounded-full lg:flex-grow bg-gray-200 hidden lg:block"
-                  name="search-web"
-                  onChange={formik.handleChange}
+                  name="searchweb"
+                  onChange={(e) => {
+                    formik.handleChange(e);
+                    formik.handleSubmit();
+                  }}
+                  value={formik.values.searchweb}
                 />
               </form>
+
               <div className="ml-4 flex items-center">
                 {localStorage.getItem("isLoggedIn") ? (
                   <div className="flex items-center">
@@ -224,7 +258,10 @@ const Navbar: React.FC = () => {
                       className="p-2 pl-10 border border-gray-300 rounded-full w-full flex-grow bg-gray-200"
                       name="search"
                       value={formik.values.search}
-                      onChange={formik.handleChange}
+                      onChange={(e) => {
+                        formik.handleChange(e);
+                        formik.handleSubmit();
+                      }}
                     />
                   </form>
                 </div>
@@ -232,6 +269,9 @@ const Navbar: React.FC = () => {
             </div>
           )}
         </nav>
+      )}
+      {searchResults.length > 0 && (
+        <SearchResultsList searchResults={searchResults} />
       )}
     </div>
   );
