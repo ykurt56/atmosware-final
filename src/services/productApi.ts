@@ -24,16 +24,6 @@ export const getProducts = async () => {
   }
 };
 
-export const getProductSize = async (id: string) => {
-  try {
-    const response = await api.get(`/products/${id}`);
-    return response.data;
-  } catch (error) {
-    console.error("Error fetching product:", error);
-    throw error; // Hata durumunda hatayı yeniden fırlat
-  }
-};
-
 export const updateProduct = async (id: string, updatedProduct: any) => {
   try {
     const response = await api.put(`/products/${id}`, updatedProduct);

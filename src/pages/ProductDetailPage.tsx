@@ -20,10 +20,6 @@ const ProductDetailPage: React.FC<ProductDetailProps> = ({ products }) => {
   const [quantity, setQuantity] = useState(1);
   const [selectedSize, setSelectedSize] = useState<any>(null); // Seçilen boyutu tutacak state
 
-  if (!id) {
-    return <div>No product ID specified</div>;
-  }
-
   const product = products.find((product) => product.id === id);
 
   if (!product) {
@@ -46,12 +42,21 @@ const ProductDetailPage: React.FC<ProductDetailProps> = ({ products }) => {
     try {
       const cartItems = await getCartItem(user_id);
       const existingItemIndex = cartItems.findIndex(
-        (item: any) => item.id == product.id // Eşleşen ürünleri kontrol et
+        (item: any) => item.id == product.id && item.size == selectedSize // Eşleşen ürünleri kontrol et
       );
-      if (selectedSize === null) {
-        toast.error("Please select a size");
+
+      if (
+        selectedSize === null ||
+        product.sizes[selectedSize as keyof typeof product.sizes] == 0
+      ) {
+        toast.error(
+          selectedSize === null
+            ? "Please select a size"
+            : "Product out of stock"
+        );
         return;
       }
+
       if (existingItemIndex === -1) {
         const user_id: string = localStorage.getItem("User_ID") || ""; // Varsayılan değer atama
         await addToCart(product, quantity, user_id, selectedSize);
@@ -73,8 +78,30 @@ const ProductDetailPage: React.FC<ProductDetailProps> = ({ products }) => {
     }
   };
   const handleSizeSelection = (size: any) => {
-    setSelectedSize(size); // Seçilen boyutu güncelle
-    // Başka işlemler de gerçekleştirilebilir
+    setSelectedSize(size);
+  };
+
+  const checkStock = (value: any) => {
+    if (value <= 0) {
+      return (
+        <div>
+          <span className="text-red-500">Ürün Stockta Kalmamıştır.</span>
+        </div>
+      );
+    }
+    if (value < 4) {
+      return (
+        <div>
+          <p>Son 3 Ürün</p>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <span>{value} adet Stokta kaldı</span>
+        </div>
+      );
+    }
   };
   return (
     <div className="bg-white">
@@ -124,7 +151,7 @@ const ProductDetailPage: React.FC<ProductDetailProps> = ({ products }) => {
                       }`}
                       onClick={() => handleSizeSelection(size)}
                     >
-                      {size} <p className="text-xs ">({value})</p>
+                      {size} <p className="text-xs "> {checkStock(value)}</p>
                     </button>
                   </div>
                 ))}

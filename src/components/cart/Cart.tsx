@@ -43,6 +43,7 @@ const Cart: React.FC = () => {
       await deleteCartItem(id);
       setCartItems(cartItems.filter((item) => item.id !== id));
       toast.success("Item removed from cart");
+      window.location.reload();
     } catch (error) {
       console.error("Error removing item from cart:", error);
       toast.error("Failed to remove item from cart");
@@ -79,8 +80,6 @@ const Cart: React.FC = () => {
 
   const handleBuyProducts = async () => {
     try {
-      toast.success("Ürünler başarıyla satın alındı");
-
       // Sepetteki her ürün için
       for (const item of cartItems) {
         // Ürünü getir
@@ -112,8 +111,6 @@ const Cart: React.FC = () => {
         await deleteCartItem(item.id);
       }
 
-      // Sepeti boşalt
-      setCartItems([]);
       // Başarılı satın alma mesajı göster
       toast.success("Tüm ürünler başarıyla satın alındı!");
     } catch (error) {
@@ -123,6 +120,11 @@ const Cart: React.FC = () => {
       toast.error(
         "Satın alma işlemi sırasında bir hata oluştu, lütfen tekrar deneyin."
       );
+    } finally {
+      // Sepeti boşalt
+      setCartItems([]);
+      //sayfayı yenile
+      window.location.reload();
     }
   };
 
