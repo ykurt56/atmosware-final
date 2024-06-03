@@ -211,36 +211,17 @@ const Navbar: React.FC = () => {
             <div className="lg:hidden mt-2">
               <div className="bg-white shadow-md rounded p-4">
                 <div className="flex flex-col">
-                  <div className="relative inline-block mb-2">
-                    <div
-                      className="flex items-center cursor-pointer"
-                      onClick={toggleMenu}
-                    >
-                      <button className=" focus:outline-none">Shop</button>
-                      <MdKeyboardArrowDown className="mx-2" />
-                    </div>
-                    {isOpen && (
-                      <ul className="absolute bg-white mt-1 p-2 rounded shadow-md">
-                        <Link to={"/men"}>
-                          <li>Men</li>
-                        </Link>
-                        <Link to={"/woman"}>
-                          <li>Woman</li>
-                        </Link>
-                        <Link to={"/jewelry"}>
-                          <li>Jewelry</li>
-                        </Link>
-                      </ul>
-                    )}
-                  </div>
-                  <Link to="/sales" className="mb-2">
+                  <Link to="/products" className="mx-2">
                     On Sale
                   </Link>
-                  <Link to="/new-arrivals" className="mb-2">
-                    New Arrivals
+                  <Link to="/category/men's%20clothing" className="mx-2">
+                    Men
                   </Link>
-                  <Link to="/brands" className="mb-2">
-                    Brands
+                  <Link to="/category/women's%20clothing" className="mx-2">
+                    Women
+                  </Link>
+                  <Link to="/category/jewelery" className="mx-2">
+                    Jewelery
                   </Link>
                 </div>
               </div>

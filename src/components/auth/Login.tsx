@@ -23,7 +23,12 @@ const Login: React.FC = () => {
       localStorage.setItem("isLoggedIn", "true");
       localStorage.setItem("User_ID", user.id);
       localStorage.setItem("userName", user.name);
-      navigate("/");
+      if (user.id === "admin") {
+        navigate("/admin");
+      } else {
+        navigate("/");
+      }
+
       window.location.reload();
     } catch (error: any) {
       toast.error(error.message);

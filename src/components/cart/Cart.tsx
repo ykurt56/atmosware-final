@@ -9,7 +9,7 @@ import {
   updateCartItemQuantity,
 } from "../../services/cartApi";
 import { getProduct, updateProduct } from "../../services/productApi";
-
+import { OrderApi } from "../../services/orderApi";
 interface CartItem {
   id: string;
   name: string;
@@ -92,6 +92,9 @@ const Cart: React.FC = () => {
           if (product.sizes[item.size] >= item.quantity) {
             product.sizes[item.size] -= item.quantity;
             product.stock -= item.quantity;
+
+            await OrderApi(item);
+
             // Ürünü güncelle
             await updateProduct(item.id, product);
           } else {
