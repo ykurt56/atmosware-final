@@ -30,7 +30,7 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({
   };
 
   return (
-    <div className="w-1/3 bg-gray-50 rounded-lg p-6 shadow-sm border border-gray-300">
+    <div className=" bg-gray-50 rounded-lg p-6 shadow-sm border border-gray-300">
       <h2 className="text-xl font-bold mb-4">Order Summary</h2>
       <div className="border-b pb-4 mb-4">
         <div className="flex justify-between mb-2">

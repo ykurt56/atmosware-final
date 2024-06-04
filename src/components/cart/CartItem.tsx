@@ -26,17 +26,19 @@ const CartItem: React.FC<CartItemProps> = ({
 }) => {
   return (
     <div>
-      <div className=" w-full flex items-center mb-4 p-4 bg-gray-50 rounded-lg shadow-sm ">
+      <div className="w-full flex items-center mb-4 p-4 bg-gray-50 rounded-lg shadow-sm ">
         <Link to={`/products/${id}`} className="w-full flex items-center">
           <img src={image} alt={name} className="w-24 h-24 rounded-lg" />
           <div className="ml-4 flex-1">
-            <h2 className="text-lg font-bold">{name}</h2>
+            <h2 className="text-lg line-clamp-1 lg:line-clamp-none font-bold">
+              {name}
+            </h2>
             <p className="text-gray-600">Size: {size}</p>
             <p className="text-xl font-bold mt-2">${price * quantity}</p>{" "}
             {/* Toplam fiyatı hesapla */}
           </div>
         </Link>
-        <div className="flex items-center">
+        <div className="flex items-center ml-16  max-w-80 ">
           <button
             onClick={() => onQuantityChange(id, quantity - 1)}
             className="bg-gray-200 p-2 rounded-l-full flex items-center justify-center"

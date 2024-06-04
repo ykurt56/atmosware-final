@@ -22,6 +22,9 @@ const App: React.FC = () => {
   const [isLoggedIn, setLoggedIn] = useState<boolean>(
     localStorage.getItem("isLoggedIn") === "true"
   );
+  const [isAdmin, setIsAdmin] = useState<boolean>(
+    localStorage.getItem("isAdmin") === "true"
+  );
 
   useEffect(() => {
     // Ürünleri API'den al
@@ -61,6 +64,10 @@ const App: React.FC = () => {
             <Route path="/cart" element={<CartPage />} />
             <Route path="/new-arrivals" element={<NewProduct />} />
             <Route path="/category/:category?" Component={Filters} />
+          </Routes>
+        )}
+        {isAdmin && (
+          <Routes>
             <Route path="admin" element={<Admin />} />
             <Route path="admin/addproducts" element={<AddProducts />} />
             <Route path="/admin/users" element={<Users />} />

@@ -24,6 +24,7 @@ const Login: React.FC = () => {
       localStorage.setItem("User_ID", user.id);
       localStorage.setItem("userName", user.name);
       if (user.id === "admin") {
+        localStorage.setItem("isAdmin", "true");
         navigate("/admin");
       } else {
         navigate("/");

@@ -44,6 +44,7 @@ const Navbar: React.FC = () => {
     localStorage.removeItem("isLoggedIn"); // Oturumu kaldır
     localStorage.removeItem("User_ID"); // Oturumu kaldır
     localStorage.removeItem("userName");
+    localStorage.removeItem("isAdmin");
 
     setIsLoggedIn(false);
     window.location.reload(); // Sayfayı yenile
@@ -174,7 +175,7 @@ const Navbar: React.FC = () => {
                         <VscAccount className="text-2xl" />
                       </button>
                       {isUserDropdownOpen && (
-                        <div className=" absolute mt-28 z-20 bg-white shadow-md rounded p-4">
+                        <div className=" absolute right-0  mt-28 z-20 bg-white shadow-md rounded p-4">
                           <span className=" text-sm  max-w-sm lg:w-max ">
                             {username}{" "}
                           </span>
@@ -198,6 +199,7 @@ const Navbar: React.FC = () => {
                       <RiLoginCircleLine className="text-2xl" />
                     </Link>
                     <Link to="/signup" className="flex ">
+                      sss
                       {/* <p className=" text-sm mr-1 w-max ">Register</p> */}
                       <LiaCartArrowDownSolid className="text-2xl wm" />
                     </Link>

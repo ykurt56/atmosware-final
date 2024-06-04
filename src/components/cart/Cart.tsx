@@ -138,8 +138,8 @@ const Cart: React.FC = () => {
 
   return (
     <div className="min-w-screen flex container mx-auto mt-5 ">
-      <div className="w-full  flex">
-        <div className="w-3/4 bg-gray-50 rounded-lg p-6 shadow-sm border border-gray-300 mr-5">
+      <div className="w-full  block  lg:flex">
+        <div className="lg:w-3/4 bg-gray-50 rounded-lg p-6 shadow-sm border border-gray-300 lg:mr-5">
           {cartItems.map((item) => (
             <CartItem
               key={item.id}

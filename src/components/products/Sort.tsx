@@ -31,11 +31,11 @@ const Sort: React.FC<SortProps> = ({ onSortPrice, onSortAZ }) => {
         <h3 className="text-xl font-bold">SORT BY</h3>
         <MdOutlineChevronRight />
       </div>
-      <div className="flex space-x-4">
+      <div className="grid grid-cols-1 md:grid-cols-2  w-full ">
         <div className="relative">
           <button
             onClick={() => setIsOpenPrice(!isOpenPrice)}
-            className="flex items-center justify-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            className="flex  items-center justify-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           >
             Price <BsChevronDown className="ml-1" />
           </button>
@@ -58,10 +58,10 @@ const Sort: React.FC<SortProps> = ({ onSortPrice, onSortAZ }) => {
             </div>
           )}
         </div>
-        <div className="relative">
+        <div className="relative mx-auto">
           <button
             onClick={() => setIsOpenAz(!isOpenAz)}
-            className="flex items-center justify-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            className="flex  items-center justify-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           >
             A-Z <BsChevronDown className="ml-1" />
           </button>

@@ -30,6 +30,7 @@ const Orders: React.FC = () => {
       console.error("Error sending order:", error);
       toast.error("Failed to send order.");
     }
+    window.location.reload();
   };
 
   return (

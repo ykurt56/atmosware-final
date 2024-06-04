@@ -1,18 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { MdOutlineChevronRight } from "react-icons/md";
 import { VscSettings } from "react-icons/vsc";
-import { Formik, Form } from "formik";
+import { useParams, useNavigate } from "react-router-dom";
 import ColorButtons from "./ColorButtons";
 import Products from "./Products";
 import { getProducts } from "../../services/productApi";
-import { useParams, useNavigate } from "react-router-dom";
 import ProductTypes from "../../types/ProductTypes";
 import Sort from "./Sort";
 import Size from "./Size";
-
-interface PriceValues {
-  price: number;
-}
+import Price from "./Price";
 
 const Filters: React.FC = () => {
   const [showFilters, setShowFilters] = useState(true);
@@ -33,6 +29,13 @@ const Filters: React.FC = () => {
     } catch (error) {
       console.error("Error fetching products:", error);
     }
+  };
+
+  const handleSelectPrice = (minPrice: number, maxPrice: number) => {
+    const sortedProducts = products.filter(
+      (product) => product.price >= minPrice && product.price <= maxPrice
+    );
+    setFilteredProducts(sortedProducts); // Filtrelenmiş ürünleri güncelle
   };
 
   const handleSortPrice = (order: string) => {
@@ -71,10 +74,11 @@ const Filters: React.FC = () => {
   }, [category, products]);
 
   return (
-    <div className="container mx-auto flex">
-      <div className="p-4 border rounded-lg container w-72 mb-36">
-        <div className="flex items-center justify-between mb-4 border-b-2">
-          <h3 className="text-xl font-bold mb-4">Filters</h3>
+    <div className="container mx-auto flex justify-center">
+      <div className="p-4 border rounded-lg container w-1/3 h-full mb-36">
+        <div className="flex items-center justify-between  mb-4 border-b-2">
+          <h3 className="text-xl font-bold mb-4 ">Filters</h3>
+
           <button
             onClick={() => setShowFilters(!showFilters)}
             aria-label="Toggle Filters Menu"
@@ -88,88 +92,45 @@ const Filters: React.FC = () => {
           <div className="flex flex-col">
             <div className="flex flex-col border-b-2 mb-4">
               <div className="mb-4 container mx-auto">
-                <div className="flex justify-center">
+                <h3 className="text-xl font-bold mb-4">Category</h3>
+                <div className="flex">
                   <button
-                    className="text-xl font-semibold text-black"
+                    className="text-sm md:text-xl font-semibold text-black"
                     onClick={() => handleCategorySelect("")}
                   >
                     All Products
                   </button>
                 </div>
-                <div className="flex justify-center">
+                <div className="flex">
                   <button
-                    className="text-xl font-semibold text-black"
+                    className="text-sm md:text-xl font-semibold text-black"
                     onClick={() => handleCategorySelect("men's clothing")}
                   >
-                    Men's Category
+                    Men's
                   </button>
                 </div>
-                <div className="flex justify-center">
+                <div className="flex">
                   <button
-                    className="text-xl font-semibold text-black"
+                    className="text-sm md:text-xl font-semibold text-black"
                     onClick={() => handleCategorySelect("women's clothing")}
                   >
-                    Women's Category
+                    Women's
                   </button>
                 </div>
-                <div className="flex justify-center">
+                <div className="flex">
                   <button
-                    className="text-xl font-semibold text-black"
+                    className="text-sm md:text-xl w-max font-semibold text-black"
                     onClick={() => handleCategorySelect("jewelery")}
                   >
-                    Jewelry Category
+                    Jewelery
                   </button>
                 </div>
               </div>
             </div>
-
-            <div className="flex flex-col border-b-2 mb-4">
-              <div className="mb-4 container mx-auto">
-                <div className="flex justify-between">
-                  <h3 className="text-xl font-bold mb-4">Price</h3>
-                  <MdOutlineChevronRight />
-                </div>
-                <Formik
-                  initialValues={{ price: 5 }}
-                  onSubmit={(values: PriceValues) => {
-                    console.log(values);
-                  }}
-                >
-                  {({ values, setFieldValue }) => (
-                    <Form>
-                      <div className="flex justify-between items-center">
-                        <input
-                          type="range"
-                          min={5}
-                          max={500}
-                          value={values.price}
-                          onChange={(
-                            e: React.ChangeEvent<HTMLInputElement>
-                          ) => {
-                            setFieldValue("price", parseInt(e.target.value));
-                          }}
-                          className="w-full"
-                        />
-                        <span>${values.price}</span>
-                      </div>
-                      <button type="submit" className="hidden">
-                        Submit
-                      </button>
-                    </Form>
-                  )}
-                </Formik>
-              </div>
-            </div>
+            <Price onSelectPrice={handleSelectPrice} />
             <Sort onSortPrice={handleSortPrice} onSortAZ={handleSortAz} />
-
             <Size />
             <ColorButtons />
-
-            <div className="flex justify-center">
-              <button className="bg-gray-800 text-white rounded-full p-2 hover:bg-gray-700 w-full">
-                Apply Filters
-              </button>
-            </div>
           </div>
         )}
       </div>

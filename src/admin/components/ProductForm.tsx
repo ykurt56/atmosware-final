@@ -148,8 +148,8 @@ const ProductForm: React.FC = () => {
             formik.values.sizes.L +
             formik.values.sizes.XL}{" "}
         </label>
-        <div className="flex justify-between">
-          <div>
+        <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
+          <div className="flex flex-col">
             <label>S:</label>
             <input
               type="number"
@@ -158,7 +158,7 @@ const ProductForm: React.FC = () => {
               onChange={formik.handleChange}
             />
           </div>
-          <div>
+          <div className="flex flex-col">
             <label>M:</label>
             <input
               type="number"
@@ -167,7 +167,7 @@ const ProductForm: React.FC = () => {
               onChange={formik.handleChange}
             />
           </div>
-          <div>
+          <div className="flex flex-col">
             <label>L:</label>
             <input
               type="number"
@@ -176,7 +176,7 @@ const ProductForm: React.FC = () => {
               onChange={formik.handleChange}
             />
           </div>
-          <div>
+          <div className="flex flex-col">
             <label>XL:</label>
             <input
               type="number"

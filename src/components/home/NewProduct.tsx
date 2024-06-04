@@ -47,7 +47,7 @@ const NewProduct: React.FC = () => {
                   <img
                     src={product.image}
                     alt={product.title}
-                    className="object-cover mb-4 rounded-full  h-96"
+                    className="object-cover mb-4 rounded-full  h-full w-full"
                   />
                 </div>
                 <div>

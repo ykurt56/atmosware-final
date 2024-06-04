@@ -99,11 +99,15 @@ const ProductList: React.FC = () => {
               className="w-16 h-16 object-cover rounded mr-4"
             />
             <div className="flex-grow">
-              <h3 className="text-lg font-semibold">{product.title}</h3>
-              <p className="text-gray-600">{product.description}</p>
-              <p className="text-blue-500 font-bold">{product.price} USD</p>
+              <h3 className="text-lg font-semibold line-clamp-1">
+                {product.title}
+              </h3>
+              <p className="text-gray-600 line-clamp-1">
+                {product.description}
+              </p>
+              <p className="text-blue-500 font-bold">${product.price}</p>
             </div>
-            <div className="flex space-x-2">
+            <div className="flex flex-col gap-2">
               <button
                 onClick={() => deleteProduct(product.id)}
                 className="bg-red-500 text-white px-4 py-2 rounded"
