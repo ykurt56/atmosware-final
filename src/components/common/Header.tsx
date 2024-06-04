@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const Header: React.FC = () => {
   const [isVisible, setIsVisible] = useState<boolean>(true);
-  const [isLoading, setIsLoading] = useState<boolean>(
+  const [isLoading] = useState<boolean>(
     localStorage.getItem("isLoggedIn") === "true"
   );
   const closeHeader = () => {
@@ -22,7 +22,7 @@ const Header: React.FC = () => {
           <div className="container mx-auto justify-center items-center">
             <div className="text-center">
               <span className="text-xs md:text-sm  w-max">
-                Sign up and get 20% off to your first order.{" "}
+                Sign up and get 20% off all your orders.{" "}
                 <Link to={"/signup"}>
                   <u>Sign Up Now</u>
                 </Link>

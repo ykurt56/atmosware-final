@@ -10,16 +10,23 @@ import {
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { registerUser } from "../../services/userApi";
-import { object, string } from "zod";
 import { Link, useNavigate } from "react-router-dom";
+import * as Yup from "yup";
 
-const userSchema = object({
-  name: string()
+const validationSchema = Yup.object({
+  name: Yup.string()
     .min(3, "Name must be at least 3 characters")
-    .max(50, "Name can be at most 50 characters"),
-  email: string().email("Please enter a valid email address"),
-  password: string().min(8, "Password must be at least 8 characters"),
-  confirmPassword: string().min(8, "Password must be at least 8 characters"),
+    .max(50, "Name can be at most 50 characters")
+    .required("Name is required"),
+  email: Yup.string()
+    .email("Please enter a valid email address")
+    .required("Email is required"),
+  password: Yup.string()
+    .min(8, "Password must be at least 8 characters")
+    .required("Password is required"),
+  confirmPassword: Yup.string()
+    .oneOf([Yup.ref("password")], "Passwords must match")
+    .required("Please confirm your password"),
 });
 
 interface RegisterFormValues {
@@ -44,7 +51,7 @@ const Register: React.FC = () => {
     { setSubmitting }: FormikHelpers<RegisterFormValues>
   ) => {
     try {
-      userSchema.parse(values);
+      await validationSchema.validate(values, { abortEarly: false });
       await registerUser(values);
       toast.success("Registration completed successfully!");
       navigate("/login"); // Redirect to login page after successful registration
@@ -69,7 +76,11 @@ const Register: React.FC = () => {
 
   return (
     <div className="flex items-center justify-center ">
-      <Formik initialValues={initialValues} onSubmit={onSubmit}>
+      <Formik
+        initialValues={initialValues}
+        onSubmit={onSubmit}
+        validationSchema={validationSchema}
+      >
         {({ isSubmitting }) => (
           <Form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4  max-w-xl sm:w-full w-max">
             <div className="mb-4">

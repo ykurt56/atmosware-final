@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 import ProductTypes from "../types/ProductTypes";
 import StarRating from "../components/common/StarRating";
 import DetailFooterbar from "../components/ProductDetail/DetailFooterbar";
@@ -25,12 +25,6 @@ const ProductDetailPage: React.FC<ProductDetailProps> = ({ products }) => {
   if (!product) {
     return <div>Product not found</div>;
   }
-
-  const { pathname } = useLocation();
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
 
   const handleQuantityChange = (operation: string) => {
     setQuantity((prevQuantity) => {

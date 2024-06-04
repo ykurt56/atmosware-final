@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { MdOutlineChevronRight } from "react-icons/md";
 import { VscSettings } from "react-icons/vsc";
 import { useParams, useNavigate } from "react-router-dom";
 import ColorButtons from "./ColorButtons";

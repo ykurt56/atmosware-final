@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { getProducts } from "../../services/productApi";
 import Product from "../../types/ProductTypes";
 import StarRating from "../common/StarRating";
-import { Link } from "react-router-dom";
 
 const TopProduct: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -38,7 +37,7 @@ const TopProduct: React.FC = () => {
       <div className="container mx-auto">
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mb-11">
           {products.map((product) => (
-            <Link to={`/products/${product.id}`} key={product.id}>
+            <a href={`/products/${product.id}`} key={product.id}>
               <div>
                 <div className="h-60  bg-brand-100 rounded-lg shadow-lg p-4 mb-8 md:h-3/4 flex justify-center items-center mx-auto">
                   <img
@@ -73,7 +72,7 @@ const TopProduct: React.FC = () => {
                   </div>
                 </div>
               </div>
-            </Link>
+            </a>
           ))}
         </div>
         {showMore && (

@@ -43,7 +43,9 @@ const Cart: React.FC = () => {
       await deleteCartItem(id);
       setCartItems(cartItems.filter((item) => item.id !== id));
       toast.success("Item removed from cart");
-      window.location.reload();
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
     } catch (error) {
       console.error("Error removing item from cart:", error);
       toast.error("Failed to remove item from cart");
@@ -75,7 +77,11 @@ const Cart: React.FC = () => {
   };
 
   const handleApplyPromoCode = (code: string) => {
-    toast.success(`Promo code applied: ${code}`);
+    if (code === "rigel") {
+      toast.success("Promo code applied: rigel");
+    } else {
+      toast.error("Invalid promo code");
+    }
   };
 
   const handleBuyProducts = async () => {
@@ -97,13 +103,14 @@ const Cart: React.FC = () => {
             // Ürünü güncelle
             await updateProduct(item.id, product);
           } else {
-            // Sepette yeterli miktarda ürün yoksa hata göster ve işlemi durdur
-            toast.error("Yeterli stok bulunamadı: " + item.name);
+            // Ürün boyutu mevcut değilse veya yetersizse hata göster ve işlemi durdur
+            toast.error("Ürün bilgileri eksik veya hatalı: " + item.name);
+
             return;
           }
         } else {
-          // Ürün boyutu mevcut değilse veya yetersizse hata göster ve işlemi durdur
-          toast.error("Ürün bilgileri eksik veya hatalı: " + item.name);
+          // Sepette yeterli miktarda ürün yoksa hata göster ve işlemi durdur
+          toast.error("Yeterli stok bulunamadı: " + item.name);
           return;
         }
 
@@ -124,7 +131,9 @@ const Cart: React.FC = () => {
       // Sepeti boşalt
       setCartItems([]);
       //sayfayı yenile
-      window.location.reload();
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
     }
   };
 

@@ -15,11 +15,9 @@ export const registerUser = async (userData: any) => {
 
 export const loginUser = async (email: string, password: string) => {
   try {
-    const response = await api.get(
-      `/users?email=${email}&password=${password}`
-    );
+    const response = await api.get(`users/?email=${email}`);
     const user = response.data[0];
-    if (user) {
+    if (user.password == password) {
       return user;
     } else {
       throw new Error("Kullanıcı bulunamadı veya şifre yanlış.");

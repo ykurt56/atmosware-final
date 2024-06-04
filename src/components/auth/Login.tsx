@@ -19,18 +19,22 @@ const Login: React.FC = () => {
     setIsLoading(true);
     try {
       const user = await loginUser(values.email, values.password);
-      toast.success(`You have successfully logged in, welcome ${user.email}!`);
       localStorage.setItem("isLoggedIn", "true");
       localStorage.setItem("User_ID", user.id);
       localStorage.setItem("userName", user.name);
       if (user.id === "admin") {
         localStorage.setItem("isAdmin", "true");
-        navigate("/admin");
+        toast.success(`Welcome to Admin`);
+        setTimeout(() => {
+          navigate("/admin");
+        }, 2500);
       } else {
-        navigate("/");
+        toast.success(`Welcome ${user.name}`);
+        setTimeout(() => {
+          navigate("/");
+          window.location.reload();
+        }, 2500);
       }
-
-      window.location.reload();
     } catch (error: any) {
       toast.error(error.message);
     } finally {

@@ -3,7 +3,7 @@ import { BsStars } from "react-icons/bs";
 import Register from "../auth/Register";
 
 const HeroBanner: React.FC = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(
+  const [isLoggedIn] = useState<boolean>(
     localStorage.getItem("isLoggedIn") === "true"
   );
   return (
@@ -16,11 +16,24 @@ const HeroBanner: React.FC = () => {
                 To See the Products and Enjoy Shopping to the Fullest
               </h2>
               <p className=" text-gray-600 mb-8 text-2xl">
-                All you have to do is Login or Register.
+                All you have to do is Login or Sıgn up.
               </p>
-              <button className="bg-black text-white px-16 py-3 rounded-full mb-8 w-full lg:w-auto">
-                GO TO LOGIN OR REGISTER
-              </button>
+              <div className="grid grid-cols-1 lg:grid-cols-2  ">
+                <div>
+                  <a href="/login">
+                    <button className="bg-black text-white px-16 py-3 rounded-full mb-8 w-full lg:w-auto">
+                      GO TO LOGIN PAGE
+                    </button>
+                  </a>
+                </div>
+                <div>
+                  <a href="/signup">
+                    <button className="bg-black text-white px-16 py-3 rounded-full mb-8 w-full lg:w-auto">
+                      GO TO SIGN UP PAGE
+                    </button>
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
           <div className="lg:container mx-auto overflow-hidden bg-brand-100 relative items-center justify-center py-10">
@@ -42,9 +55,11 @@ const HeroBanner: React.FC = () => {
                 garments, designed to bring out your individuality and cater to
                 your sense of style.
               </p>
-              <button className="bg-black text-white px-16 py-3 rounded-full mb-8 w-full lg:w-auto">
-                Shop Now
-              </button>
+              <a href="/products">
+                <button className="bg-black text-white px-16 py-3 rounded-full mb-8 w-full lg:w-auto">
+                  Shop Now
+                </button>
+              </a>
               <div className="grid  md:flex">
                 <div className="grid grid-cols-2  md:flex">
                   <div className="items-center justify-center mx-8 pr-8 md:mx-2  border-r-2 ">

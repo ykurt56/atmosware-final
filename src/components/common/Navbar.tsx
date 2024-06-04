@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Header from "./Header";
-import { MdClose, MdKeyboardArrowDown, MdMenu } from "react-icons/md";
+import { MdClose, MdMenu } from "react-icons/md";
 import { IoSearch } from "react-icons/io5";
 import { FiShoppingCart } from "react-icons/fi";
 import { VscAccount } from "react-icons/vsc";
@@ -11,6 +11,7 @@ import { LiaCartArrowDownSolid } from "react-icons/lia";
 import { getProducts } from "../../services/productApi";
 import SearchResultsList from "../navbar/SearchResultsList";
 import ProductTypes from "../../types/ProductTypes";
+import { ToastContainer, toast } from "react-toastify";
 
 interface FormValues {
   search: string;
@@ -18,15 +19,10 @@ interface FormValues {
 }
 
 const Navbar: React.FC = () => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
   const [isUserDropdownOpen, setIsUserDropdownOpen] = useState<boolean>(false);
   const [searchResults, setSearchResults] = useState<any[]>([]);
-
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
 
   const toggleMobileMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -45,9 +41,11 @@ const Navbar: React.FC = () => {
     localStorage.removeItem("User_ID"); // Oturumu kaldır
     localStorage.removeItem("userName");
     localStorage.removeItem("isAdmin");
-
+    toast.success(`Logout Successful`);
     setIsLoggedIn(false);
-    window.location.reload(); // Sayfayı yenile
+    setTimeout(() => {
+      window.location.reload(); // Sayfayı yenile
+    }, 2500);
   };
 
   const formik = useFormik<FormValues>({
@@ -256,6 +254,7 @@ const Navbar: React.FC = () => {
       {searchResults.length > 0 && (
         <SearchResultsList searchResults={searchResults} />
       )}
+      <ToastContainer />
     </div>
   );
 };
