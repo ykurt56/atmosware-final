@@ -27,6 +27,7 @@ const Login: React.FC = () => {
         toast.success(`Welcome to Admin`);
         setTimeout(() => {
           navigate("/admin");
+          window.location.reload();
         }, 2500);
       } else {
         toast.success(`Welcome ${user.name}`);

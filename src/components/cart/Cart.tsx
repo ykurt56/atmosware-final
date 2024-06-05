@@ -69,10 +69,10 @@ const Cart: React.FC = () => {
       );
 
       // Bildirim göster
-      // toast.success("Quantity updated successfully");
+      toast.success("Quantity updated successfully");
     } catch (error) {
       console.error("Error updating quantity:", error);
-      // toast.error("Failed to update quantity");
+      toast.error("Failed to update quantity");
     }
   };
 

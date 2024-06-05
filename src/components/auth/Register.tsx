@@ -54,7 +54,10 @@ const Register: React.FC = () => {
       await validationSchema.validate(values, { abortEarly: false });
       await registerUser(values);
       toast.success("Registration completed successfully!");
-      navigate("/login"); // Redirect to login page after successful registration
+      setTimeout(() => {
+        navigate("/login");
+        window.location.reload();
+      }, 2000);
     } catch (error) {
       console.error("An error occurred while registering the user:", error);
       toast.error("An error occurred during registration.");
