@@ -112,13 +112,19 @@ const Cart: React.FC = () => {
             await updateProduct(item.id, product);
           } else {
             // Ürün boyutu mevcut değilse veya yetersizse hata göster ve işlemi durdur
-            toast.error("Ürün bilgileri eksik veya hatalı: " + item.name);
+            toast.error(
+              "Product information is missing or incorrect: " + item.name
+            );
+            toast.error("Not enough stock found: " + item.name);
 
             return;
           }
         } else {
           // Sepette yeterli miktarda ürün yoksa hata göster ve işlemi durdur
-          toast.error("Yeterli stok bulunamadı: " + item.name);
+          toast.error("Not enough stock found: " + item.name);
+          toast.error(
+            "Product information is missing or incorrect: " + item.name
+          );
           return;
         }
 
@@ -127,13 +133,13 @@ const Cart: React.FC = () => {
       }
 
       // Başarılı satın alma mesajı göster
-      toast.success("Tüm ürünler başarıyla satın alındı!");
+      toast.success("All items purchased successfully!");
     } catch (error) {
       // Hata durumunda işlemi durdur ve hatayı konsola yazdır
-      console.error("Satın alma işlemi sırasında hata oluştu:", error);
+      console.error("Error occurred during purchase:", error);
       // Kullanıcıya hata mesajı göster
       toast.error(
-        "Satın alma işlemi sırasında bir hata oluştu, lütfen tekrar deneyin."
+        "An error occurred during the purchase process, please try again."
       );
     } finally {
       // Sepeti boşalt
