@@ -19,10 +19,10 @@ import Orders from "./admin/pages/Orders";
 
 const App: React.FC = () => {
   const [products, setProducts] = useState<ProductTypes[]>([]);
-  const [isLoggedIn, setLoggedIn] = useState<boolean>(
+  const [isLoggedIn] = useState<boolean>(
     localStorage.getItem("isLoggedIn") === "true"
   );
-  const [isAdmin, setIsAdmin] = useState<boolean>(
+  const [isAdmin] = useState<boolean>(
     localStorage.getItem("isAdmin") === "true"
   );
 

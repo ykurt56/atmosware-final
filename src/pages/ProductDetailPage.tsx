@@ -17,8 +17,8 @@ interface ProductDetailProps {
 
 const ProductDetailPage: React.FC<ProductDetailProps> = ({ products }) => {
   const { id } = useParams<{ id: string }>();
-  const [quantity, setQuantity] = useState(1);
-  const [selectedSize, setSelectedSize] = useState<any>(null); // Seçilen boyutu tutacak state
+  const [quantity, setQuantity] = useState<number>(1);
+  const [selectedSize, setSelectedSize] = useState<string | null>(null); // Seçilen boyutu tutacak state
 
   const product = products.find((product) => product.id === id);
 
@@ -26,11 +26,19 @@ const ProductDetailPage: React.FC<ProductDetailProps> = ({ products }) => {
     return <div>Product not found</div>;
   }
 
-  const handleQuantityChange = (operation: string) => {
+  const handleQuantityChange = (vote: string) => {
+    if (!selectedSize) {
+      return toast.error("Please select a size");
+    }
     setQuantity((prevQuantity) => {
-      if (operation === "increment") {
-        return prevQuantity + 1;
-      } else if (operation === "decrement" && prevQuantity > 1) {
+      if (vote === "increment") {
+        if (
+          prevQuantity <
+          product.sizes[selectedSize as keyof typeof product.sizes]
+        ) {
+          return prevQuantity + 1;
+        }
+      } else if (vote === "decrement" && prevQuantity > 1) {
         return prevQuantity - 1;
       }
       return prevQuantity;
@@ -54,6 +62,12 @@ const ProductDetailPage: React.FC<ProductDetailProps> = ({ products }) => {
             ? "Please select a size"
             : "Product out of stock"
         );
+        return;
+      }
+      if (
+        quantity > product.sizes[selectedSize as keyof typeof product.sizes]
+      ) {
+        toast.error("Quantity cannot be greater than stock");
         return;
       }
 
