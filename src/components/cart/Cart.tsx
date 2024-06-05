@@ -54,6 +54,18 @@ const Cart: React.FC = () => {
   console.log(cartItems);
   const handleQuantityChange = async (id: string, quantity: number) => {
     try {
+      const item = cartItems.find((item) => item.id === id);
+      if (!item) {
+        toast.error("Item not found in cart");
+        return;
+      }
+
+      const product = await getProduct(item.id);
+      if (product.sizes[item.size] < quantity) {
+        toast.error("Not enough stock available");
+        return;
+      }
+
       // Yerel durumu güncelle
       setCartItems(
         cartItems.map((item) =>
@@ -62,11 +74,7 @@ const Cart: React.FC = () => {
       );
 
       // API üzerindeki veriyi güncelle
-      await updateCartItemQuantity(
-        id,
-        Math.max(1, quantity),
-        cartItems.find((item) => item.id === id)
-      );
+      await updateCartItemQuantity(id, Math.max(1, quantity), item);
 
       // Bildirim göster
       toast.success("Quantity updated successfully");
