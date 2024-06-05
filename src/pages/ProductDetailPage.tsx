@@ -26,6 +26,10 @@ const ProductDetailPage: React.FC<ProductDetailProps> = ({ products }) => {
     return <div>Product not found</div>;
   }
 
+  if (product) {
+    console.log(product.id);
+  }
+
   const handleQuantityChange = (vote: string) => {
     if (!selectedSize) {
       return toast.error("Please select a size");
@@ -50,8 +54,19 @@ const ProductDetailPage: React.FC<ProductDetailProps> = ({ products }) => {
     try {
       const cartItems = await getCartItem(user_id);
       const existingItemIndex = cartItems.findIndex(
-        (item: any) => item.id == product.id && item.size == selectedSize // Eşleşen ürünleri kontrol et
+        (item: any) =>
+          item.id.split("-")[0] == product.id && item.size == selectedSize // Eşleşen ürünleri kontrol et
       );
+
+      if (existingItemIndex !== -1) {
+        const existingItem = cartItems[existingItemIndex];
+        const stockQuantity =
+          product.sizes[selectedSize as keyof typeof product.sizes];
+        if (existingItem.quantity === stockQuantity) {
+          toast.error("Product already in cart with maximum stock quantity");
+          return;
+        }
+      }
 
       if (
         selectedSize === null ||
@@ -72,10 +87,7 @@ const ProductDetailPage: React.FC<ProductDetailProps> = ({ products }) => {
       }
 
       if (existingItemIndex === -1) {
-        const user_id: string = localStorage.getItem("User_ID") || ""; // Varsayılan değer atama
         await addToCart(product, quantity, user_id, selectedSize);
-        console.log(user_id);
-
         toast.success("Product added to cart successfully!");
       } else {
         const existingItem = cartItems[existingItemIndex];
@@ -94,6 +106,7 @@ const ProductDetailPage: React.FC<ProductDetailProps> = ({ products }) => {
       window.location.reload();
     }, 1500);
   };
+
   const handleSizeSelection = (size: any) => {
     setSelectedSize(size);
   };

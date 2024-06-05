@@ -54,13 +54,13 @@ const Cart: React.FC = () => {
   console.log(cartItems);
   const handleQuantityChange = async (id: string, quantity: number) => {
     try {
-      const item = cartItems.find((item) => item.id === id);
+      const item = cartItems.find((item) => item.id == id);
       if (!item) {
         toast.error("Item not found in cart");
         return;
       }
 
-      const product = await getProduct(item.id);
+      const product = await getProduct(item.id.split("-")[0]);
       if (product.sizes[item.size] < quantity) {
         toast.error("Not enough stock available");
         return;

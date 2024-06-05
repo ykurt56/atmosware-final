@@ -24,10 +24,9 @@ export const addToCart = async (
   selectedSize: string
 ) => {
   try {
-    // ID'yi string olarak dönüştür
     const cartItem = {
       user_id,
-      id: product.id.toString(),
+      id: `${product.id}-${selectedSize}`,
       name: product.title,
       size: selectedSize,
       price: product.price,

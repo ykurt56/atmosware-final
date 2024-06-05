@@ -27,7 +27,10 @@ const CartItem: React.FC<CartItemProps> = ({
   return (
     <div>
       <div className="w-full flex items-center mb-4 p-4 bg-gray-50 rounded-lg shadow-sm ">
-        <Link to={`/products/${id}`} className="w-full flex items-center">
+        <Link
+          to={`/products/${id.split("-")[0]}`}
+          className="w-full flex items-center"
+        >
           <img src={image} alt={name} className="w-24 h-24 rounded-lg" />
           <div className="ml-4 flex-1">
             <h2 className="text-lg line-clamp-1 lg:line-clamp-none font-bold">
