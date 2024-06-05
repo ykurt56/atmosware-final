@@ -90,6 +90,9 @@ const ProductDetailPage: React.FC<ProductDetailProps> = ({ products }) => {
     } catch (error) {
       toast.error("Failed to add/update product in cart");
     }
+    setTimeout(() => {
+      window.location.reload();
+    }, 1500);
   };
   const handleSizeSelection = (size: any) => {
     setSelectedSize(size);

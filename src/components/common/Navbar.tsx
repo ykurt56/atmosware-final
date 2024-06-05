@@ -6,13 +6,17 @@ import { IoSearch } from "react-icons/io5";
 import { FiShoppingCart } from "react-icons/fi";
 import { VscAccount } from "react-icons/vsc";
 import { useFormik } from "formik";
-import { RiLoginCircleLine, RiLogoutCircleLine } from "react-icons/ri";
+import {
+  RiAdminLine,
+  RiLoginCircleLine,
+  RiLogoutCircleLine,
+} from "react-icons/ri";
 import { LiaCartArrowDownSolid } from "react-icons/lia";
 import { getProducts } from "../../services/productApi";
 import SearchResultsList from "../navbar/SearchResultsList";
 import ProductTypes from "../../types/ProductTypes";
 import { ToastContainer, toast } from "react-toastify";
-
+import { getCartItem } from "../../services/cartApi";
 interface FormValues {
   search: string;
   searchweb: string;
@@ -23,13 +27,17 @@ const Navbar: React.FC = () => {
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
   const [isUserDropdownOpen, setIsUserDropdownOpen] = useState<boolean>(false);
   const [searchResults, setSearchResults] = useState<any[]>([]);
+  const [isAdmin] = useState(localStorage.getItem("isAdmin") === "true");
+  const [cartItems, setCartItems] = useState<Array<object>>([{}]);
 
   const toggleMobileMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
   const username = localStorage.getItem("userName")?.toUpperCase();
-
+  const emptyCart = () => {
+    toast.error("There are no products in your cart.");
+  };
   const toggleSearch = () => {
     setIsSearchOpen(!isSearchOpen);
   };
@@ -76,10 +84,25 @@ const Navbar: React.FC = () => {
     },
   });
 
+  const fetchcartItems = async () => {
+    const user = localStorage.getItem("User_ID"); // user değişkeni string veya null olabilir
+    if (user) {
+      try {
+        const cartItems = await getCartItem(user);
+        setCartItems(cartItems);
+      } catch (error) {
+        toast.error("Sepet öğeleri alınırken bir hata oluştu:");
+      }
+    }
+  };
+
   // useEffect ile form submit olduğunda arama işlemlerini gerçekleştir
   useEffect(() => {
     formik.handleSubmit();
-  }, []); // Boş dependency array, sadece bir kere çalıştırılmasını sağlar
+
+    fetchcartItems();
+  }, []);
+
   return (
     <div>
       <Header />
@@ -160,9 +183,19 @@ const Navbar: React.FC = () => {
               <div className="ml-4 flex items-center">
                 {localStorage.getItem("isLoggedIn") ? (
                   <div className="flex items-center">
-                    <Link to="/cart" className="mr-4">
-                      <FiShoppingCart className="text-2xl" />
-                    </Link>
+                    {cartItems.length > 0 ? (
+                      <Link to="/cart" className="mr-4 relative">
+                        <span className="absolute -top-2.5 -right-2 bg-red-500 text-white text-xs rounded-full px-1 flex items-center justify-center">
+                          {cartItems.length}
+                        </span>
+                        <FiShoppingCart className="text-2xl text-black" />
+                      </Link>
+                    ) : (
+                      <FiShoppingCart
+                        className=" mr-4 text-2xl text-black"
+                        onClick={emptyCart}
+                      />
+                    )}
 
                     <div className="flex items-center">
                       <button
@@ -175,10 +208,22 @@ const Navbar: React.FC = () => {
                       {isUserDropdownOpen && (
                         <div className=" absolute right-0  mt-28 z-20 bg-white shadow-md rounded p-4">
                           <span className=" text-sm  max-w-sm lg:w-max ">
-                            {username}{" "}
+                            {username}
                           </span>
+                          {isAdmin && (
+                            <Link
+                              to="/admin"
+                              className="flex items-center mb-2"
+                            >
+                              <p className=" text-sm mr-2  max-w-sm lg:w-max ">
+                                Admin
+                              </p>
+                              <RiAdminLine className="text-2xl" />
+                            </Link>
+                          )}
+
                           <button
-                            className="flex items-center"
+                            className="flex items-center "
                             onClick={handleLogout}
                           >
                             <p className=" text-sm mr-2  max-w-sm lg:w-max ">
