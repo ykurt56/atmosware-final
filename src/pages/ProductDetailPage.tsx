@@ -41,6 +41,9 @@ const ProductDetailPage: React.FC<ProductDetailProps> = ({ products }) => {
           product.sizes[selectedSize as keyof typeof product.sizes]
         ) {
           return prevQuantity + 1;
+        } else {
+          toast.error("Quantity cannot be greater than stock");
+          return prevQuantity;
         }
       } else if (vote === "decrement" && prevQuantity > 1) {
         return prevQuantity - 1;
@@ -48,21 +51,22 @@ const ProductDetailPage: React.FC<ProductDetailProps> = ({ products }) => {
       return prevQuantity;
     });
   };
+
   const handleAddToCart = async () => {
-    const user_id: string = localStorage.getItem("User_ID") || ""; // Varsayılan değer atama
-    console.log(user_id);
+    const user_id: string = localStorage.getItem("User_ID") || "";
     try {
       const cartItems = await getCartItem(user_id);
       const existingItemIndex = cartItems.findIndex(
         (item: any) =>
-          item.id.split("-")[0] == product.id && item.size == selectedSize // Eşleşen ürünleri kontrol et
+          item.id.split("-")[0] == product.id && item.size == selectedSize
       );
 
       if (existingItemIndex !== -1) {
         const existingItem = cartItems[existingItemIndex];
         const stockQuantity =
           product.sizes[selectedSize as keyof typeof product.sizes];
-        if (existingItem.quantity === stockQuantity) {
+        const updatedQuantity = existingItem.quantity + quantity;
+        if (updatedQuantity > stockQuantity) {
           toast.error("Product already in cart with maximum stock quantity");
           return;
         }
@@ -96,15 +100,12 @@ const ProductDetailPage: React.FC<ProductDetailProps> = ({ products }) => {
           existingItem.id,
           updatedQuantity,
           existingItem
-        ); // Güncellenmiş öğe verilerini gönder
+        );
         toast.success("Product quantity updated in cart successfully!");
       }
     } catch (error) {
       toast.error("Failed to add/update product in cart");
     }
-    setTimeout(() => {
-      window.location.reload();
-    }, 1500);
   };
 
   const handleSizeSelection = (size: any) => {

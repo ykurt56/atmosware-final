@@ -103,6 +103,10 @@ const Navbar: React.FC = () => {
     fetchcartItems();
   }, []);
 
+  useEffect(() => {
+    fetchcartItems();
+  }, [cartItems]);
+
   return (
     <div>
       <Header />
