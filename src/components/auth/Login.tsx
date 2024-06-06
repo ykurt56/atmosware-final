@@ -110,12 +110,10 @@ const Login: React.FC = () => {
             <div className="flex items-center justify-between">
               <button
                 className={`bg-black hover:bg-brand-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full ${
-                  isSubmitting || isLoading
-                    ? "opacity-50 cursor-not-allowed"
-                    : ""
+                  isLoading ? "opacity-50 cursor-not-allowed" : ""
                 }`}
                 type="submit"
-                disabled={isSubmitting || isLoading}
+                disabled={isLoading}
               >
                 {isLoading ? "Logging in..." : "Log In"}
               </button>
