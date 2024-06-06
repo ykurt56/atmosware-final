@@ -83,7 +83,7 @@ const HeroBanner: React.FC = () => {
           <div className="lg:container mx-auto overflow-hidden bg-brand-100 relative">
             <div className=" h-[463px] lg:h-[663px] bg-brand-100 relative">
               <img
-                src="https://s3-alpha-sig.figma.com/img/b26f/ea69/ccfd8aa5825862cdb9604a4fb4930464?Expires=1717372800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=TvxVU-Cpe5Zm39lM~C4r7XvuxN88nMh2JlrjEmOIOSiFrfrV9AJcOq8bUEcJZQNuoc2cIuyzBmBo1bCBZXAk4wDX6L6i4zD~tcdeD5gP7SBlWT1594zHL2SyKO01IqeknnASK6ZSxOAHW4rnI78xe9yORlp3gjv3DwklLyDFFHcxBTAWdPzlb3URggSvYOCJu1NXf0tbfu3B9HST1pmoK1Bib9cvfsrFUXAfB5ScaJayzHHu0rz0wEXPbRN6zK7-OzB3-V938vuFOfPjOAAd55ttA4xaphgXMIcFly7sgFHXGm8GUy2Gz1zcQ2YnXofpdnFxZD5bpGNdzClPj6wF8Q__"
+                src="../../../src/assets/herobanner/banner_image.jpg"
                 alt="Banner Image"
                 className=" max-w-sm  lg:max-w-[630px]   mx-auto object-cover  lg:absolute inset-0"
               />

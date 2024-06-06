@@ -9,7 +9,7 @@ import {
 } from "react-icons/fa";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { registerUser } from "../../services/userApi";
+import { getUsers, registerUser } from "../../services/userApi";
 import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 
@@ -51,9 +51,23 @@ const Register: React.FC = () => {
     { setSubmitting }: FormikHelpers<RegisterFormValues>
   ) => {
     try {
+      const users = await getUsers();
+
+      // Kullanıcının e-posta adresini kontrol etmek için diziyi döngüyle kontrol ediyoruz
+      const emailExists = users.some(
+        (user: any) => user.email === values.email
+      );
+
+      if (emailExists) {
+        toast.error("Email already exists");
+        setSubmitting(false);
+        return;
+      }
+
       await validationSchema.validate(values, { abortEarly: false });
       await registerUser(values);
       toast.success("Registration completed successfully!");
+
       setTimeout(() => {
         navigate("/login");
         window.location.reload();
