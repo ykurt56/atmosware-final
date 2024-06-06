@@ -97,7 +97,8 @@ const Cart: React.FC = () => {
       // Sepetteki her ürün için
       for (const item of cartItems) {
         // Ürünü getir
-        const product = await getProduct(item.id);
+        const product = await getProduct(item.id.split("-")[0]);
+        console.log(item.id);
 
         // Ürünün boyutunu güncelle
         if (product.sizes && product.sizes[item.size]) {
@@ -106,10 +107,10 @@ const Cart: React.FC = () => {
             product.sizes[item.size] -= item.quantity;
             product.stock -= item.quantity;
 
-            await OrderApi(item);
+            await OrderApi(cartItems);
 
             // Ürünü güncelle
-            await updateProduct(item.id, product);
+            await updateProduct(item.id.split("-")[0], product);
           } else {
             // Ürün boyutu mevcut değilse veya yetersizse hata göster ve işlemi durdur
             toast.error(

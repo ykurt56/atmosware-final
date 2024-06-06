@@ -31,9 +31,11 @@ const Filters: React.FC = () => {
   };
 
   const handleSelectPrice = (minPrice: number, maxPrice: number) => {
-    const sortedProducts = products.filter(
-      (product) => product.price >= minPrice && product.price <= maxPrice
-    );
+    const sortedProducts = products
+      .filter((product) => !category || product.category === category) // Kategoriye göre filtrele
+      .filter(
+        (product) => product.price >= minPrice && product.price <= maxPrice
+      ); // Fiyata göre filtrele
     setFilteredProducts(sortedProducts); // Filtrelenmiş ürünleri güncelle
   };
 
