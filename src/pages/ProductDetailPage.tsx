@@ -158,10 +158,9 @@ const ProductDetailPage: React.FC<ProductDetailProps> = ({ products }) => {
             </span>
           </div>
           <div className="my-4 pb-3 border-b-2">
-            <span className="text-2xl font-semibold text-red-600">
+            <span className="text-2xl font-semibold text-gray-700">
               ${product.price}
             </span>
-            <span className="ml-2 text-xl text-green-600"></span>
           </div>
           <p className="text-gray-700 my-4 border-b-2 pb-2">
             {product.description}

@@ -12,7 +12,7 @@ const NewProduct: React.FC = () => {
     const getNewProducts = async () => {
       try {
         const newProducts = await getProducts();
-        setProducts(newProducts.slice(15, 19));
+        setProducts(newProducts.slice(-8, newProducts.length - 4));
       } catch (error) {
         console.error("Error fetching new products:", error);
       }
@@ -24,7 +24,7 @@ const NewProduct: React.FC = () => {
   const getMoreNewProducts = async () => {
     try {
       const newProducts = await getProducts();
-      setProducts(newProducts.slice(15, newProducts.length - 1));
+      setProducts(newProducts.slice(-8));
 
       setShowMore(false);
     } catch (error) {
@@ -46,7 +46,7 @@ const NewProduct: React.FC = () => {
                   <img
                     src={product.image}
                     alt={product.title}
-                    className="object-cover mb-4 rounded-full  h-full w-full"
+                    className="object-cover mb-4 rounded-full  h-96   w-full"
                   />
                 </div>
                 <div>
@@ -65,7 +65,11 @@ const NewProduct: React.FC = () => {
                     {product.price >= 50 && (
                       <div className="block md:flex gap-2 md:text-xl lg:text-2xl">
                         <p className="text-gray-500 line-through">
-                          ${(product.price * 1.2).toFixed(2)}
+                          $
+                          {(
+                            product.price /
+                            (1 - discountPercentage / 100)
+                          ).toFixed(2)}
                         </p>
                         <div className="items-center justify-center bg-red-100 rounded-full px-3 text-red-600 md:text-lg">
                           %{discountPercentage}

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { VscSettings } from "react-icons/vsc";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import ColorButtons from "./ColorButtons";
 import Products from "./Products";
 import { getProducts } from "../../services/productApi";
@@ -14,7 +14,6 @@ const Filters: React.FC = () => {
   const [products, setProducts] = useState<ProductTypes[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<ProductTypes[]>([]);
   const { category } = useParams<{ category: string }>();
-  const navigate = useNavigate();
 
   useEffect(() => {
     fetchProducts();
@@ -64,7 +63,7 @@ const Filters: React.FC = () => {
   };
 
   const handleCategorySelect = (category: string) => {
-    navigate(`/category/${category}`);
+    window.location.href = `/category/${category}`;
   };
 
   useEffect(() => {

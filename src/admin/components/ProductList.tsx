@@ -150,7 +150,7 @@ const ProductList: React.FC = () => {
               }}
               onSubmit={(values) => handleSaveEdit(values)}
             >
-              {({ values, handleChange, handleSubmit }) => (
+              {({ values, handleSubmit }) => (
                 <Form onSubmit={handleSubmit}>
                   <div className="mb-4">
                     <label
@@ -234,34 +234,46 @@ const ProductList: React.FC = () => {
                         values.sizes.XL}
                     </label>
                     <div className="grid grid-cols-4 gap-4">
-                      <Field
-                        type="number"
-                        id="sizes.S"
-                        name="sizes.S"
-                        placeholder="S"
-                        className="w-full border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-                      />
-                      <Field
-                        type="number"
-                        id="sizes.M"
-                        name="sizes.M"
-                        placeholder="M"
-                        className="w-full border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-                      />
-                      <Field
-                        type="number"
-                        id="sizes.L"
-                        name="sizes.L"
-                        placeholder="L"
-                        className="w-full border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-                      />
-                      <Field
-                        type="number"
-                        id="sizes.XL"
-                        name="sizes.XL"
-                        placeholder="XL"
-                        className="w-full border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-                      />
+                      <div>
+                        <span>S</span>
+                        <Field
+                          type="number"
+                          id="sizes.S"
+                          name="sizes.S"
+                          placeholder="S"
+                          className="w-full border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                        />
+                      </div>
+                      <div>
+                        <span>M</span>
+                        <Field
+                          type="number"
+                          id="sizes.M"
+                          name="sizes.M"
+                          placeholder="M"
+                          className="w-full border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                        />
+                      </div>
+                      <div>
+                        <span>L</span>
+                        <Field
+                          type="number"
+                          id="sizes.L"
+                          name="sizes.L"
+                          placeholder="L"
+                          className="w-full border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                        />
+                      </div>
+                      <div>
+                        <span>XL</span>
+                        <Field
+                          type="number"
+                          id="sizes.XL"
+                          name="sizes.XL"
+                          placeholder="XL"
+                          className="w-full border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                        />
+                      </div>
                     </div>
                   </div>
                   <div className="mb-4">

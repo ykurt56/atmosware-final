@@ -25,11 +25,11 @@
   "products": [
     {
       "id": "1",
-      "title": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
+      "title": "Men's Markham Basic Spice Red Crewneck",
       "price": 130,
-      "description": "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
+      "description": "The Markham Basic Spice Red Crewneck is a must-have for your wardrobe. Made from comfortable cotton, it features a regular fit for easy wear. This crewneck is machine washable, easy to iron, and even dry cleanable. Perfect for any casual occasion, this versatile piece is sure to become a favorite.",
       "category": "men's clothing",
-      "image": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+      "image": "https://thefoschini.vtexassets.com/arquivos/ids/153604822-800-1067?v=638532661576670000&width=800&height=1067&aspect=true",
       "stock": 42,
       "sizes": {
         "S": 10,
@@ -44,16 +44,16 @@
     },
     {
       "id": "2",
-      "title": "Mens Casual Premium Slim Fit T-Shirts ",
-      "price": 22.3,
-      "description": "Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fashion wear and diehard baseball fans. The Henley style round neckline includes a three-button placket.",
+      "title": "Men  T-Shirt Crew Neck Regular Fit Single Jersey Cotton",
+      "price": 59.99,
+      "description": ":100% Cotton Accessories are not included in the product. E-COMMERCE EXCLUSIVE PRODUCT Kiğılı men's t-shirt models, which attract attention with their high quality fabrics and designs, are the most important step taken on the way to elegance. Kiğılı men's t-shirt models, prepared with the theme of calm elegance, offer a soft and skin-friendly use with their single jersey fabrics. You can also achieve strong looks with Kiğılı crewneck men's t-shirt models, which have a minimal but stylish design. Model Dimensions: 50/M Height: 189 cm Bust: 102 cm Waist: 82 cm Hips: 100 cm",
       "category": "men's clothing",
-      "image": "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg",
-      "stock": 30,
+      "image": "https://cdn.dsmcdn.com/mnresize/1200/1800/ty1348/product/media/images/prod/QC/20240605/22/572e6f43-0904-3f90-b5c0-f7df52e96f94/1_org_zoom.jpg",
+      "stock": 40,
       "sizes": {
         "S": 10,
         "M": 10,
-        "L": 0,
+        "L": 10,
         "XL": 10
       },
       "rating": {
@@ -67,7 +67,7 @@
       "price": 55.99,
       "description": "great outerwear jackets for Spring/Autumn/Winter, suitable for many occasions, such as working, hiking, camping, mountain/rock climbing, cycling, traveling or other outdoors. Good gift choice for you or your family member. A warm hearted love to Father, husband or son in this thanksgiving or Christmas Day.",
       "category": "men's clothing",
-      "image": "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg",
+      "image": "https://cdn.dsmcdn.com/mnresize/1200/1800/ty1299/product/media/images/prod/SPM/PIM/20240507/17/4ec678e8-459f-3786-9995-79bfce9707ca/1_org_zoom.jpg",
       "stock": 40,
       "sizes": {
         "S": 10,
@@ -86,7 +86,7 @@
       "price": 15.99,
       "description": "The color could be slightly different between on the screen and in practice. / Please note that body builds vary by person, therefore, detailed size information should be reviewed below on the product description.",
       "category": "men's clothing",
-      "image": "https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg",
+      "image": "https://cdn.dsmcdn.com/mnresize/1200/1800/ty1273/product/media/images/prod/SPM/PIM/20240425/16/6b4733b4-3a46-379f-bec6-9a20c3943a8b/1_org_zoom.jpg",
       "stock": 40,
       "sizes": {
         "S": 10,
@@ -440,6 +440,367 @@
         "rate": 3.7,
         "count": 20
       }
+    },
+    {
+      "id": "98a8",
+      "title": "Palazzo Pants Oversize Original Cut",
+      "price": 300,
+      "description": "Women's Palazzo Pants Versatile and Stylish: Discover Palazzo Scuba Crepe Women's Trousers! Offering a wide range of sizes from XXS to 5XL, these Palazzo trousers offer a flawless style by adapting to every body type.",
+      "category": "women's clothing",
+      "image": "https://cdn.dsmcdn.com/mnresize/1200/1800/ty1347/product/media/images/prod/QC/20240603/23/3df66553-46ca-3f8b-8604-b70a15f478bc/1_org_zoom.jpg",
+      "stock": 40,
+      "sizes": {
+        "S": 10,
+        "M": 10,
+        "L": 10,
+        "XL": 10
+      },
+      "rating": {
+        "rate": 1.7,
+        "count": 221
+      }
+    },
+    {
+      "id": "65c3",
+      "title": "BLACK TRENCH COAT LONG LINED",
+      "price": 125,
+      "description": "The length of the model is 171 cm. ; Model's size: S ; Short trench coat ; 100% cotton; BLEACH IS NOT USED - DRY CLEANING IS NOT POSSIBLE - HAND WASHING AT 30ºC - IRONING AT 110ºC - ; THE PRODUCT IS OUR OWN PRODUCTION. ; THE FABRIC AND LINING OF THE PRODUCT ARE PRODUCED BY OUR COMPANY. ; IT IS LINED. ; LENGTH OF THE PRODUCT: 105 CM",
+      "category": "women's clothing",
+      "image": "https://cdn.dsmcdn.com/mnresize/1200/1800/ty1322/product/media/images/prod/SPM/PIM/20240501/23/15a458c0-388f-317d-aa0c-e3d8fba0d19e/1_org_zoom.jpg",
+      "stock": 40,
+      "sizes": {
+        "S": 10,
+        "M": 10,
+        "L": 10,
+        "XL": 10
+      },
+      "rating": {
+        "rate": 4.1,
+        "count": 237
+      }
+    },
+    {
+      "id": "33e0",
+      "title": "Cropped Wool-like Coat",
+      "price": 800,
+      "description": "This Cropped Wool-like Coat is a versatile layering piece for your winter fit checks. Dress it up for work with smart high-waist trousers and a fitted shirt, or wear it on the weekend with utility denim and a chunky knit.",
+      "category": "women's clothing",
+      "image": "https://thefoschini.vtexassets.com/arquivos/ids/152806576-800-1067?v=638509560774170000&width=800&height=1067&aspect=true",
+      "stock": 40,
+      "sizes": {
+        "S": 10,
+        "M": 10,
+        "L": 10,
+        "XL": 10
+      },
+      "rating": {
+        "rate": 2,
+        "count": 177
+      }
+    },
+    {
+      "id": "2fb8",
+      "title": "Women's Iconography Printed Quilted Jacket",
+      "price": 980,
+      "description": "This item is sold directly by Bash and may only be returned via courier.  Soft lightweight quilted fabric in 100% Polyester",
+      "category": "women's clothing",
+      "image": "https://thefoschini.vtexassets.com/arquivos/ids/150546130-800-1067?v=638485099541470000&width=800&height=1067&aspect=true",
+      "stock": 40,
+      "sizes": {
+        "S": 10,
+        "M": 10,
+        "L": 10,
+        "XL": 10
+      },
+      "rating": {
+        "rate": 1.6,
+        "count": 136
+      }
+    },
+    {
+      "id": "db8d",
+      "title": "Womens TS-ACTV8 Multi-purpose Black Puffer",
+      "price": 299.95,
+      "description": "Stay cozy and stylish in our TS-ACTV8 Multi-purpose Black Puffer jacket. Made from Nylon Spandex, this versatile jacket is perfect for any sporty look. Ideal for active days, this puffer is a must-have addition to your wardrobe.",
+      "category": "women's clothing",
+      "image": "https://thefoschini.vtexassets.com/arquivos/ids/153536843-800-1067?v=638530942731370000&width=800&height=1067&aspect=true",
+      "stock": 40,
+      "sizes": {
+        "S": 10,
+        "M": 10,
+        "L": 10,
+        "XL": 10
+      },
+      "rating": {
+        "rate": 1.4,
+        "count": 104
+      }
+    },
+    {
+      "id": "b7e4",
+      "title": "Nike Women's NSW Street Woven Black Jacket",
+      "price": 399.95,
+      "description": "Contrasting details and an oversized fit turn this jacket into a statement. The woven twill gives you a structured, sturdy feel that still flexes with you for ease of movement. Add in the dropped shoulders, elastic on the waist and a fold-over collar to round off the retro-meets-modern feel. Supplier style is (FN1940-010).",
+      "category": "women's clothing",
+      "image": "https://thefoschini.vtexassets.com/arquivos/ids/153451845-800-1067?v=638530092509730000&width=800&height=1067&aspect=true",
+      "stock": 40,
+      "sizes": {
+        "S": 10,
+        "M": 10,
+        "L": 10,
+        "XL": 10
+      },
+      "rating": {
+        "rate": 4.1,
+        "count": 176
+      }
+    },
+    {
+      "id": "679a",
+      "title": "Womens Nike Sportswear Oversized Fleece Orange Sweatshirt",
+      "price": 485,
+      "description": "Deciding on what to wear has never been easier with this spacious layer. The oversized and exaggerated fit features an extreme drop on the shoulders and voluminous sleeves for an iconic look and cozy comfort. Our midweight brushed fleece feels extra soft on the inside and smooth on the outside, helping you stay cozy while keeping its structured shape.",
+      "category": "women's clothing",
+      "image": "https://thefoschini.vtexassets.com/arquivos/ids/153453323-800-1067?v=638530110317030000&width=800&height=1067&aspect=true",
+      "stock": 40,
+      "sizes": {
+        "S": 10,
+        "M": 10,
+        "L": 10,
+        "XL": 10
+      },
+      "rating": {
+        "rate": 4.3,
+        "count": 51
+      }
+    },
+    {
+      "id": "23d6",
+      "title": "G-Star Women's Oversized Pink Denim Jacket",
+      "price": 500,
+      "description": "This G-Star Women's Oversized Pink Denim Jacket is designed in an oversized fit. Offering flap pockets at the chest and slim welt pockets at the waist. A classic shank button closure completes it.",
+      "category": "women's clothing",
+      "image": "https://thefoschini.vtexassets.com/arquivos/ids/153472498-800-1067?v=638530184104930000&width=800&height=1067&aspect=true",
+      "stock": 40,
+      "sizes": {
+        "S": 10,
+        "M": 10,
+        "L": 10,
+        "XL": 10
+      },
+      "rating": {
+        "rate": 1.3,
+        "count": 21
+      }
+    },
+    {
+      "id": "b285",
+      "title": "Men's Union-DNM Sound System White Cotton T-Shirt",
+      "price": 150,
+      "description": "Feel the beat in our Union-DNM Sound System Tee. Made from soft cotton, this white t-shirt features a cool sound system graphic. Easy to care for with cool wash and iron instructions. Perfect for music lovers.",
+      "category": "men's clothing",
+      "image": "https://thefoschini.vtexassets.com/arquivos/ids/153597131-800-1067?v=638532634548300000&width=800&height=1067&aspect=true",
+      "stock": 40,
+      "sizes": {
+        "S": 10,
+        "M": 10,
+        "L": 10,
+        "XL": 10
+      },
+      "rating": {
+        "rate": 1.4,
+        "count": 61
+      }
+    },
+    {
+      "id": "93e5",
+      "title": "The North Face Men’s NSE Patch Tee - Black",
+      "price": 550,
+      "description": "Stay comfortable and stylish with The North Face Men’s NSE Patch Tee in classic black. Made from soft single jersey fabric, this tee is perfect for everyday wear. The NSE patch adds a touch of unique detail. E",
+      "category": "men's clothing",
+      "image": "https://thefoschini.vtexassets.com/arquivos/ids/153581595-800-1067?v=638532578188600000&width=800&height=1067&aspect=true",
+      "stock": 40,
+      "sizes": {
+        "S": 10,
+        "M": 10,
+        "L": 10,
+        "XL": 10
+      },
+      "rating": {
+        "rate": 3.3,
+        "count": 21
+      }
+    },
+    {
+      "id": "cbcd",
+      "title": "adidas Originals Men's Essentials Black Hoodie",
+      "price": 350,
+      "description": "When comfort and practicality are top of your list, the adidas Trefoil Essentials hoodie is the easy choice. This classic hoodie is crafted with a soft cotton blend fleece and finished with an embroidered Trefoil logo. The classic fit ensures comfort for everyday wear. Go for the casual look while still showing a timeless design. We partner with Better Cotton to improve cotton farming globally. Better Cotton makes global cotton production better for the people who produce it, better for the environment it grows in, and better for the sector's future. Better Cotton is sourced via a chain of custody model called mass balance. Supplier style is (IR3774/1).",
+      "category": "men's clothing",
+      "image": "https://thefoschini.vtexassets.com/arquivos/ids/153573262-800-1067?v=638531892624800000&width=800&height=1067&aspect=true",
+      "stock": 40,
+      "sizes": {
+        "S": 10,
+        "M": 10,
+        "L": 10,
+        "XL": 10
+      },
+      "rating": {
+        "rate": 1.4,
+        "count": 88
+      }
+    },
+    {
+      "id": "7f35",
+      "title": "Men's Markham Basic Ice Grey Hoodie",
+      "price": 550,
+      "description": "Stay cozy and stylish in this ice grey hoodie. Made with a regular fit and cotton fabrication, it's perfect for cool washes and warm ironing. Designed for comfort, this hoodie is a versatile addition to your wardrobe. Crafted in Madagascar. Easy to care for and super comfy!",
+      "category": "men's clothing",
+      "image": "https://thefoschini.vtexassets.com/arquivos/ids/153604475-800-1067?v=638532659889300000&width=800&height=1067&aspect=true",
+      "stock": 40,
+      "sizes": {
+        "S": 10,
+        "M": 10,
+        "L": 10,
+        "XL": 10
+      },
+      "rating": {
+        "rate": 3.3,
+        "count": 29
+      }
+    },
+    {
+      "id": "e978",
+      "title": "Men's Markham Half Zip Milk Sweatshirt",
+      "price": 350,
+      "description": "Stay cozy in the Markham Half Zip Milk Sweatshirt, made with soft cotton for all-day comfort. This regular fit sweatshirt is easy to care for with cool wash and warm iron instructions. Perfect for any casual occasion, this sweatshirt is a versatile addition to your wardrobe.",
+      "category": "men's clothing",
+      "image": "https://thefoschini.vtexassets.com/arquivos/ids/153604922-800-1067?v=638532662377470000&width=800&height=1067&aspect=true",
+      "stock": 40,
+      "sizes": {
+        "S": 10,
+        "M": 10,
+        "L": 10,
+        "XL": 10
+      },
+      "rating": {
+        "rate": 4.1,
+        "count": 87
+      }
+    },
+    {
+      "id": "5318",
+      "title": "Nike Men's Club Knit Long Sleeve Knit Sail Polo",
+      "price": 800,
+      "description": "From the course to the café, this classic long-sleeve polo from our Nike Club Collection brings a signature staple into your wardrobe. The soft cotton fabric is durable and breathable for easy comfort on the go. Plus, it's designed to feel relaxed around the chest and body for an athletic fit you can layer. Supplier style is (FQ3417-133).",
+      "category": "men's clothing",
+      "image": "https://thefoschini.vtexassets.com/arquivos/ids/153577006-800-1067?v=638531946297870000&width=800&height=1067&aspect=true",
+      "stock": 40,
+      "sizes": {
+        "S": 10,
+        "M": 10,
+        "L": 10,
+        "XL": 10
+      },
+      "rating": {
+        "rate": 4.4,
+        "count": 209
+      }
+    },
+    {
+      "id": "1f81",
+      "title": "Nike Men's Max90 Basketball Sail T-Shirt",
+      "price": 700,
+      "description": "This loose-fit heavyweight cotton tee features graphics that show love to players who take their game indoors or outdoors. Who's ready to go ball? Supplier style is (FV8398-133).",
+      "category": "men's clothing",
+      "image": "https://thefoschini.vtexassets.com/arquivos/ids/153575715-800-1067?v=638531928262600000&width=800&height=1067&aspect=true",
+      "stock": 40,
+      "sizes": {
+        "S": 10,
+        "M": 10,
+        "L": 10,
+        "XL": 10
+      },
+      "rating": {
+        "rate": 2.3,
+        "count": 87
+      }
+    },
+    {
+      "id": "47cd",
+      "title": "Men's Sage Stripe Top",
+      "price": 100,
+      "description": "Keep it cool by sporting this block stripe tee, pair with your fave bottoms and sneakers for a dope look!",
+      "category": "men's clothing",
+      "image": "https://thefoschini.vtexassets.com/arquivos/ids/153570154-800-1067?v=638531773916670000&width=800&height=1067&aspect=true",
+      "stock": 40,
+      "sizes": {
+        "S": 10,
+        "M": 10,
+        "L": 10,
+        "XL": 10
+      },
+      "rating": {
+        "rate": 4,
+        "count": 194
+      }
+    },
+    {
+      "id": "334a",
+      "title": "Redbat Athletics Men's Black Sweat Top",
+      "price": 570,
+      "description": "This Redbat Athletics Men's Black Piped Crew Sweat is made from cosy fleece fabric in a classic sweat style. It has a relaxed fit with a ribbed crew neck and ribbing on the cuffs and hem. White piping detail paired with coordinating graphic prints complete the style. Redbat is available exclusively at sportscene.",
+      "category": "men's clothing",
+      "image": "https://thefoschini.vtexassets.com/arquivos/ids/153564288-800-1067?v=638531730311470000&width=800&height=1067&aspect=true",
+      "stock": 40,
+      "sizes": {
+        "S": 10,
+        "M": 10,
+        "L": 10,
+        "XL": 10
+      },
+      "rating": {
+        "rate": 4,
+        "count": 155
+      }
+    },
+    {
+      "id": "ba8e",
+      "title": "Jet Men's White Good Vibes T-Shirt",
+      "price": 300,
+      "description": "Embrace good vibes with our white graphic tee! Made from soft cotton, this t-shirt is perfect for everyday wear. Positive vibes and comfort guaranteed. Add this to your casual tops collection for a laid-back style.",
+      "category": "men's clothing",
+      "image": "https://thefoschini.vtexassets.com/arquivos/ids/153488710-800-1067?v=638530207724100000&width=800&height=1067&aspect=true",
+      "stock": 40,
+      "sizes": {
+        "S": 10,
+        "M": 10,
+        "L": 10,
+        "XL": 10
+      },
+      "rating": {
+        "rate": 4.5,
+        "count": 50
+      }
+    },
+    {
+      "id": "4cef",
+      "title": "Wome's 9ct Silver Crystal Ball Studs Fine Earrings",
+      "price": 799,
+      "description": "Add a touch of elegance to your look with these stunning crystal ball studs. Made with 9ct silver, they feature clear gemstones that sparkle in the light. Perfect for adding a bit of sparkle to any outfit.",
+      "category": "jewelery",
+      "image": "https://thefoschini.vtexassets.com/arquivos/ids/153580001-800-1067?v=638532558200830000&width=800&height=1067&aspect=true",
+      "stock": 40,
+      "sizes": {
+        "S": 10,
+        "M": 10,
+        "L": 10,
+        "XL": 10
+      },
+      "rating": {
+        "rate": 4.7,
+        "count": 48
+      }
     }
   ],
   "customers": [
@@ -487,15 +848,6 @@
       "price": 9.99,
       "image": "https://fakestoreapi.com/img/71YAIFU48IL._AC_UL640_QL65_ML3_.jpg",
       "quantity": 2
-    },
-    {
-      "id": "2-M",
-      "user_id": "admin",
-      "name": "Mens Casual Premium Slim Fit T-Shirts ",
-      "size": "M",
-      "price": 22.3,
-      "image": "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg",
-      "quantity": 10
     }
   ],
   "Order": []

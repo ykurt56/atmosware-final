@@ -5,14 +5,20 @@ import StarRating from "../common/StarRating";
 
 const TopProduct: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
-  const discountPercentage: number = 10;
+  const discountPercentage: number = 20;
   const [showMore, setShowMore] = useState<boolean>(true);
 
   useEffect(() => {
     const getTopProducts = async () => {
       try {
         const topProducts = await getProducts();
-        setProducts(topProducts.slice(12, 16));
+        const sortedProducts = topProducts.sort(
+          (a: any, b: any) => b.rating.rate - a.rating.rate
+        );
+
+        const topFourProducts = sortedProducts.slice(0, 4);
+
+        setProducts(topFourProducts);
       } catch (error) {
         console.error("Error fetching Top Selling products:", error);
       }
@@ -24,7 +30,13 @@ const TopProduct: React.FC = () => {
   const getMoreTopProducts = async () => {
     try {
       const topProducts = await getProducts();
-      setProducts(topProducts.slice(12, topProducts.length - 1));
+      const sortedProducts = topProducts.sort(
+        (a: any, b: any) => b.rating.rate - a.rating.rate
+      );
+
+      const topFourProducts = sortedProducts.slice(0, 8);
+
+      setProducts(topFourProducts);
     } catch (error) {
       console.error("Error fetching Top Selling products:", error);
     }
@@ -43,7 +55,7 @@ const TopProduct: React.FC = () => {
                   <img
                     src={product.image}
                     alt={product.title}
-                    className="object-cover mb-4 rounded-full  h-full w-full"
+                    className="object-cover mb-4 rounded-full  h-96   w-full"
                   />
                 </div>
                 <div>
@@ -62,7 +74,11 @@ const TopProduct: React.FC = () => {
                     {product.price >= 10 && (
                       <div className=" block md:flex gap-2 md:text-xl   lg:text-2xl">
                         <p className="text-gray-500 line-through ">
-                          ${(product.price * 1.1).toFixed(2)}
+                          $
+                          {(
+                            product.price /
+                            (1 - discountPercentage / 100)
+                          ).toFixed(2)}{" "}
                         </p>
                         <div className=" items-center justify-center bg-red-100 rounded-full px-3 text-red-600 md:text-lg">
                           %{discountPercentage}
