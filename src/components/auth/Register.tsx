@@ -80,8 +80,8 @@ const Register: React.FC = () => {
     }
   };
 
-  const [showPassword, setShowPassword] = React.useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = React.useState(false);
+  const [showPassword, setShowPassword] = React.useState(true);
+  const [showConfirmPassword, setShowConfirmPassword] = React.useState(true);
 
   const toggleShowPassword = () => {
     setShowPassword(!showPassword);
