@@ -1,4 +1,5 @@
 import axios from "axios";
+import ProductTypes from "../types/ProductTypes";
 
 const api = axios.create({
   baseURL: "http://localhost:3001",
@@ -24,7 +25,10 @@ export const getProducts = async () => {
   }
 };
 
-export const updateProduct = async (id: string, updatedProduct: any) => {
+export const updateProduct = async (
+  id: string,
+  updatedProduct: ProductTypes
+) => {
   try {
     const response = await api.put(`/products/${id}`, updatedProduct);
     return response.data;

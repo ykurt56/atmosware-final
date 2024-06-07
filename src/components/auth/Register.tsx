@@ -44,6 +44,8 @@ const Register: React.FC = () => {
     confirmPassword: "",
   };
 
+  const [showPassword, setShowPassword] = React.useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = React.useState(false);
   const navigate = useNavigate();
 
   const onSubmit = async (
@@ -79,9 +81,6 @@ const Register: React.FC = () => {
       setSubmitting(false);
     }
   };
-
-  const [showPassword, setShowPassword] = React.useState(true);
-  const [showConfirmPassword, setShowConfirmPassword] = React.useState(true);
 
   const toggleShowPassword = () => {
     setShowPassword(!showPassword);
