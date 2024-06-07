@@ -36,7 +36,7 @@ const Orders: React.FC = () => {
   return (
     <div>
       <Navbar />
-      <div className="container mx-auto p-4">
+      <div className="container mx-auto p-4 ">
         <h1 className="text-2xl font-bold mb-4 text-center">Order List</h1>
 
         {ordersData.length === 0 && (
@@ -49,15 +49,15 @@ const Orders: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {ordersData.map((order) => (
             <div
-              key={order.id}
-              className="bg-white rounded-lg shadow-md p-4 flex flex-col justify-between"
+              key={`${order.id.split("-")[0]}`}
+              className="bg-white rounded-lg shadow-md p-4 flex flex-col justify-between "
             >
               <div>
                 <h3 className="text-lg font-bold mb-2">{order.name}</h3>
                 <img
                   src={order.image}
                   alt={order.name}
-                  className="w-full h-auto mb-2"
+                  className="w-full h-96 object-cover  mb-2"
                 />
                 <p className="mb-2">
                   Size: <span className="font-bold">{order.size}</span>

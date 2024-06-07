@@ -44,14 +44,6 @@ const App: React.FC = () => {
     <Router>
       <div className="App">
         <Navbar />
-        {!isLoggedIn && (
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="*" element={<Home />} />
-            <Route path="/signup" element={<RegisterPage />} />
-            <Route path="/login" element={<LoginPage />} />
-          </Routes>
-        )}
         {isLoggedIn && (
           <Routes>
             <Route path="/" element={<Home />} />
@@ -66,6 +58,15 @@ const App: React.FC = () => {
             <Route path="/category/:category?" Component={Filters} />
           </Routes>
         )}
+        {!isLoggedIn && (
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="*" element={<Home />} />
+            <Route path="/signup" element={<RegisterPage />} />
+            <Route path="/login" element={<LoginPage />} />
+          </Routes>
+        )}
+
         {isAdmin && (
           <Routes>
             <Route path="admin" element={<Admin />} />

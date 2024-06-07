@@ -107,7 +107,7 @@ const Cart: React.FC = () => {
             product.sizes[item.size] -= item.quantity;
             product.stock -= item.quantity;
 
-            await OrderApi(cartItems);
+            await OrderApi(item);
 
             // Ürünü güncelle
             await updateProduct(item.id.split("-")[0], product);
