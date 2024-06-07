@@ -35,9 +35,7 @@ const Navbar: React.FC = () => {
   };
 
   const username = localStorage.getItem("userName")?.toUpperCase();
-  const emptyCart = () => {
-    toast.error("There are no products in your cart.");
-  };
+
   const toggleSearch = () => {
     setIsSearchOpen(!isSearchOpen);
   };
@@ -187,19 +185,12 @@ const Navbar: React.FC = () => {
               <div className="ml-4 flex items-center">
                 {localStorage.getItem("isLoggedIn") ? (
                   <div className="flex items-center">
-                    {cartItems.length > 0 ? (
-                      <Link to="/cart" className="mr-4 relative">
-                        <span className="absolute -top-2.5 -right-2 bg-red-500 text-white text-xs rounded-full px-1 flex items-center justify-center">
-                          {cartItems.length}
-                        </span>
-                        <FiShoppingCart className="text-2xl text-black" />
-                      </Link>
-                    ) : (
-                      <FiShoppingCart
-                        className=" mr-4 text-2xl text-black"
-                        onClick={emptyCart}
-                      />
-                    )}
+                    <Link to="/cart" className="mr-4 relative">
+                      <span className="absolute -top-2.5 -right-2 bg-red-500 text-white text-xs rounded-full px-1 flex items-center justify-center">
+                        {cartItems.length > 0 ? cartItems.length : ""}
+                      </span>
+                      <FiShoppingCart className="text-2xl text-black" />
+                    </Link>
 
                     <div className="flex items-center">
                       <button

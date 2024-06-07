@@ -10,6 +10,7 @@ import {
 } from "../../services/cartApi";
 import { getProduct, updateProduct } from "../../services/productApi";
 import { OrderApi } from "../../services/orderApi";
+import RandomProducts from "../ProductDetail/RandomProducts";
 interface CartItem {
   id: string;
   name: string;
@@ -75,9 +76,6 @@ const Cart: React.FC = () => {
 
       // API üzerindeki veriyi güncelle
       await updateCartItemQuantity(id, Math.max(1, quantity), item);
-
-      // Bildirim göster
-      toast.success("Quantity updated successfully");
     } catch (error) {
       console.error("Error updating quantity:", error);
       toast.error("Failed to update quantity");
@@ -161,36 +159,45 @@ const Cart: React.FC = () => {
   const total = subtotal - discount + deliveryFee;
 
   return (
-    <div className="min-w-screen flex container mx-auto mt-5 ">
-      <div className="w-full  block  lg:flex">
-        <div className="lg:w-3/4 bg-gray-50 rounded-lg p-6 shadow-sm border border-gray-300 lg:mr-5">
-          {cartItems.map((item) => (
-            <CartItem
-              key={item.id}
-              id={item.id}
-              name={item.name}
-              size={item.size}
-              color={item.color}
-              price={item.price}
-              image={item.image}
-              quantity={item.quantity}
-              onQuantityChange={(id, quantity) =>
-                handleQuantityChange(id, quantity)
-              }
-              onRemove={(id) => handleRemoveItem(id)}
-            />
-          ))}
+    <div>
+      <div className="min-w-screen flex container mx-auto mt-5 ">
+        <div className="w-full  block  lg:flex">
+          <div className="lg:w-3/4 bg-gray-50 rounded-lg p-6 shadow-sm border border-gray-300 lg:mr-5">
+            {cartItems.length > 0 ? (
+              cartItems.map((item) => (
+                <CartItem
+                  key={item.id}
+                  id={item.id}
+                  name={item.name}
+                  size={item.size}
+                  color={item.color}
+                  price={item.price}
+                  image={item.image}
+                  quantity={item.quantity}
+                  onQuantityChange={(id, quantity) =>
+                    handleQuantityChange(id, quantity)
+                  }
+                  onRemove={(id) => handleRemoveItem(id)}
+                />
+              ))
+            ) : (
+              <p className="text-center text-red-500 text-xl">
+                No items in cart
+              </p>
+            )}
+          </div>
+          <OrderSummary
+            subtotal={subtotal}
+            discount={discount}
+            deliveryFee={deliveryFee}
+            total={total}
+            onApplyPromoCode={handleApplyPromoCode}
+            onBuyProducts={handleBuyProducts}
+          />
         </div>
-        <OrderSummary
-          subtotal={subtotal}
-          discount={discount}
-          deliveryFee={deliveryFee}
-          total={total}
-          onApplyPromoCode={handleApplyPromoCode}
-          onBuyProducts={handleBuyProducts}
-        />
+        <ToastContainer />
       </div>
-      <ToastContainer />
+      <RandomProducts />
     </div>
   );
 };
