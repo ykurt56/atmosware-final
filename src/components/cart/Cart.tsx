@@ -23,11 +23,11 @@ interface CartItem {
 
 const Cart: React.FC = () => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [promeCode, setPromeCode] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchCartItems = async () => {
-      const user_id: string = localStorage.getItem("User_ID") || ""; // Varsayılan değer atama
-      console.log(user_id);
+      const user_id: string = localStorage.getItem("User_ID") || "";
       try {
         const initialCartItems = await getCartItem(user_id);
         setCartItems(initialCartItems);
@@ -37,7 +37,7 @@ const Cart: React.FC = () => {
     };
 
     fetchCartItems();
-  }, []); // Sadece bir kere çalıştır
+  }, []);
 
   const handleRemoveItem = async (id: string) => {
     try {
@@ -52,7 +52,6 @@ const Cart: React.FC = () => {
       toast.error("Failed to remove item from cart");
     }
   };
-  console.log(cartItems);
   const handleQuantityChange = async (id: string, quantity: number) => {
     try {
       const item = cartItems.find((item) => item.id == id);
@@ -67,14 +66,12 @@ const Cart: React.FC = () => {
         return;
       }
 
-      // Yerel durumu güncelle
       setCartItems(
         cartItems.map((item) =>
           item.id === id ? { ...item, quantity: Math.max(1, quantity) } : item
         )
       );
 
-      // API üzerindeki veriyi güncelle
       await updateCartItemQuantity(id, Math.max(1, quantity), item);
     } catch (error) {
       console.error("Error updating quantity:", error);
@@ -85,6 +82,7 @@ const Cart: React.FC = () => {
   const handleApplyPromoCode = (code: string) => {
     if (code === "rigel") {
       toast.success("Promo code applied: rigel");
+      setPromeCode(true);
     } else {
       toast.error("Invalid promo code");
     }
@@ -92,25 +90,18 @@ const Cart: React.FC = () => {
 
   const handleBuyProducts = async () => {
     try {
-      // Sepetteki her ürün için
       for (const item of cartItems) {
-        // Ürünü getir
         const product = await getProduct(item.id.split("-")[0]);
-        console.log(item.id);
 
-        // Ürünün boyutunu güncelle
         if (product.sizes && product.sizes[item.size]) {
-          // Ürün miktarı yeterli mi kontrol et
           if (product.sizes[item.size] >= item.quantity) {
             product.sizes[item.size] -= item.quantity;
             product.stock -= item.quantity;
 
             await OrderApi(item);
 
-            // Ürünü güncelle
             await updateProduct(item.id.split("-")[0], product);
           } else {
-            // Ürün boyutu mevcut değilse veya yetersizse hata göster ve işlemi durdur
             toast.error(
               "Product information is missing or incorrect: " + item.name
             );
@@ -119,7 +110,6 @@ const Cart: React.FC = () => {
             return;
           }
         } else {
-          // Sepette yeterli miktarda ürün yoksa hata göster ve işlemi durdur
           toast.error("Not enough stock found: " + item.name);
           toast.error(
             "Product information is missing or incorrect: " + item.name
@@ -127,23 +117,17 @@ const Cart: React.FC = () => {
           return;
         }
 
-        // Sepetteki ürünü sil
         await deleteCartItem(item.id);
       }
 
-      // Başarılı satın alma mesajı göster
       toast.success("All items purchased successfully!");
     } catch (error) {
-      // Hata durumunda işlemi durdur ve hatayı konsola yazdır
       console.error("Error occurred during purchase:", error);
-      // Kullanıcıya hata mesajı göster
       toast.error(
         "An error occurred during the purchase process, please try again."
       );
     } finally {
-      // Sepeti boşalt
       setCartItems([]);
-      //sayfayı yenile
       setTimeout(() => {
         window.location.reload();
       }, 2000);
@@ -154,7 +138,7 @@ const Cart: React.FC = () => {
     (sum, item) => sum + item.price * item.quantity,
     0
   );
-  const discount = subtotal * 0.2; // 20% discount
+  const discount = promeCode ? subtotal * 1 : subtotal * 0.2;
   const deliveryFee = 15;
   const total = subtotal - discount + deliveryFee;
 

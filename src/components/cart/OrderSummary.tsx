@@ -21,11 +21,6 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({
   const [promoCode, setPromoCode] = useState("");
 
   const handleApplyPromoCode = () => {
-    if (promoCode === "Promo Code Applied") {
-      setPromoCode("");
-      subtotal = subtotal - 15;
-      return;
-    }
     onApplyPromoCode(promoCode);
   };
 

@@ -2,11 +2,17 @@ import React, { useState } from "react";
 import { MdCheck } from "react-icons/md";
 import { MdOutlineChevronRight } from "react-icons/md";
 
-const ColorButtons: React.FC = () => {
+interface ColorButtonsProps {
+  selectedColor: string | null;
+  setSelectedColor: (color: string | null) => void;
+}
+
+const ColorButtons: React.FC<ColorButtonsProps> = ({ setSelectedColor }) => {
   const [selectedButton, setSelectedButton] = useState<number | null>(null);
 
-  const handleButtonClick = (index: number) => {
+  const handleButtonClick = (index: number, color: string) => {
     setSelectedButton(selectedButton === index ? null : index);
+    setSelectedColor(selectedButton === index ? null : color);
   };
 
   const buttonColors1 = [
@@ -28,7 +34,7 @@ const ColorButtons: React.FC = () => {
     <button
       key={index}
       className={`w-8 h-8 rounded-full ${color} flex items-center justify-center`}
-      onClick={() => handleButtonClick(index)}
+      onClick={() => handleButtonClick(index, color)}
     >
       {selectedButton === index && <MdCheck className="text-white" />}
     </button>

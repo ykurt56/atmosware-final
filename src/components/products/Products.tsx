@@ -8,11 +8,10 @@ interface ProductsProps {
 }
 
 const Category: React.FC<ProductsProps> = ({ products }) => {
-  const productsPerPage = 12; // Sayfa başına görüntülenecek ürün sayısı
-  const [currentPage, setCurrentPage] = useState(1); // Geçerli sayfa numarası
-  const [searchTerm, setSearchTerm] = useState(""); // Arama terimi
+  const productsPerPage = 12;
+  const [currentPage, setCurrentPage] = useState(1);
+  const [searchTerm, setSearchTerm] = useState("");
 
-  // Geçerli sayfadaki ürünleri hesapla
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
   const filteredProducts = products.filter((product) =>
@@ -25,22 +24,18 @@ const Category: React.FC<ProductsProps> = ({ products }) => {
     indexOfLastProduct
   );
 
-  // Sayfa değiştirmek için işlev
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
-  // Sayfa değiştiğinde sayfanın başına at
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [currentPage]);
 
-  // Önceki sayfa
   const prevPage = () => {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
     }
   };
 
-  // Sonraki sayfa
   const nextPage = () => {
     if (currentPage < totalFilteredPages) {
       setCurrentPage(currentPage + 1);
@@ -54,7 +49,7 @@ const Category: React.FC<ProductsProps> = ({ products }) => {
         initialValues={{ search: "" }}
         onSubmit={(values, actions) => {
           setSearchTerm(values.search);
-          setCurrentPage(1); // Arama yapıldığında ilk sayfaya dön
+          setCurrentPage(1);
           actions.setSubmitting(false);
         }}
       >
@@ -67,12 +62,13 @@ const Category: React.FC<ProductsProps> = ({ products }) => {
               placeholder="Search"
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                 setSearchTerm(e.target.value);
-                setCurrentPage(1); // Arama yapılırken ilk sayfaya dön
+                setCurrentPage(1);
               }}
             />
           </Form>
         )}
       </Formik>
+
       <div className="container mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {currentProducts.map((product, index) => (
@@ -104,7 +100,6 @@ const Category: React.FC<ProductsProps> = ({ products }) => {
             </div>
           ))}
         </div>
-        {/* Sayfalama düğmeleri */}
         <div className="flex justify-center mt-5">
           <button
             onClick={prevPage}

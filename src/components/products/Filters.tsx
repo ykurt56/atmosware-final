@@ -13,6 +13,7 @@ const Filters: React.FC = () => {
   const [showFilters, setShowFilters] = useState(true);
   const [products, setProducts] = useState<ProductTypes[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<ProductTypes[]>([]);
+  const [selectedColor, setSelectedColor] = useState<string | null>(null);
   const { category } = useParams<{ category: string }>();
 
   useEffect(() => {
@@ -23,7 +24,7 @@ const Filters: React.FC = () => {
     try {
       const fetchedProducts = await getProducts();
       setProducts(fetchedProducts);
-      setFilteredProducts(fetchedProducts); // İlk başta tüm ürünleri filtreli ürünlere eşitle
+      setFilteredProducts(fetchedProducts);
     } catch (error) {
       console.error("Error fetching products:", error);
     }
@@ -31,35 +32,35 @@ const Filters: React.FC = () => {
 
   const handleSelectPrice = (minPrice: number, maxPrice: number) => {
     const sortedProducts = products
-      .filter((product) => !category || product.category === category) // Kategoriye göre filtrele
+      .filter((product) => !category || product.category === category)
       .filter(
         (product) => product.price >= minPrice && product.price <= maxPrice
       ); // Fiyata göre filtrele
-    setFilteredProducts(sortedProducts); // Filtrelenmiş ürünleri güncelle
+    setFilteredProducts(sortedProducts);
   };
 
   const handleSortPrice = (order: string) => {
     const sortedProducts = [...filteredProducts].sort((a, b) => {
       if (order === "asc") {
-        return a.price - b.price; // Artan sıralama
+        return a.price - b.price;
       } else if (order === "desc") {
-        return b.price - a.price; // Azalan sıralama
+        return b.price - a.price;
       }
       return 0;
     });
-    setFilteredProducts(sortedProducts); // Filtrelenmiş ürünleri güncelle
+    setFilteredProducts(sortedProducts);
   };
 
   const handleSortAz = (order: string) => {
     const sortedProducts = [...filteredProducts].sort((a, b) => {
       if (order === "asc") {
-        return a.title.localeCompare(b.title); // Artan sıralama
+        return a.title.localeCompare(b.title);
       } else if (order === "desc") {
-        return b.title.localeCompare(a.title); // Azalan sıralama
+        return b.title.localeCompare(a.title);
       }
       return 0;
     });
-    setFilteredProducts(sortedProducts); // Filtrelenmiş ürünleri güncelle
+    setFilteredProducts(sortedProducts);
   };
 
   const handleCategorySelect = (category: string) => {
@@ -67,11 +68,25 @@ const Filters: React.FC = () => {
   };
 
   useEffect(() => {
-    const newFilteredProducts = category
-      ? products.filter((product) => product.category === category)
-      : products;
+    let newFilteredProducts = products;
+
+    if (category) {
+      newFilteredProducts = newFilteredProducts.filter(
+        (product) => product.category === category
+      );
+    }
+
+    if (selectedColor) {
+      if (!newFilteredProducts) {
+        newFilteredProducts = products;
+      }
+      newFilteredProducts = newFilteredProducts.filter(
+        (product) => product.color === selectedColor
+      );
+    }
+
     setFilteredProducts(newFilteredProducts);
-  }, [category, products]);
+  }, [category, selectedColor, products]);
 
   return (
     <div className="container mx-auto flex justify-center">
@@ -89,7 +104,7 @@ const Filters: React.FC = () => {
         </div>
 
         {showFilters && (
-          <div className="flex flex-col">
+          <div className="flex flex-col ">
             <div className="flex flex-col border-b-2 mb-4">
               <div className="mb-4 container mx-auto">
                 <h3 className="text-xl font-bold mb-4">Category</h3>
@@ -130,7 +145,10 @@ const Filters: React.FC = () => {
             <Price onSelectPrice={handleSelectPrice} />
             <Sort onSortPrice={handleSortPrice} onSortAZ={handleSortAz} />
             <Size />
-            <ColorButtons />
+            <ColorButtons
+              selectedColor={selectedColor}
+              setSelectedColor={setSelectedColor}
+            />
           </div>
         )}
       </div>
