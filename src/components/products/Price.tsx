@@ -33,7 +33,7 @@ const Price: React.FC<PriceProps> = ({ onSelectPrice }) => {
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                       const newMinPrice = parseInt(e.target.value);
                       setFieldValue("minPrice", newMinPrice);
-                      onSelectPrice(newMinPrice, values.maxPrice); // Fiyat filtresini güncelle
+                      onSelectPrice(newMinPrice, values.maxPrice);
                     }}
                     className="w-full mx-2"
                   />
@@ -48,7 +48,7 @@ const Price: React.FC<PriceProps> = ({ onSelectPrice }) => {
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                       const newMaxPrice = parseInt(e.target.value);
                       setFieldValue("maxPrice", newMaxPrice);
-                      onSelectPrice(values.minPrice, newMaxPrice); // Fiyat filtresini güncelle
+                      onSelectPrice(values.minPrice, newMaxPrice);
                     }}
                     className="w-full mx-2"
                   />

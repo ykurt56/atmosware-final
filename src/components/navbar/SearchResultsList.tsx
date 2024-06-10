@@ -7,7 +7,6 @@ const SearchResultsList = ({ searchResults }: { searchResults: any[] }) => {
     setReset(false);
   };
 
-  console.log("searchResults", searchResults);
   return (
     <div>
       {reset && (

@@ -7,7 +7,7 @@ import CatagoryProduct from "../components/home/CatagoryProduct";
 import HappyCustomers from "../components/common/HappyCustomers";
 
 const Home: React.FC = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(
+  const [isLoggedIn] = useState<boolean>(
     localStorage.getItem("isLoggedIn") === "true"
   );
   return (

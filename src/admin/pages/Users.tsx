@@ -3,8 +3,6 @@ import { useFormik } from "formik";
 import { getUsers } from "../../services/userApi";
 import Navbar from "./Navbar";
 
-// Convert Zod schema to Formik validation schema
-
 interface User {
   id: number;
   name: string;
@@ -20,7 +18,7 @@ const Users: React.FC = () => {
       try {
         const usersData = await getUsers();
         setUsers(usersData);
-        setFilteredUsers(usersData); // Initialize filtered users
+        setFilteredUsers(usersData);
       } catch (error) {
         console.error("Error fetching users:", error);
       }

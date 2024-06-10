@@ -38,7 +38,6 @@ const CartItem: React.FC<CartItemProps> = ({
             </h2>
             <p className="text-gray-600">Size: {size}</p>
             <p className="text-xl font-bold mt-2">${price * quantity}</p>{" "}
-            {/* Toplam fiyatı hesapla */}
           </div>
         </Link>
         <div className="flex items-center ml-16  max-w-80 ">

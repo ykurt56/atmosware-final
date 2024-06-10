@@ -43,26 +43,25 @@ const Navbar: React.FC = () => {
     localStorage.getItem("isLoggedIn") === "true"
   );
   const handleLogout = () => {
-    localStorage.removeItem("isLoggedIn"); // Oturumu kaldır
-    localStorage.removeItem("User_ID"); // Oturumu kaldır
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("User_ID");
     localStorage.removeItem("userName");
     localStorage.removeItem("isAdmin");
     toast.success(`Logout Successful`);
     setIsLoggedIn(false);
     setTimeout(() => {
-      window.location.reload(); // Sayfayı yenile
+      window.location.reload();
     }, 2500);
   };
 
   const formik = useFormik<FormValues>({
     initialValues: {
-      search: "", // Arama değeri
+      search: "",
       searchweb: "",
     },
     onSubmit: async (values) => {
       try {
-        console.log("Form submitted with values:", values);
-        const products = await getProducts(); // Tüm ürünleri al
+        const products = await getProducts();
         const search = (values.search || values.searchweb || "").toLowerCase();
 
         if (search === "" || search === " " || search === null) {
@@ -73,9 +72,7 @@ const Navbar: React.FC = () => {
           product.title.toLowerCase().includes(search)
         );
 
-        setSearchResults(filteredProducts); // Arama sonuçlarını güncelle
-
-        // İşleme göre ekran güncellemelerini yapabilirsin
+        setSearchResults(filteredProducts);
       } catch (error) {
         console.error("Error fetching products:", error);
       }
@@ -83,7 +80,7 @@ const Navbar: React.FC = () => {
   });
 
   const fetchcartItems = async () => {
-    const user = localStorage.getItem("User_ID"); // user değişkeni string veya null olabilir
+    const user = localStorage.getItem("User_ID");
     if (user) {
       try {
         const cartItems = await getCartItem(user);
@@ -94,7 +91,6 @@ const Navbar: React.FC = () => {
     }
   };
 
-  // useEffect ile form submit olduğunda arama işlemlerini gerçekleştir
   useEffect(() => {
     formik.handleSubmit();
 
@@ -233,12 +229,10 @@ const Navbar: React.FC = () => {
                 ) : (
                   <div className="flex items-center">
                     <Link to="/login" className="mr-4 flex">
-                      {/* <p className=" text-sm mr-1 w-max">Login </p> */}
                       <RiLoginCircleLine className="text-2xl" />
                     </Link>
                     <Link to="/signup" className="flex ">
                       sss
-                      {/* <p className=" text-sm mr-1 w-max ">Register</p> */}
                       <LiaCartArrowDownSolid className="text-2xl wm" />
                     </Link>
                   </div>

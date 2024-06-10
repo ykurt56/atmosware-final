@@ -55,7 +55,6 @@ const Register: React.FC = () => {
     try {
       const users = await getUsers();
 
-      // Kullanıcının e-posta adresini kontrol etmek için diziyi döngüyle kontrol ediyoruz
       const emailExists = users.some(
         (user: any) => user.email === values.email
       );

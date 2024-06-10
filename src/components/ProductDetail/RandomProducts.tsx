@@ -5,14 +5,12 @@ import StarRating from "../common/StarRating";
 import { Link } from "react-router-dom";
 
 const RandomProducts: React.FC = () => {
-  const [products, setProducts] = useState<ProductTypes[]>([]);
   const [randomProducts, setRandomProducts] = useState<ProductTypes[]>([]);
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const products = await getProducts();
-        setProducts(products);
         const randomSelection = getRandomProducts(products, 4);
         setRandomProducts(randomSelection);
       } catch (error) {

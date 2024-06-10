@@ -12,7 +12,7 @@ export const getCartItem = async (user_id: string) => {
       return response.data;
     } catch (error) {
       console.error("Error fetching product:", error);
-      throw error; // Hata durumunda hatayı yeniden fırlat
+      throw error;
     }
   }
 };
@@ -37,7 +37,6 @@ export const addToCart = async (
     const response = await api.post("/cart", cartItem);
 
     if (response.status === 201) {
-      // Başarılı durumda bir işlem yapılabilir
     } else {
       throw new Error("Failed to add product to cart");
     }
@@ -52,25 +51,24 @@ export const deleteCartItem = async (id: string) => {
     return response.data;
   } catch (error) {
     console.error("Error fetching product:", error);
-    throw error; // Hata durumunda hatayı yeniden fırlat
+    throw error;
   }
 };
 
 export const updateCartItemQuantity = async (
   id: string,
   newQuantity: number,
-  itemData: any // Öğe verileri
+  itemData: any
 ) => {
   try {
     const updatedItem = {
-      ...itemData, // Mevcut öğe verileri
-      quantity: newQuantity, // Yeni miktar
+      ...itemData,
+      quantity: newQuantity,
     };
 
     const response = await api.put(`/cart/${id}`, updatedItem);
 
     if (response.status === 200) {
-      // Başarılı durumda bir işlem yapılabilir
     } else {
       throw new Error("Failed to update cart item quantity");
     }

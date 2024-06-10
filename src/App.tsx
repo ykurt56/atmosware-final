@@ -47,7 +47,6 @@ const App: React.FC = () => {
         {isLoggedIn && (
           <Routes>
             <Route path="/" element={<Home />} />
-            {/* Ürünlerin bulunduğu products dizisini ProductDetailPage bileşenine iletiyoruz */}
             <Route
               path="/products/:id"
               element={<ProductDetailPage products={products} />}

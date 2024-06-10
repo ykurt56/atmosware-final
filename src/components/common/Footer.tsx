@@ -11,6 +11,7 @@ import {
 } from "react-icons/fa";
 import { RiMailCheckLine, RiVisaLine } from "react-icons/ri";
 import { useFormik } from "formik";
+import { ToastContainer, toast } from "react-toastify";
 
 const Footer: React.FC = () => {
   const formik = useFormik({
@@ -18,7 +19,7 @@ const Footer: React.FC = () => {
       email: "",
     },
     onSubmit: (values) => {
-      console.log(values);
+      toast.success("Thank you for subscribing!" + " " + values.email);
     },
   });
   return (
@@ -47,7 +48,7 @@ const Footer: React.FC = () => {
 
           <button
             type="submit"
-            className="bg-white text-black px-6 py-4 rounded-full w-full lg:w-[349px]"
+            className="bg-white text-black px-6 py-4 rounded-full w-full lg:w-[349px] hover:bg-brand-800 hover:text-white"
           >
             Subscribe to Newsletter
           </button>
@@ -238,6 +239,7 @@ const Footer: React.FC = () => {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </footer>
   );
 };

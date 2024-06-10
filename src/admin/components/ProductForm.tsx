@@ -50,10 +50,8 @@ const ProductForm: React.FC = () => {
       try {
         values.rating.rate = parseFloat((Math.random() * 4 + 1).toFixed(1));
         values.rating.count = Math.round(Math.random() * 250) + 1;
-        // Stock değerini sizes içindeki değerlerin toplamı olarak hesapla
         let stock =
           values.sizes.L + values.sizes.M + values.sizes.S + values.sizes.XL;
-        // Stock değerini values içine ata
         values.stock = stock;
 
         await axios.post("http://localhost:3001/products", values);
