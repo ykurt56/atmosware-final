@@ -1,10 +1,11 @@
 import axios from "axios";
+import CartItemTypes from "../types/CartItem";
 
 const api = axios.create({
   baseURL: "http://localhost:3001",
 });
 
-export const OrderApi = async (buyItemData: any) => {
+export const OrderApi = async (buyItemData: CartItemTypes) => {
   try {
     const response = await api.post("/Order", buyItemData);
     return response.data;
@@ -23,7 +24,7 @@ export const getOrders = async () => {
   }
 };
 
-export const deleteOrder = async (orderId: number) => {
+export const deleteOrder = async (orderId: string) => {
   try {
     const response = await api.delete(`/Order/${orderId}`);
     return response.data;

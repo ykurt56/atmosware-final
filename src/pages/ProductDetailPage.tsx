@@ -11,6 +11,7 @@ import {
   updateCartItemQuantity,
 } from "../services/cartApi";
 import RandomProducts from "../components/ProductDetail/RandomProducts";
+import CartItemTypes from "../types/CartItem";
 interface ProductDetailProps {
   products: ProductTypes[];
 }
@@ -57,7 +58,7 @@ const ProductDetailPage: React.FC<ProductDetailProps> = ({ products }) => {
     try {
       const cartItems = await getCartItem(user_id);
       const existingItemIndex = cartItems.findIndex(
-        (item: any) =>
+        (item: CartItemTypes) =>
           item.id.split("-")[0] == product.id && item.size == selectedSize
       );
 
@@ -108,11 +109,11 @@ const ProductDetailPage: React.FC<ProductDetailProps> = ({ products }) => {
     }
   };
 
-  const handleSizeSelection = (size: any) => {
+  const handleSizeSelection = (size: string) => {
     setSelectedSize(size);
   };
 
-  const checkStock = (value: any) => {
+  const checkStock = (value: number) => {
     if (value <= 0) {
       return (
         <div>

@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import { FaChevronLeft, FaChevronRight, FaCheckCircle } from "react-icons/fa";
 import { AiFillStar } from "react-icons/ai";
 import { getCustomers } from "../../services/customerApi";
+import Customer from "../../types/Customer";
 
 const HappyCustomers: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
-  const [customers, setCustomers] = useState<any[]>([]);
+  const [customers, setCustomers] = useState<Customer[]>([]);
 
   const fetchCustomers = async () => {
     const data = await getCustomers();

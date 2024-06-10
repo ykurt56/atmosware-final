@@ -26,7 +26,7 @@ const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
   const [isUserDropdownOpen, setIsUserDropdownOpen] = useState<boolean>(false);
-  const [searchResults, setSearchResults] = useState<any[]>([]);
+  const [searchResults, setSearchResults] = useState<ProductTypes[]>([]);
   const [isAdmin] = useState(localStorage.getItem("isAdmin") === "true");
   const [cartItems, setCartItems] = useState<Array<object>>([{}]);
 

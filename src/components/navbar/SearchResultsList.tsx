@@ -1,7 +1,12 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import ProductTypes from "../../types/ProductTypes";
 
-const SearchResultsList = ({ searchResults }: { searchResults: any[] }) => {
+const SearchResultsList = ({
+  searchResults,
+}: {
+  searchResults: ProductTypes[];
+}) => {
   const [reset, setReset] = useState<boolean>(true);
   const searchReset = () => {
     setReset(false);

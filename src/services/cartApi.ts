@@ -1,4 +1,6 @@
 import axios from "axios";
+import ProductTypes from "../types/ProductTypes";
+import CartItemTypes from "../types/CartItem";
 
 const api = axios.create({
   baseURL: "http://localhost:3001",
@@ -18,7 +20,7 @@ export const getCartItem = async (user_id: string) => {
 };
 
 export const addToCart = async (
-  product: any,
+  product: ProductTypes,
   quantity: number,
   user_id: string,
   selectedSize: string
@@ -58,7 +60,7 @@ export const deleteCartItem = async (id: string) => {
 export const updateCartItemQuantity = async (
   id: string,
   newQuantity: number,
-  itemData: any
+  itemData: CartItemTypes
 ) => {
   try {
     const updatedItem = {

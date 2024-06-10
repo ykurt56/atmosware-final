@@ -11,18 +11,10 @@ import {
 import { getProduct, updateProduct } from "../../services/productApi";
 import { OrderApi } from "../../services/orderApi";
 import RandomProducts from "../ProductDetail/RandomProducts";
-interface CartItem {
-  id: string;
-  name: string;
-  size: string;
-  color: string;
-  price: number;
-  image: string;
-  quantity: number;
-}
+import CartItemTypes from "../../types/CartItem";
 
 const Cart: React.FC = () => {
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [cartItems, setCartItems] = useState<CartItemTypes[]>([]);
   const [promeCode, setPromeCode] = useState<boolean>(false);
 
   useEffect(() => {

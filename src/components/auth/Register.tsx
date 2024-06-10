@@ -12,6 +12,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { getUsers, registerUser } from "../../services/userApi";
 import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
+import RegisterFormValues from "../../types/User";
 
 const validationSchema = Yup.object({
   name: Yup.string()
@@ -28,13 +29,6 @@ const validationSchema = Yup.object({
     .oneOf([Yup.ref("password")], "Passwords must match")
     .required("Please confirm your password"),
 });
-
-interface RegisterFormValues {
-  name: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-}
 
 const Register: React.FC = () => {
   const initialValues: RegisterFormValues = {
@@ -56,7 +50,7 @@ const Register: React.FC = () => {
       const users = await getUsers();
 
       const emailExists = users.some(
-        (user: any) => user.email === values.email
+        (user: RegisterFormValues) => user.email === values.email
       );
 
       if (emailExists) {

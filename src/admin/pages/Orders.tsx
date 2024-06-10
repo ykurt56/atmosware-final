@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import Navbar from "./Navbar";
 import { getOrders, deleteOrder } from "../../services/orderApi";
 import { toast } from "react-toastify";
+import CartItemTypes from "../../types/CartItem";
 
 const Orders: React.FC = () => {
-  const [ordersData, setOrdersData] = useState<any[]>([]);
+  const [ordersData, setOrdersData] = useState<CartItemTypes[]>([]);
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -19,7 +20,7 @@ const Orders: React.FC = () => {
     fetchOrders();
   }, []);
 
-  const handleSendOrder = async (orderId: number) => {
+  const handleSendOrder = async (orderId: string) => {
     try {
       await deleteOrder(orderId);
       setOrdersData((prevOrders) =>
@@ -53,7 +54,9 @@ const Orders: React.FC = () => {
               className="bg-white rounded-lg shadow-md p-4 flex flex-col justify-between "
             >
               <div>
-                <h3 className="text-lg font-bold mb-2">{order.name}</h3>
+                <a href={`/products/${order.id.split("-")[0]}`}>
+                  <h3 className="text-lg font-bold mb-2">{order.name}</h3>
+                </a>
                 <img
                   src={order.image}
                   alt={order.name}

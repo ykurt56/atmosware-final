@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getProducts } from "../../services/productApi";
 import Product from "../../types/ProductTypes";
 import StarRating from "../common/StarRating";
+import ProductTypes from "../../types/ProductTypes";
 
 const TopProduct: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -13,7 +14,7 @@ const TopProduct: React.FC = () => {
       try {
         const topProducts = await getProducts();
         const sortedProducts = topProducts.sort(
-          (a: any, b: any) => b.rating.rate - a.rating.rate
+          (a: ProductTypes, b: ProductTypes) => b.rating.rate - a.rating.rate
         );
 
         const topFourProducts = sortedProducts.slice(0, 4);
@@ -31,7 +32,7 @@ const TopProduct: React.FC = () => {
     try {
       const topProducts = await getProducts();
       const sortedProducts = topProducts.sort(
-        (a: any, b: any) => b.rating.rate - a.rating.rate
+        (a: ProductTypes, b: ProductTypes) => b.rating.rate - a.rating.rate
       );
 
       const topFourProducts = sortedProducts.slice(0, 8);

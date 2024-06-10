@@ -1,10 +1,11 @@
 import axios from "axios";
+import RegisterFormValues from "../types/User";
 
 const api = axios.create({
   baseURL: "http://localhost:3001",
 });
 
-export const registerUser = async (userData: any) => {
+export const registerUser = async (userData: RegisterFormValues) => {
   try {
     const response = await api.post("/users", userData);
     return response.data;
