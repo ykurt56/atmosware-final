@@ -17,3 +17,9 @@ Projeyi başlatmak için:
 npm start
 yarn start
 ```
+
+Admin Bilgileri :
+```
+admin@admin.com
+admin
+```
