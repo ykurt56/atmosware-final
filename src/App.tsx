@@ -12,7 +12,7 @@ import { getProducts } from "./services/productApi";
 import ProductTypes from "./types/ProductTypes";
 import NewProduct from "./components/home/NewProduct";
 import Filters from "./components/products/Filters";
-import Admin from "./admin/pages/Admin";
+import Admin from "./admin/pages/admin";
 import AddProducts from "./admin/pages/AddProducts";
 import Users from "./admin/pages/Users";
 import Orders from "./admin/pages/Orders";
