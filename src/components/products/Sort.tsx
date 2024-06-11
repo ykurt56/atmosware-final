@@ -3,7 +3,7 @@ import { BsChevronDown } from "react-icons/bs";
 import {
   AiOutlineSortAscending,
   AiOutlineSortDescending,
-} from "react-icons/ai"; // A-Z sıralama ikonları
+} from "react-icons/ai";
 import { MdOutlineChevronRight, MdOutlinePriceChange } from "react-icons/md";
 
 interface SortProps {

@@ -35,7 +35,7 @@ const Filters: React.FC = () => {
       .filter((product) => !category || product.category === category)
       .filter(
         (product) => product.price >= minPrice && product.price <= maxPrice
-      ); // Fiyata göre filtrele
+      );
     setFilteredProducts(sortedProducts);
   };
 
@@ -90,7 +90,7 @@ const Filters: React.FC = () => {
 
   return (
     <div className="container mx-auto flex justify-center">
-      <div className="p-4 border rounded-lg container w-1/3 h-full mb-36">
+      <div className="p-4 border rounded-lg container w-1/3 h-full mb-36 hidden lg:block">
         <div className="flex items-center justify-between  mb-4 border-b-2">
           <h3 className="text-xl font-bold mb-4 ">Filters</h3>
 
@@ -153,6 +153,47 @@ const Filters: React.FC = () => {
         )}
       </div>
       <div className="container mx-5">
+        <div className="grid grid-cols-2  items-center mb-4 gap-20 lg:hidden">
+          <div className="container mx-auto">
+            <Price onSelectPrice={handleSelectPrice} />
+          </div>
+          <div className=" container mx-auto">
+            <h3 className="text-xl font-bold mb-4">Category</h3>
+            <div className="flex">
+              <button
+                className="text-xl font-semibold text-black"
+                onClick={() => handleCategorySelect("")}
+              >
+                All Products
+              </button>
+            </div>
+            <div className="flex">
+              <button
+                className="text-xl font-semibold text-black"
+                onClick={() => handleCategorySelect("men's clothing")}
+              >
+                Men's
+              </button>
+            </div>
+            <div className="flex">
+              <button
+                className="text-xl font-semibold text-black"
+                onClick={() => handleCategorySelect("women's clothing")}
+              >
+                Women's
+              </button>
+            </div>
+            <div className="flex">
+              <button
+                className="text-xl w-max font-semibold text-black"
+                onClick={() => handleCategorySelect("jewelery")}
+              >
+                Jewelery
+              </button>
+            </div>
+          </div>
+        </div>
+
         <Products products={filteredProducts} />
       </div>
     </div>
