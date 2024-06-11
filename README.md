@@ -19,6 +19,7 @@ yarn start
 ```
 
 Admin Bilgileri :
-
+```
 admin@admin.com
 admin
+```
