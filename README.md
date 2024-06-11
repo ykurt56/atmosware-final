@@ -23,3 +23,5 @@ Admin Bilgileri :
 admin@admin.com
 admin
 ```
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/e8e6e5dc-5661-4132-8adb-0980a371deb3/deploy-status)](https://app.netlify.com/sites/e-commerce-ykurt/deploys)
