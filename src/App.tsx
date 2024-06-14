@@ -27,7 +27,6 @@ const App: React.FC = () => {
   );
 
   useEffect(() => {
-    // Ürünleri API'den al
     const fetchProducts = async () => {
       try {
         const products = await getProducts();
